@@ -7,43 +7,114 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-:root { --accent: #1db954; --bg: #080808; }
+:root { --accent: #1db954; --bg: #000000; }
 * { margin:0; padding:0; box-sizing:border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-body { background: var(--bg); color: #fff; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
-.card { max-width: 420px; width: 100%; background: rgba(255,255,255,0.03); border-radius: 35px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(20px); box-shadow: 0 25px 50px rgba(0,0,0,0.5); }
-.banner { height: 180px; background: url('https://raw.githubusercontent.com/pembri/SAI-Roots-Official/refs/heads/main/IMG_20260407_232759_337.jpg') center/cover; position: relative; }
-.banner::after { content:''; position: absolute; inset:0; background: linear-gradient(transparent, var(--bg)); }
-.profile { text-align: center; margin-top: -65px; position: relative; z-index: 5; padding: 0 20px; }
-.profile-img { width: 125px; height: 125px; border-radius: 50%; border: 4px solid var(--bg); object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-.links { padding: 25px; }
-.link-box { display: flex; align-items: center; background: rgba(255,255,255,0.05); padding: 14px 20px; border-radius: 16px; text-decoration: none; color: #fff; margin-bottom: 10px; border: 1px solid transparent; transition: 0.3s; }
-.link-box:hover { background: rgba(255,255,255,0.1); border-color: var(--accent); transform: translateY(-3px); }
+body { background: var(--bg); color: #fff; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 0; }
+
+.card { max-width: 420px; width: 100%; min-height: 100vh; background: var(--bg); position: relative; overflow: hidden; }
+
+/* Banner tetap di atas */
+.banner { 
+    height: 260px; 
+    background: url('https://raw.githubusercontent.com/pembri/SAI-Roots-Official/refs/heads/main/IMG_20260407_232759_337.jpg') center/cover no-repeat; 
+    position: relative; 
+    z-index: 1;
+}
+
+/* Efek fade hitam di bawah banner agar menyatu dengan body */
+.banner::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(transparent, var(--bg));
+}
+
+/* Profil naik ke atas (Overlap) */
+.profile { 
+    text-align: center; 
+    margin-top: -60px; /* Ini yang membuat foto naik ke atas banner */
+    position: relative; 
+    z-index: 10; 
+    padding: 0 20px; 
+}
+
+.profile-img { 
+    width: 120px; 
+    height: 120px; 
+    border-radius: 50%; 
+    border: 3px solid #fff; 
+    object-fit: cover; 
+    background: #000;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+}
+
+.profile h1 { font-size: 26px; font-weight: 800; margin-top: 15px; letter-spacing: -0.5px; }
+.profile-subtitle { font-size: 11px; color: #888; letter-spacing: 2px; margin-top: 5px; }
+
+/* Konten Link */
+.links { padding: 30px 25px 10px; }
+
+.link-box { 
+    display: flex; 
+    align-items: center; 
+    background: #111; /* Warna box lebih gelap sesuai foto */
+    padding: 16px 20px; 
+    border-radius: 15px; 
+    text-decoration: none; 
+    color: #fff; 
+    margin-bottom: 12px; 
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: 0.3s; 
+}
+
 .link-box i { width: 30px; font-size: 18px; color: var(--accent); }
 .link-box span { font-weight: 600; font-size: 14px; flex-grow: 1; }
-.footer-text { text-align: center; padding: 25px; font-size: 11px; color: #444; }
+
+/* Sosial Media di Bawah */
+.social-links { 
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+    padding: 20px; 
+    margin-top: 10px;
+}
+.social-links a { color: #fff; font-size: 22px; opacity: 0.7; transition: 0.3s; }
+.social-links a:hover { opacity: 1; transform: translateY(-3px); }
+
+.footer-text { text-align: center; padding: 20px; font-size: 10px; color: #333; letter-spacing: 1px; }
 </style>
 </head>
 <body>
+
 <div class="card">
   <div class="banner"></div>
+  
   <div class="profile">
     <img src="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg" class="profile-img">
-    <h1 style="font-size: 26px; font-weight: 800; margin-top: 10px;">SAI Roots Music</h1>
-    <div style="font-size: 12px; color: #888; letter-spacing: 2px;">OFFICIAL WEBSITE</div>
+    <h1>SAI Roots Music</h1>
+    <div class="profile-subtitle">OFFICIAL WEBSITE</div>
   </div>
+
   <div class="links">
-    <a href="https://youtube.com/@sairoots" class="link-box" target="_blank"><i class="fab fa-youtube"></i><span>YouTube</span></a>
-    <a href="https://open.spotify.com/artist/0xOPCtZvhXVd9RTbU1aYTr?si=nxAN278ZQCy4A9reytgBVA" class="link-box" target="_blank"><i class="fab fa-spotify"></i><span>Spotify</span></a>
-    <a href="https://instagram.com/ahmadsupembri" class="link-box" target="_blank"><i class="fab fa-instagram"></i><span>Instagram</span></a>
-    <a href="https://tiktok.com/@ahmadsupembri" class="link-box" target="_blank"><i class="fab fa-tiktok"></i><span>TikTok</span></a>
-    <a href="https://facebook.com/ahmadsupembri" class="link-box" target="_blank"><i class="fab fa-facebook"></i><span>Facebook</span></a>
-    <a href="https://x.com/ahmadsupembri" class="link-box" target="_blank"><i class="fab fa-x-twitter"></i><span>X (Twitter)</span></a>
-    <hr style="opacity:0.05; margin: 15px 0;">
-    <a href="music.html" class="link-box"><i class="fa-solid fa-record-vinyl"></i><span>Album & Single</span></a>
+    <a href="music.html" class="link-box"><i class="fa-solid fa-circle-play"></i><span>Album & Single</span></a>
     <a href="lyric.html" class="link-box"><i class="fa-solid fa-file-lines"></i><span>Lirik Lagu</span></a>
     <a href="tentang.html" class="link-box"><i class="fa-solid fa-circle-info"></i><span>Tentang</span></a>
   </div>
+
+  <div class="social-links">
+    <a href="https://youtube.com/@sairoots" target="_blank"><i class="fab fa-youtube"></i></a>
+    <a href="https://open.spotify.com/artist/0xOPCtZvhXVd9RTbU1aYTr?si=nxAN278ZQCy4A9reytgBVA" target="_blank"><i class="fab fa-spotify"></i></a>
+    <a href="https://instagram.com/ahmadsupembri" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://tiktok.com/@ahmadsupembri" target="_blank"><i class="fab fa-tiktok"></i></a>
+    <a href="https://facebook.com/ahmadsupembri" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://x.com/ahmadsupembri" target="_blank"><i class="fab fa-x-twitter"></i></a>
+  </div>
+
   <div class="footer-text">© 2026 SAI Roots Music. All Rights Reserved.</div>
 </div>
+
 </body>
 </html>
