@@ -75,6 +75,39 @@
         .menu-item:hover { background: #2a2a2a; }
         .menu-item i { width: 24px; color: #b3b3b3; }
         .menu-close { text-align: center; padding: 16px; color: #1ed760; font-weight: 600; border-top: 1px solid #333; cursor: pointer; }
+
+        /* --- STYLES UNTUK FITUR SHARE BARU --- */
+        .share-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.92); z-index: 4000;
+            display: none; align-items: center; justify-content: center; padding: 20px;
+        }
+        .share-card {
+            background: #121212; width: 100%; max-width: 360px;
+            border-radius: 16px; overflow: hidden; position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6); border: 1px solid #282828;
+            animation: slideUp 0.3s ease-out;
+        }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .share-header { padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #282828; }
+        .share-header p { font-weight: 600; font-size: 15px; }
+        .share-body { padding: 25px; display: flex; gap: 18px; align-items: center; }
+        .share-art-mini { width: 90px; height: 90px; border-radius: 8px; overflow: hidden; flex-shrink: 0; }
+        .share-art-mini img { width: 100%; height: 100%; object-fit: cover; }
+        .share-info-text { flex: 1; min-width: 0; }
+        .share-badge { font-size: 10px; font-weight: 800; color: #1ed760; text-transform: uppercase; letter-spacing: 1px; }
+        .share-info-text h2 { font-size: 18px; margin: 2px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .share-info-text p { font-size: 14px; color: #b3b3b3; }
+        .share-link-box { padding: 0 25px 20px; }
+        .share-link-box p { font-size: 12px; color: #888; margin-bottom: 6px; }
+        .link-display { background: #1f1f1f; padding: 12px; border-radius: 6px; font-size: 12px; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; border: 1px solid #333; }
+        .share-actions { display: flex; justify-content: space-around; padding: 20px; background: #181818; }
+        .share-btn { width: 48px; height: 48px; background: #282828; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; text-decoration: none; transition: 0.2s; cursor: pointer; }
+        .share-btn:hover { background: #333; transform: scale(1.1); }
+        .share-btn.fb:hover { color: #1877F2; }
+        .share-btn.tw:hover { color: #1DA1F2; }
+        .share-btn.wa:hover { color: #25D366; }
+        .share-btn.copy:hover { color: #1ed760; }
     </style>
 </head>
 <body>
@@ -117,7 +150,6 @@
     <div class="song-item" data-title="Kabur Saja Dulu" data-type="Reborn Riddim" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.github.io/refs/heads/main/1775230743-rrborn.jpg"><i class="fas fa-play"></i>Kabur Saja Dulu</div>
 </div>
 
-<!-- Mini Player -->
 <div class="mini-player" id="miniPlayer" onclick="openNowPlaying()">
     <div class="mini-cover"><img id="miniCover" src="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg" alt="Cover"></div>
     <div class="mini-info">
@@ -127,7 +159,6 @@
     <button id="miniPlayBtn" style="background:none;border:none;color:#fff;font-size:24px;"><i class="fas fa-play"></i></button>
 </div>
 
-<!-- Full Now Playing -->
 <div id="nowPlaying">
     <div class="np-header">
         <i class="fas fa-chevron-down" onclick="closeNowPlaying()"></i>
@@ -156,7 +187,6 @@
     </div>
 </div>
 
-<!-- Menu -->
 <div id="menuPopup" onclick="if(event.target===this) hideMenu()">
     <div class="menu-content">
         <div class="menu-item" onclick="shareSong()"><i class="fas fa-share-alt"></i> Bagikan</div>
@@ -164,6 +194,43 @@
         <div class="menu-item" onclick="viewLyrics()"><i class="fas fa-book"></i> Lihat Lirik</div>
         <div class="menu-item" onclick="showCreditPopup()"><i class="fas fa-info-circle"></i> Credit Song</div>
         <div class="menu-close" onclick="hideMenu()">Tutup</div>
+    </div>
+</div>
+
+<div id="sharePopup" class="share-overlay" onclick="if(event.target===this) closeShare()">
+    <div class="share-card">
+        <div class="share-header">
+            <p>Bagikan lagu ini</p>
+            <i class="fas fa-times" onclick="closeShare()" style="cursor:pointer;"></i>
+        </div>
+        <div class="share-body">
+            <div class="share-art-mini">
+                <img id="shareCoverImg" src="" alt="Cover">
+            </div>
+            <div class="share-info-text">
+                <span class="share-badge">SONG</span>
+                <h2 id="shareTitleText">Judul Lagu</h2>
+                <p>SAI Roots</p>
+            </div>
+        </div>
+        <div class="share-link-box">
+            <p>Share link:</p>
+            <div class="link-display" id="shareUrlDisplay">https://...</div>
+        </div>
+        <div class="share-actions">
+            <a id="shareFB" href="#" target="_blank" class="share-btn fb"><i class="fab fa-facebook-f"></i></a>
+            <a id="shareTW" href="#" target="_blank" class="share-btn tw"><i class="fab fa-twitter"></i></a>
+            <a id="shareWA" href="#" target="_blank" class="share-btn wa"><i class="fab fa-whatsapp"></i></a>
+            <div class="share-btn copy" onclick="copyShareUrl()"><i class="fas fa-link"></i></div>
+        </div>
+    </div>
+</div>
+
+<div id="creditPopup" class="share-overlay" onclick="if(event.target===this) hideCreditPopup()">
+    <div class="menu-content" style="border-radius:16px; max-width:320px; padding:25px; color:#fff;">
+        <h3 style="margin-bottom:15px; color:var(--accent);">Song Credit</h3>
+        <div id="creditText" style="line-height:1.6; font-size:14px;"></div>
+        <div class="menu-close" onclick="hideCreditPopup()" style="margin-top:20px; border:none;">Tutup</div>
     </div>
 </div>
 
@@ -190,11 +257,9 @@
     const npPlayPauseBtn = document.getElementById("npPlayPauseBtn");
     const miniPlayBtn = document.getElementById("miniPlayBtn");
 
-    // Fungsi untuk membuka lagu dari hash URL
     function openFromHash() {
-        const hash = window.location.hash.substring(1); // ambil bagian setelah #
+        const hash = window.location.hash.substring(1);
         if (!hash) return;
-
         for (let i = 0; i < songs.length; i++) {
             const title = songs[i].dataset.title.toLowerCase().replace(/\s+/g, '-');
             if (title === hash) {
@@ -209,7 +274,6 @@
         const song = songs[idx];
         currentTitle = song.dataset.title;
         const type = song.dataset.type || "Single";
-
         const cover = (type === "Critical Fire") ? criticalCover :
                       (type === "Reborn Riddim") ? rebornCover : defaultCover;
 
@@ -224,99 +288,6 @@
         npCover.src = cover;
 
         audio.src = baseUrl + encodeURIComponent(currentTitle) + ".mp3?raw=true";
-
         audio.play().then(() => {
             npPlayPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-            miniPlayBtn.innerHTML = '<i class="fas fa-pause"></i>';
-            nowPlaying.classList.add('playing');
-        }).catch(() => {});
-
-        openNowPlaying();
-    }
-
-    function togglePlay() {
-        if (audio.paused) audio.play(); else audio.pause();
-        npPlayPauseBtn.innerHTML = audio.paused ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
-        miniPlayBtn.innerHTML = audio.paused ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
-        nowPlaying.classList.toggle('playing', !audio.paused);
-    }
-
-    function nextSong() { if (currentIdx < songs.length - 1) playSong(currentIdx + 1); }
-    function prevSong() { if (currentIdx > 0) playSong(currentIdx - 1); }
-
-    function openNowPlaying() { nowPlaying.style.display = 'flex'; }
-    function closeNowPlaying() { nowPlaying.style.display = 'none'; }
-
-    audio.addEventListener('timeupdate', () => {
-        if (audio.duration) npProgress.style.width = (audio.currentTime / audio.duration) * 100 + "%";
-    });
-
-    document.getElementById("npProgressBar").addEventListener('click', (e) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        const pos = (e.clientX - rect.left) / rect.width;
-        if (audio.duration) audio.currentTime = pos * audio.duration;
-    });
-
-    audio.addEventListener('ended', () => { nextSong(); });
-
-    songs.forEach((song, i) => song.addEventListener('click', () => playSong(i)));
-    miniPlayBtn.addEventListener('click', (e) => { e.stopPropagation(); togglePlay(); });
-
-    // Auto open dari hash URL (ini yang baru)
-    window.addEventListener('load', () => {
-        setTimeout(openFromHash, 500); // tunggu sedikit biar halaman stabil
-    });
-
-    // Menu functions
-    function showMenu() { document.getElementById("menuPopup").style.display = "flex"; }
-    function hideMenu() { document.getElementById("menuPopup").style.display = "none"; }
-
-    async function shareSong() {
-        hideMenu();
-        const slug = currentTitle.toLowerCase().replace(/\s+/g, '-');
-        const songUrl = window.location.origin + window.location.pathname + "#" + slug;
-        try {
-            if (navigator.share) await navigator.share({title: currentTitle + " - SAI Roots", url: songUrl});
-            else {
-                await navigator.clipboard.writeText(songUrl);
-                alert("✅ Link lagu telah disalin!");
-            }
-        } catch (err) {
-            await navigator.clipboard.writeText(songUrl);
-            alert("✅ Link lagu telah disalin!");
-        }
-    }
-
-    function downloadSong() {
-        if (!currentTitle) return;
-        const a = document.createElement("a");
-        a.href = baseUrl + encodeURIComponent(currentTitle) + ".mp3?raw=true";
-        a.download = currentTitle + ".mp3";
-        document.body.appendChild(a); a.click(); document.body.removeChild(a);
-        hideMenu();
-    }
-
-    function viewLyrics() {
-        if (!currentTitle) return;
-        const slug = currentTitle.toLowerCase().replace(/\s+/g, '');
-        window.open(`https://sairootsmusic.github.io/lyric/${slug}`, "_blank");
-        hideMenu();
-    }
-
-    function showCreditPopup() {
-        hideMenu();
-        const typeText = npType.textContent;
-        document.getElementById("creditText").innerHTML = `
-            <strong>Judul</strong> : ${currentTitle}<br>
-            <strong>Artist</strong> : SAI Roots<br>
-            <strong>${typeText.includes('Album') ? 'Album' : 'Single'}</strong> : ${typeText}<br>
-            <strong>Penulis</strong> : Ahmad Supembri<br><br>
-            <small>All Rights Reserved © 2026 SAI Roots Music</small>
-        `;
-        document.getElementById("creditPopup").style.display = "flex";
-    }
-
-    function hideCreditPopup() { document.getElementById("creditPopup").style.display = "none"; }
-</script>
-</body>
-</html>
+            miniPlayBt
