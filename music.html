@@ -20,19 +20,24 @@
         .song-item:hover { background: #282828; }
         .song-item.active { background: #1f1f1f; border-left: 4px solid var(--accent); }
         .song-item i { margin-right: 16px; color: #888; width: 20px; }
+
         .mini-player { position: fixed; bottom: 0; left: 0; width: 100%; background: #181818; border-top: 1px solid #282828; padding: 12px 16px; display: flex; align-items: center; gap: 12px; z-index: 100; cursor: pointer; }
         .mini-cover { width: 50px; height: 50px; border-radius: 8px; overflow: hidden; }
         .mini-info { flex: 1; overflow: hidden; }
         .mini-title { font-size: 14.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .mini-artist { font-size: 12px; color: #b3b3b3; }
+
         #nowPlaying { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(#1f1f1f, #121212); z-index: 2000; display: none; flex-direction: column; }
         .np-header { padding: 20px 20px 10px; display: flex; justify-content: space-between; align-items: center; }
         .np-header i { font-size: 24px; cursor: pointer; }
+        
+        /* CSS UNTUK COVER BULAT */
         .np-art { flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px; }
-        .np-cover { width: 280px; height: 280px; border-radius: 50%; overflow: hidden; box-shadow: 0 15px 50px rgba(0,0,0,0.6); cursor: pointer; border: 4px solid #282828; }
+        .np-cover { width: 280px; height: 280px; border-radius: 50%; overflow: hidden; box-shadow: 0 15px 50px rgba(0,0,0,0.6); border: 4px solid #282828; cursor: pointer; }
         .np-cover img { width: 100%; height: 100%; object-fit: cover; }
         .playing .np-cover img { animation: rotate 28s linear infinite; }
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
         .np-info { text-align: center; padding: 0 30px 20px; }
         .np-title { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
         .np-artist { font-size: 16px; color: #b3b3b3; }
@@ -43,16 +48,21 @@
         .np-controls { display: flex; justify-content: center; align-items: center; gap: 40px; padding: 30px 0; }
         .np-controls button { background: none; border: none; color: #fff; font-size: 26px; cursor: pointer; }
         .np-play-pause { width: 74px; height: 74px; background: #fff; color: #000; border-radius: 50%; font-size: 36px; display: flex; align-items: center; justify-content: center; }
+
+        /* POPUP FULL IMAGE */
+        #artPopup { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 5000; display: none; align-items: center; justify-content: center; }
+        .art-full-container { position: relative; width: 90%; max-width: 400px; }
+        .art-full-container img { width: 100%; border-radius: 12px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+        .art-close { position: absolute; top: -50px; right: 0; color: #fff; font-size: 30px; cursor: pointer; }
+
         #menuPopup { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 3000; display: none; justify-content: center; align-items: flex-end; }
         .menu-content { background: #1f1f1f; width: 100%; max-width: 380px; border-radius: 16px 16px 0 0; padding: 10px 0; }
         .menu-item { padding: 16px 24px; font-size: 16px; display: flex; align-items: center; gap: 16px; cursor: pointer; }
         .menu-item:hover { background: #2a2a2a; }
         .menu-item i { width: 24px; color: #b3b3b3; }
         .menu-close { text-align: center; padding: 16px; color: #1ed760; font-weight: 600; border-top: 1px solid #333; cursor: pointer; }
-        #artPopup { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 5000; display: none; align-items: center; justify-content: center; }
-        .art-full-container { position: relative; width: 90%; max-width: 400px; }
-        .art-full-container img { width: 100%; border-radius: 12px; }
-        .art-close { position: absolute; top: -40px; right: 0; color: #fff; font-size: 30px; cursor: pointer; }
+        
+        #creditPopup { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:5000; align-items:center; justify-content:center; }
     </style>
 </head>
 <body>
@@ -60,6 +70,7 @@
 <div class="container">
     <h1>Discography</h1>
     <p class="subtitle">SAI Roots</p>
+
     <div class="section-title-line">Single</div>
     <div class="song-item" data-title="Drama Klenik" data-type="Single"><i class="fas fa-play"></i>Drama Klenik</div>
     <div class="song-item" data-title="Senandung Manis" data-type="Single"><i class="fas fa-play"></i>Senandung Manis</div>
@@ -90,7 +101,7 @@
     <div class="song-item" data-title="Rastaman" data-type="Reborn Riddim" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.github.io/refs/heads/main/1775230743-rrborn.jpg"><i class="fas fa-play"></i>Rastaman</div>
     <div class="song-item" data-title="Melayang Pelan" data-type="Reborn Riddim" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.github.io/refs/heads/main/1775230743-rrborn.jpg"><i class="fas fa-play"></i>Melayang Pelan</div>
     <div class="song-item" data-title="Tanah Hijau" data-type="Reborn Riddim" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.github.io/refs/heads/main/1775230743-rrborn.jpg"><i class="fas fa-play"></i>Tanah Hijau</div>
-    <div class="song-item" data-title="BBM Busuk" data-type="Reborn Riddim" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.github.io/refs/heads/main/1775230743-rrborn.jpg"><i class="fas fa-play)</i>BBM Busuk</div>
+    <div class="song-item" data-title="BBM Busuk" data-type="Reborn Riddim" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.github.io/refs/heads/main/1775230743-rrborn.jpg"><i class="fas fa-play"></i>BBM Busuk</div>
     <div class="song-item" data-title="Kabur Saja Dulu" data-type="Reborn Riddim" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.github.io/refs/heads/main/1775230743-rrborn.jpg"><i class="fas fa-play"></i>Kabur Saja Dulu</div>
 </div>
 
@@ -120,10 +131,10 @@
     </div>
 </div>
 
-<div id="creditPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:5000; align-items:center; justify-content:center;">
-    <div class="menu-content" style="border-radius:16px; max-width:320px; padding:20px; position:relative;">
+<div id="creditPopup" onclick="this.style.display='none'">
+    <div class="menu-content" style="border-radius:16px; max-width:320px; padding:20px; margin: auto; position: relative; top: 50%; transform: translateY(-50%);">
         <div id="creditText" style="font-size:14px; line-height:1.6;"></div>
-        <div class="menu-close" onclick="document.getElementById('creditPopup').style.display='none'">Tutup</div>
+        <div class="menu-close">Tutup</div>
     </div>
 </div>
 
@@ -135,16 +146,13 @@
     const baseUrl = "https://github.com/pembri/SAI-Roots-Official/raw/refs/heads/main/";
     let currentIdx = -1;
     let currentTitle = "";
-
-    // --- FIX SHARE LINK: Pastikan URL SELALU ke sairootsmusic.github.io ---
     const OFFICIAL_DOMAIN = "https://sairootsmusic.github.io/music";
 
     function openFromHash() {
         const hash = decodeURIComponent(window.location.hash.substring(1));
         if (!hash) return;
         for (let i = 0; i < songs.length; i++) {
-            const songSlug = songs[i].dataset.title.toLowerCase().replace(/\s+/g, '-');
-            if (songSlug === hash) {
+            if (songs[i].dataset.title.toLowerCase().replace(/\s+/g, '-') === hash) {
                 playSong(i);
                 break;
             }
@@ -173,9 +181,8 @@
             document.getElementById("miniPlayBtn").innerHTML = '<i class="fas fa-pause"></i>';
             document.getElementById("nowPlaying").classList.add('playing');
         }).catch(() => {});
-        openNowPlaying();
         
-        // Update hash saat lagu diputar agar link di browser sinkron
+        document.getElementById("nowPlaying").style.display = 'flex';
         window.history.replaceState(null, null, "#" + currentTitle.toLowerCase().replace(/\s+/g, '-'));
     }
 
@@ -207,37 +214,25 @@
     songs.forEach((song, i) => song.addEventListener('click', () => playSong(i)));
     document.getElementById("miniPlayBtn").addEventListener('click', (e) => { e.stopPropagation(); togglePlay(); });
 
-    // --- PERBAIKAN SHARE: Paksa gunakan domain asli ---
     async function shareSong() {
         hideMenu();
-        const slug = currentTitle.toLowerCase().replace(/\s+/g, '-');
-        const songUrl = OFFICIAL_DOMAIN + "#" + slug; 
-        try {
-            if (navigator.share) {
-                await navigator.share({title: currentTitle + " - SAI Roots", url: songUrl});
-            } else {
-                navigator.clipboard.writeText(songUrl);
-                alert("✅ Link lagu disalin: " + songUrl);
-            }
-        } catch (err) {
-            navigator.clipboard.writeText(songUrl);
-            alert("✅ Link lagu disalin!");
-        }
+        const songUrl = OFFICIAL_DOMAIN + "#" + currentTitle.toLowerCase().replace(/\s+/g, '-');
+        if (navigator.share) await navigator.share({title: currentTitle + " - SAI Roots", url: songUrl});
+        else { navigator.clipboard.writeText(songUrl); alert("✅ Link disalin!"); }
     }
 
     function downloadSong() { window.open(audio.src, '_blank'); hideMenu(); }
     function viewLyrics() { window.open(`https://sairootsmusic.github.io/lyric/${currentTitle.toLowerCase().replace(/\s+/g, '')}`, "_blank"); hideMenu(); }
     function showMenu() { document.getElementById("menuPopup").style.display = "flex"; }
     function hideMenu() { document.getElementById("menuPopup").style.display = "none"; }
+    
     function showCreditPopup() {
         hideMenu();
-        document.getElementById("creditText").innerHTML = `<strong>${currentTitle}</strong><br>SAI Roots<br>Ahmad Supembri<br>© 2026`;
-        document.getElementById("creditPopup").style.display = "flex";
+        document.getElementById("creditText").innerHTML = `<strong>${currentTitle}</strong><br>Artist: SAI Roots<br>Penulis: Ahmad Supembri<br>© 2026 SAI Roots`;
+        document.getElementById("creditPopup").style.display = "block";
     }
 
-    // Jalankan deteksi link saat halaman dimuat
     window.addEventListener('load', () => { setTimeout(openFromHash, 300); });
-    // Deteksi jika user ganti link/hash tanpa refresh
     window.addEventListener('hashchange', openFromHash);
 </script>
 </body>
