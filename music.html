@@ -46,8 +46,17 @@
         }
         .np-header { padding: 20px 20px 10px; display: flex; justify-content: space-between; align-items: center; }
         .np-header i { font-size: 24px; cursor: pointer; }
+        
+        /* --- PERUBAHAN: Cover Jadi Bulat --- */
         .np-art { flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px; }
-        .np-cover { width: 280px; height: 280px; border-radius: 16px; overflow: hidden; box-shadow: 0 25px 70px rgba(0,0,0,0.8); }
+        .np-cover { 
+            width: 280px; height: 280px; 
+            border-radius: 50%; /* Membuat jadi bulat */
+            overflow: hidden; 
+            box-shadow: 0 15px 50px rgba(0,0,0,0.6); 
+            cursor: pointer; /* Memberi indikasi bisa diklik */
+            border: 4px solid #282828;
+        }
         .np-cover img { width: 100%; height: 100%; object-fit: cover; }
         .playing .np-cover img { animation: rotate 28s linear infinite; }
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -76,38 +85,15 @@
         .menu-item i { width: 24px; color: #b3b3b3; }
         .menu-close { text-align: center; padding: 16px; color: #1ed760; font-weight: 600; border-top: 1px solid #333; cursor: pointer; }
 
-        /* CSS BARU UNTUK SHARE POPUP */
-        .share-overlay {
+        /* --- CSS BARU: Popup Gambar Full --- */
+        #artPopup {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); z-index: 4000;
-            display: none; align-items: center; justify-content: center; padding: 20px;
+            background: rgba(0,0,0,0.95); z-index: 5000;
+            display: none; align-items: center; justify-content: center;
         }
-        .share-card {
-            background: #121212; width: 100%; max-width: 360px;
-            border-radius: 16px; overflow: hidden; border: 1px solid #333;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        .share-header { padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #282828; }
-        .share-body { padding: 20px; display: flex; gap: 15px; align-items: center; }
-        .share-art-mini { width: 85px; height: 85px; border-radius: 8px; overflow: hidden; }
-        .share-art-mini img { width: 100%; height: 100%; object-fit: cover; }
-        .share-badge { font-size: 10px; font-weight: 800; color: #1ed760; text-transform: uppercase; }
-        .share-actions-grid { 
-            display: grid; grid-template-columns: repeat(4, 1fr); 
-            gap: 15px; padding: 20px; background: #181818; 
-        }
-        .share-btn { 
-            display: flex; flex-direction: column; align-items: center; 
-            text-decoration: none; color: #fff; font-size: 11px; gap: 8px;
-        }
-        .share-icon-circle {
-            width: 45px; height: 45px; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; 
-            background: #282828; font-size: 20px; transition: 0.2s;
-        }
-        .share-btn:hover .share-icon-circle { background: #333; transform: scale(1.1); }
-        .share-link-box { padding: 0 20px 15px; }
-        .link-text { background: #1f1f1f; padding: 10px; border-radius: 6px; font-size: 12px; color: #888; border: 1px solid #333; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .art-full-container { position: relative; width: 90%; max-width: 400px; }
+        .art-full-container img { width: 100%; border-radius: 12px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+        .art-close { position: absolute; top: -40px; right: 0; color: #fff; font-size: 30px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -165,17 +151,21 @@
         <div style="font-size:14px; font-weight:500;">SAI Roots</div>
         <i class="fas fa-ellipsis-h" onclick="showMenu()" style="font-size:26px;"></i>
     </div>
+
     <div class="np-art">
-        <div class="np-cover"><img id="npCover" src="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg" alt="Album Art"></div>
+        <div class="np-cover" onclick="openArtFull()"><img id="npCover" src="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg" alt="Album Art"></div>
     </div>
+
     <div class="np-info">
         <div id="npTitle" class="np-title">Judul Lagu</div>
         <div id="npArtist" class="np-artist">SAI Roots</div>
         <div id="npType" class="np-type">Single</div>
     </div>
+
     <div class="np-progress">
         <div class="progress-bar" id="npProgressBar"><div class="progress" id="npProgress"></div></div>
     </div>
+
     <div class="np-controls">
         <button onclick="prevSong()"><i class="fas fa-step-backward"></i></button>
         <button id="npPlayPauseBtn" class="np-play-pause" onclick="togglePlay()"><i class="fas fa-play"></i></button>
@@ -183,43 +173,20 @@
     </div>
 </div>
 
+<div id="artPopup" onclick="closeArtFull()">
+    <div class="art-full-container">
+        <i class="fas fa-times art-close"></i>
+        <img id="artFullImg" src="" alt="Full Art">
+    </div>
+</div>
+
 <div id="menuPopup" onclick="if(event.target===this) hideMenu()">
     <div class="menu-content">
-        <div class="menu-item" onclick="openShare()"><i class="fas fa-share-alt"></i> Bagikan</div>
+        <div class="menu-item" onclick="shareSong()"><i class="fas fa-share-alt"></i> Bagikan</div>
         <div class="menu-item" onclick="downloadSong()"><i class="fas fa-download"></i> Download Lagu</div>
         <div class="menu-item" onclick="viewLyrics()"><i class="fas fa-book"></i> Lihat Lirik</div>
         <div class="menu-item" onclick="showCreditPopup()"><i class="fas fa-info-circle"></i> Credit Song</div>
         <div class="menu-close" onclick="hideMenu()">Tutup</div>
-    </div>
-</div>
-
-<div id="sharePopup" class="share-overlay" onclick="if(event.target===this) closeShare()">
-    <div class="share-card">
-        <div class="share-header">
-            <p>Bagikan Lagu</p>
-            <i class="fas fa-times" onclick="closeShare()" style="cursor:pointer"></i>
-        </div>
-        <div class="share-body">
-            <div class="share-art-mini"><img id="sCover" src="" alt="Art"></div>
-            <div>
-                <span class="share-badge">SONG</span>
-                <h2 id="sTitle" style="font-size:18px; margin:2px 0;">Judul</h2>
-                <p style="color:#888; font-size:13px">SAI Roots</p>
-            </div>
-        </div>
-        <div class="share-link-box">
-            <div class="link-text" id="sUrlDisplay">URL...</div>
-        </div>
-        <div class="share-actions-grid">
-            <a id="sWA" href="#" target="_blank" class="share-btn"><div class="share-icon-circle" style="color:#25D366"><i class="fab fa-whatsapp"></i></div>WhatsApp</a>
-            <a id="sFB" href="#" target="_blank" class="share-btn"><div class="share-icon-circle" style="color:#1877F2"><i class="fab fa-facebook-f"></i></div>Facebook</a>
-            <a id="sTG" href="#" target="_blank" class="share-btn"><div class="share-icon-circle" style="color:#0088cc"><i class="fab fa-telegram-plane"></i></div>Telegram</a>
-            <a id="sTW" href="#" target="_blank" class="share-btn"><div class="share-icon-circle" style="color:#1DA1F2"><i class="fab fa-twitter"></i></div>Twitter/X</a>
-            <a id="sIG" href="https://instagram.com" target="_blank" class="share-btn"><div class="share-icon-circle" style="color:#E4405F"><i class="fab fa-instagram"></i></div>Instagram</a>
-            <a id="sTT" href="https://tiktok.com" target="_blank" class="share-btn"><div class="share-icon-circle" style="color:#fff"><i class="fab fa-tiktok"></i></div>TikTok</a>
-            <a id="sTH" href="#" target="_blank" class="share-btn"><div class="share-icon-circle" style="color:#fff"><i class="fas fa-at"></i></div>Threads</a>
-            <div onclick="copyLink()" class="share-btn" style="cursor:pointer"><div class="share-icon-circle" style="color:#1ed760"><i class="fas fa-link"></i></div>Salin</div>
-        </div>
     </div>
 </div>
 
@@ -236,98 +203,131 @@
     const audio = document.getElementById("audio");
     const songs = document.querySelectorAll('.song-item');
     const baseUrl = "https://github.com/pembri/SAI-Roots-Official/raw/refs/heads/main/";
+
     let currentIdx = -1;
     let currentTitle = "";
-    const nowPlaying = document.getElementById("nowPlaying");
+
+    const defaultCover = "https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg";
+    const criticalCover = "https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.github.io/refs/heads/main/IMG_20260321_173252_172.png";
+    const rebornCover = "https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.github.io/refs/heads/main/1775230743-rrborn.jpg";
+
+    const miniCover = document.getElementById("miniCover");
+    const npCover = document.getElementById("npCover");
+    const miniTitle = document.getElementById("miniTitle");
+    const npTitle = document.getElementById("npTitle");
+    const npType = document.getElementById("npType");
+    const npProgress = document.getElementById("npProgress");
+    const npPlayPauseBtn = document.getElementById("npPlayPauseBtn");
+    const miniPlayBtn = document.getElementById("miniPlayBtn");
 
     function playSong(idx) {
         currentIdx = idx;
         const song = songs[idx];
         currentTitle = song.dataset.title;
         const type = song.dataset.type || "Single";
-        const cover = song.dataset.cover || "https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg";
+
+        const cover = song.dataset.cover || ((type === "Critical Fire") ? criticalCover :
+                      (type === "Reborn Riddim") ? rebornCover : defaultCover);
 
         songs.forEach(s => s.classList.remove('active'));
         song.classList.add('active');
 
-        document.getElementById("miniTitle").textContent = currentTitle;
-        document.getElementById("npTitle").textContent = currentTitle;
-        document.getElementById("npType").textContent = type === "Single" ? "Single" : `Album • ${type}`;
-        document.getElementById("miniCover").src = cover;
-        document.getElementById("npCover").src = cover;
+        miniTitle.textContent = currentTitle;
+        npTitle.textContent = currentTitle;
+        npType.textContent = type === "Single" ? "Single" : `Album • ${type}`;
+
+        miniCover.src = cover;
+        npCover.src = cover;
 
         audio.src = baseUrl + encodeURIComponent(currentTitle) + ".mp3?raw=true";
+
         audio.play().then(() => {
-            document.getElementById("npPlayPauseBtn").innerHTML = '<i class="fas fa-pause"></i>';
-            document.getElementById("miniPlayBtn").innerHTML = '<i class="fas fa-pause"></i>';
-            nowPlaying.classList.add('playing');
-        }).catch(e => console.log(e));
+            npPlayPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            miniPlayBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            document.getElementById("nowPlaying").classList.add('playing');
+        }).catch(() => {});
+
         openNowPlaying();
     }
 
     function togglePlay() {
         if (audio.paused) audio.play(); else audio.pause();
         const icon = audio.paused ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
-        document.getElementById("npPlayPauseBtn").innerHTML = icon;
-        document.getElementById("miniPlayBtn").innerHTML = icon;
-        nowPlaying.classList.toggle('playing', !audio.paused);
+        npPlayPauseBtn.innerHTML = icon;
+        miniPlayBtn.innerHTML = icon;
+        document.getElementById("nowPlaying").classList.toggle('playing', !audio.paused);
     }
 
     function nextSong() { if (currentIdx < songs.length - 1) playSong(currentIdx + 1); }
     function prevSong() { if (currentIdx > 0) playSong(currentIdx - 1); }
-    function openNowPlaying() { nowPlaying.style.display = 'flex'; }
-    function closeNowPlaying() { nowPlaying.style.display = 'none'; }
+
+    function openNowPlaying() { document.getElementById("nowPlaying").style.display = 'flex'; }
+    function closeNowPlaying() { document.getElementById("nowPlaying").style.display = 'none'; }
+
+    // --- FUNGSI BARU: Buka Gambar Full ---
+    function openArtFull() {
+        const fullImg = document.getElementById("artFullImg");
+        fullImg.src = npCover.src;
+        document.getElementById("artPopup").style.display = "flex";
+    }
+    function closeArtFull() { document.getElementById("artPopup").style.display = "none"; }
 
     audio.addEventListener('timeupdate', () => {
-        if (audio.duration) document.getElementById("npProgress").style.width = (audio.currentTime / audio.duration) * 100 + "%";
+        if (audio.duration) npProgress.style.width = (audio.currentTime / audio.duration) * 100 + "%";
     });
 
     document.getElementById("npProgressBar").addEventListener('click', (e) => {
         const rect = e.currentTarget.getBoundingClientRect();
-        audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
+        const pos = (e.clientX - rect.left) / rect.width;
+        if (audio.duration) audio.currentTime = pos * audio.duration;
     });
 
-    audio.addEventListener('ended', nextSong);
+    audio.addEventListener('ended', () => { nextSong(); });
     songs.forEach((song, i) => song.addEventListener('click', () => playSong(i)));
-    document.getElementById("miniPlayBtn").addEventListener('click', (e) => { e.stopPropagation(); togglePlay(); });
+    miniPlayBtn.addEventListener('click', (e) => { e.stopPropagation(); togglePlay(); });
 
-    // FUNGSI SHARE BARU
-    function openShare() {
-        hideMenu();
-        if(!currentTitle) return;
-        const slug = currentTitle.toLowerCase().replace(/\s+/g, '-');
-        const url = window.location.origin + window.location.pathname + "#" + slug;
-        const text = encodeURIComponent(`Dengarkan "${currentTitle}" oleh SAI Roots 🎵`);
-
-        document.getElementById("sTitle").textContent = currentTitle;
-        document.getElementById("sCover").src = document.getElementById("npCover").src;
-        document.getElementById("sUrlDisplay").textContent = url;
-
-        // Links
-        document.getElementById("sWA").href = `https://api.whatsapp.com/send?text=${text}%20${encodeURIComponent(url)}`;
-        document.getElementById("sFB").href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-        document.getElementById("sTG").href = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${text}`;
-        document.getElementById("sTW").href = `https://twitter.com/intent/tweet?text=${text}&url=${encodeURIComponent(url)}`;
-        document.getElementById("sTH").href = `https://www.threads.net/intent/post?text=${text}%20${encodeURIComponent(url)}`;
-
-        document.getElementById("sharePopup").style.display = "flex";
-    }
-
-    function closeShare() { document.getElementById("sharePopup").style.display = "none"; }
-    
-    function copyLink() {
-        const url = document.getElementById("sUrlDisplay").textContent;
-        navigator.clipboard.writeText(url);
-        alert("✅ Link disalin ke papan klip!");
-    }
-
-    function hideMenu() { document.getElementById("menuPopup").style.display = "none"; }
     function showMenu() { document.getElementById("menuPopup").style.display = "flex"; }
-    function downloadSong() { window.open(audio.src, '_blank'); }
-    function viewLyrics() { window.open(`https://sairootsmusic.github.io/lyric/${currentTitle.toLowerCase().replace(/\s+/g,'')}`, "_blank"); }
+    function hideMenu() { document.getElementById("menuPopup").style.display = "none"; }
+
+    async function shareSong() {
+        hideMenu();
+        const slug = currentTitle.toLowerCase().replace(/\s+/g, '-');
+        const songUrl = window.location.origin + window.location.pathname + "#" + slug;
+        try {
+            if (navigator.share) await navigator.share({title: currentTitle + " - SAI Roots", url: songUrl});
+            else {
+                await navigator.clipboard.writeText(songUrl);
+                alert("✅ Link lagu telah disalin!");
+            }
+        } catch (err) {
+            await navigator.clipboard.writeText(songUrl);
+            alert("✅ Link lagu telah disalin!");
+        }
+    }
+
+    function downloadSong() {
+        if (!currentTitle) return;
+        window.open(audio.src, '_blank');
+        hideMenu();
+    }
+
+    function viewLyrics() {
+        if (!currentTitle) return;
+        const slug = currentTitle.toLowerCase().replace(/\s+/g, '');
+        window.open(`https://sairootsmusic.github.io/lyric/${slug}`, "_blank");
+        hideMenu();
+    }
+
     function showCreditPopup() {
         hideMenu();
-        document.getElementById("creditText").innerHTML = `<strong>${currentTitle}</strong><br>SAI Roots<br>Ahmad Supembri<br>© 2026`;
+        const typeText = npType.textContent;
+        document.getElementById("creditText").innerHTML = `
+            <strong>Judul</strong> : ${currentTitle}<br>
+            <strong>Artist</strong> : SAI Roots<br>
+            <strong>${typeText.includes('Album') ? 'Album' : 'Single'}</strong> : ${typeText}<br>
+            <strong>Penulis</strong> : Ahmad Supembri<br><br>
+            <small>All Rights Reserved © 2026 SAI Roots Music</small>
+        `;
         document.getElementById("creditPopup").style.display = "flex";
     }
 </script>
