@@ -52,12 +52,11 @@
         /* MENU & POPUPS */
         #menuPopup { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 3000; display: none; justify-content: center; align-items: flex-end; }
         .menu-content { background: #1f1f1f; width: 100%; max-width: 380px; border-radius: 16px 16px 0 0; padding: 10px 0; }
-        .menu-item { padding: 16px 24px; font-size: 16px; display: flex; align-items: center; gap: 16px; cursor: pointer; }
-        .menu-item:hover { background: #2a2a2a; }
+        .menu-item { padding: 16px 24px; font-size: 16px; display: flex; align-items: center; gap: 16px; cursor: pointer; color: #fff; }
         .menu-item i { width: 24px; color: #b3b3b3; }
         .menu-close { text-align: center; padding: 16px; color: #1ed760; font-weight: 600; border-top: 1px solid #333; cursor: pointer; }
         
-        #creditPopup { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:5000; align-items:center; justify-content:center; }
+        #creditPopup { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:5000; align-items:center; justify-content:center; }
     </style>
 </head>
 <body>
@@ -102,14 +101,14 @@
 
 <div class="mini-player" id="miniPlayer" onclick="openNowPlaying()">
     <div class="mini-cover"><img id="miniCover" src="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg"></div>
-    <div class="mini-info"><div id="miniTitle" class="mini-title">Pilih lagu untuk memutar</div><div class="mini-artist">SAI Roots</div></div>
+    <div class="mini-info"><div id="miniTitle" class="mini-title">Pilih lagu</div><div class="mini-artist">SAI Roots</div></div>
     <button id="miniPlayBtn" style="background:none;border:none;color:#fff;font-size:24px;"><i class="fas fa-play"></i></button>
 </div>
 
 <div id="nowPlaying">
-    <div class="np-header"><i class="fas fa-chevron-down" onclick="closeNowPlaying()"></i><div style="font-size:14px; font-weight:500;">SAI Roots</div><i class="fas fa-ellipsis-h" onclick="showMenu()" style="font-size:26px;"></i></div>
+    <div class="np-header"><i class="fas fa-chevron-down" onclick="closeNowPlaying()"></i><div style="font-size:14px;">SAI Roots</div><i class="fas fa-ellipsis-h" onclick="showMenu()"></i></div>
     <div class="np-art"><div class="np-cover"><img id="npCover" src="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg"></div></div>
-    <div class="np-info"><div id="npTitle" class="np-title">Judul Lagu</div><div id="npArtist" class="np-artist">SAI Roots</div><div id="npType" class="np-type">Single</div></div>
+    <div class="np-info"><div id="npTitle" class="np-title">Judul</div><div id="npArtist" class="np-artist">SAI Roots</div><div id="npType" class="np-type">Single</div></div>
     <div class="np-progress"><div class="progress-bar" id="npProgressBar"><div class="progress" id="npProgress"></div></div></div>
     <div class="np-controls"><button onclick="prevSong()"><i class="fas fa-step-backward"></i></button><button id="npPlayPauseBtn" class="np-play-pause" onclick="togglePlay()"><i class="fas fa-play"></i></button><button onclick="nextSong()"><i class="fas fa-step-forward"></i></button></div>
 </div>
@@ -117,17 +116,17 @@
 <div id="menuPopup" onclick="if(event.target===this) hideMenu()">
     <div class="menu-content">
         <div class="menu-item" onclick="shareSong()"><i class="fas fa-share-alt"></i> Bagikan</div>
-        <div class="menu-item" onclick="downloadSong()"><i class="fas fa-download"></i> Download Lagu</div>
-        <div class="menu-item" onclick="viewLyrics()"><i class="fas fa-book"></i> Lihat Lirik</div>
-        <div class="menu-item" onclick="showCreditPopup()"><i class="fas fa-info-circle"></i> Credit Song</div>
+        <div class="menu-item" onclick="downloadSong()"><i class="fas fa-download"></i> Download</div>
+        <div class="menu-item" onclick="viewLyrics()"><i class="fas fa-book"></i> Lirik</div>
+        <div class="menu-item" onclick="showCreditPopup()"><i class="fas fa-info-circle"></i> Credit</div>
         <div class="menu-close" onclick="hideMenu()">Tutup</div>
     </div>
 </div>
 
 <div id="creditPopup" onclick="hideCreditPopup()">
-    <div class="menu-content" style="border-radius:16px; max-width:320px; padding:20px; margin: auto; position: relative; top: 50%; transform: translateY(-50%); text-align: left;">
-        <div id="creditText" style="font-size:14px; line-height:1.6; color:#fff;"></div>
-        <div class="menu-close" style="border-top:none; padding-top:20px;">Tutup</div>
+    <div class="menu-content" style="border-radius:16px; width:85%; max-width:320px; padding:25px; margin:auto; position:relative; top:50%; transform:translateY(-50%); text-align:left; background:#1f1f1f;">
+        <div id="creditText" style="line-height:1.6; font-size:14px; color:#fff;"></div>
+        <div class="menu-close" style="border:none; margin-top:15px;">Tutup</div>
     </div>
 </div>
 
@@ -141,21 +140,26 @@
     let currentTitle = "";
     const originalPageTitle = "Discography SAI Roots";
 
+    // --- LOGIKA JUDUL OTOMATIS UNTUK GOOGLE ---
     function autoDetectSong() {
         const urlParams = new URLSearchParams(window.location.search);
         const targetSlug = urlParams.get('song');
         if (!targetSlug) return;
-        for (let i = 0; i < songs.length; i++) {
-            const slug = songs[i].dataset.title.toLowerCase().replace(/\s+/g, '-');
-            if (slug === targetSlug) { playSong(i); break; }
-        }
+        
+        songs.forEach((song, i) => {
+            const slug = song.dataset.title.toLowerCase().replace(/\s+/g, '-');
+            if (slug === targetSlug) {
+                // LANGSUNG GANTI JUDUL SAAT HALAMAN DIMUAT (Bot Google akan baca ini)
+                document.title = song.dataset.title + " - SAI Roots";
+                playSong(i);
+            }
+        });
     }
 
     function playSong(idx) {
         currentIdx = idx;
         const song = songs[idx];
         currentTitle = song.dataset.title;
-        const type = song.dataset.type || "Single";
         const cover = song.dataset.cover || "https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg";
 
         songs.forEach(s => s.classList.remove('active'));
@@ -163,16 +167,15 @@
 
         document.getElementById("miniTitle").textContent = currentTitle;
         document.getElementById("npTitle").textContent = currentTitle;
-        document.getElementById("npType").textContent = type === "Single" ? "Single" : `Album • ${type}`;
+        document.getElementById("npType").textContent = song.dataset.type || "Single";
         document.getElementById("miniCover").src = cover;
         document.getElementById("npCover").src = cover;
 
+        // Update Judul Browser Saat Lagu Dimainkan
+        document.title = currentTitle + " - SAI Roots";
+
         audio.src = baseUrl + encodeURIComponent(currentTitle) + ".mp3?raw=true";
-        audio.play().then(() => {
-            document.getElementById("npPlayPauseBtn").innerHTML = '<i class="fas fa-pause"></i>';
-            document.getElementById("miniPlayBtn").innerHTML = '<i class="fas fa-pause"></i>';
-            document.getElementById("nowPlaying").classList.add('playing');
-        }).catch(() => {});
+        audio.play().then(() => updateBtnIcons()).catch(() => {});
         
         openNowPlaying();
         window.history.replaceState(null, null, "?song=" + currentTitle.toLowerCase().replace(/\s+/g, '-'));
@@ -180,6 +183,10 @@
 
     function togglePlay() {
         if (audio.paused) audio.play(); else audio.pause();
+        updateBtnIcons();
+    }
+
+    function updateBtnIcons() {
         const icon = audio.paused ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
         document.getElementById("npPlayPauseBtn").innerHTML = icon;
         document.getElementById("miniPlayBtn").innerHTML = icon;
@@ -196,27 +203,32 @@
 
     function closeNowPlaying() { 
         document.getElementById("nowPlaying").style.display = 'none'; 
+        // Saat popup ditutup, kembalikan judul ke aslinya
         document.title = originalPageTitle; 
     }
 
-    // MENU FUNCTIONS
     function showMenu() { document.getElementById("menuPopup").style.display = "flex"; }
     function hideMenu() { document.getElementById("menuPopup").style.display = "none"; }
 
     function shareSong() {
         hideMenu();
-        const songUrl = window.location.origin + window.location.pathname + "?song=" + currentTitle.toLowerCase().replace(/\s+/g, '-');
-        if (navigator.share) navigator.share({title: currentTitle + " - SAI Roots", url: songUrl});
-        else { navigator.clipboard.writeText(songUrl); alert("✅ Link disalin!"); }
+        const url = window.location.origin + window.location.pathname + "?song=" + currentTitle.toLowerCase().replace(/\s+/g, '-');
+        if (navigator.share) navigator.share({title: currentTitle, url: url});
+        else { navigator.clipboard.writeText(url); alert("Link disalin!"); }
     }
 
     function downloadSong() { window.open(audio.src, '_blank'); hideMenu(); }
-    function viewLyrics() { window.open(`https://sairootsmusic.github.io/lyric/${currentTitle.toLowerCase().replace(/\s+/g, '')}`, "_blank"); hideMenu(); }
     
+    function viewLyrics() { 
+        const slug = currentTitle.toLowerCase().replace(/\s+/g, '');
+        window.open(`https://sairootsmusic.github.io/lyric/${slug}`, "_blank"); 
+        hideMenu(); 
+    }
+
     function showCreditPopup() {
         hideMenu();
-        document.getElementById("creditText").innerHTML = `<strong>Judul</strong>: ${currentTitle}<br><strong>Artist</strong>: SAI Roots<br><strong>Penulis</strong>: Ahmad Supembri<br><br><small>© 2026 SAI Roots Music</small>`;
-        document.getElementById("creditPopup").style.display = "block";
+        document.getElementById("creditText").innerHTML = `<strong>${currentTitle}</strong><br>Artist: SAI Roots<br>Penulis: Ahmad Supembri<br>© 2026 SAI Roots Music`;
+        document.getElementById("creditPopup").style.display = "flex";
     }
     function hideCreditPopup() { document.getElementById("creditPopup").style.display = "none"; }
 
@@ -230,10 +242,11 @@
     });
 
     audio.addEventListener('ended', nextSong);
-    songs.forEach((song, i) => song.addEventListener('click', () => playSong(i)));
+    songs.forEach((s, i) => s.addEventListener('click', () => playSong(i)));
     document.getElementById("miniPlayBtn").addEventListener('click', (e) => { e.stopPropagation(); togglePlay(); });
 
-    window.addEventListener('load', () => { setTimeout(autoDetectSong, 400); });
+    // Jalankan deteksi lagu segera setelah script dimuat
+    autoDetectSong();
 </script>
 </body>
 </html>
