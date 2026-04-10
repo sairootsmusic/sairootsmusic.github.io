@@ -31,7 +31,6 @@
         #nowPlaying { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(#1f1f1f, #121212); z-index: 2000; display: none; flex-direction: column; }
         .np-header { padding: 20px 20px 10px; display: flex; justify-content: space-between; align-items: center; }
         .np-header i { font-size: 24px; cursor: pointer; }
-        
         .np-art { flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px; }
         .np-cover { width: 280px; height: 280px; border-radius: 50%; overflow: hidden; box-shadow: 0 15px 50px rgba(0,0,0,0.6); border: 4px solid #282828; cursor: pointer; }
         .np-cover img { width: 100%; height: 100%; object-fit: cover; }
@@ -58,7 +57,6 @@
         .menu-item { padding: 16px 24px; font-size: 16px; display: flex; align-items: center; gap: 16px; cursor: pointer; color: #fff; }
         .menu-item i { width: 24px; color: #b3b3b3; }
         .menu-close { text-align: center; padding: 16px; color: #1ed760; font-weight: 600; border-top: 1px solid #333; cursor: pointer; }
-        
         #creditPopup { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:5000; align-items:center; justify-content:center; }
     </style>
 </head>
@@ -147,7 +145,7 @@
     let currentTitle = "";
     const originalPageTitle = "Discography SAI Roots";
 
-    // --- LOGIKA JUDUL: "Judul Lagu - SAI Roots" ---
+    // --- SEO FIX: Hapus "Listen" total ---
     function autoDetectSong() {
         const urlParams = new URLSearchParams(window.location.search);
         const targetSlug = urlParams.get('song');
@@ -156,7 +154,6 @@
         songs.forEach((song, i) => {
             const slug = song.dataset.title.toLowerCase().replace(/\s+/g, '-');
             if (slug === targetSlug) {
-                // Format: Judul Lagu - SAI Roots
                 document.title = song.dataset.title + " - SAI Roots";
                 playSong(i);
             }
@@ -179,7 +176,7 @@
         document.getElementById("npCover").src = cover;
         document.getElementById("fullImg").src = cover;
 
-        // Update Judul (Tanpa Listen)
+        // Update Judul Bersih: Nama Lagu - SAI Roots
         document.title = currentTitle + " - SAI Roots";
 
         audio.src = baseUrl + encodeURIComponent(currentTitle) + ".mp3?raw=true";
@@ -214,6 +211,7 @@
         document.title = originalPageTitle; 
     }
 
+    // --- MODAL GAMBAR FIX ---
     function showFullImg() {
         document.getElementById("imgPopup").style.display = "flex";
     }
