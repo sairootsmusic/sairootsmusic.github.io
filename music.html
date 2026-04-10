@@ -147,7 +147,7 @@
     let currentTitle = "";
     const originalPageTitle = "Discography SAI Roots";
 
-    // --- LOGIKA JUDUL DENGAN FORMAT "Listen [Lagu] - SAI Roots" ---
+    // --- LOGIKA JUDUL: "Judul Lagu - SAI Roots" ---
     function autoDetectSong() {
         const urlParams = new URLSearchParams(window.location.search);
         const targetSlug = urlParams.get('song');
@@ -156,8 +156,8 @@
         songs.forEach((song, i) => {
             const slug = song.dataset.title.toLowerCase().replace(/\s+/g, '-');
             if (slug === targetSlug) {
-                // Format judul: Listen [Judul Lagu] - SAI Roots
-                document.title = "Listen " + song.dataset.title + " - SAI Roots";
+                // Format: Judul Lagu - SAI Roots
+                document.title = song.dataset.title + " - SAI Roots";
                 playSong(i);
             }
         });
@@ -179,8 +179,8 @@
         document.getElementById("npCover").src = cover;
         document.getElementById("fullImg").src = cover;
 
-        // Update judul saat lagu berganti
-        document.title = "Listen " + currentTitle + " - SAI Roots";
+        // Update Judul (Tanpa Listen)
+        document.title = currentTitle + " - SAI Roots";
 
         audio.src = baseUrl + encodeURIComponent(currentTitle) + ".mp3?raw=true";
         audio.play().then(() => updateBtnIcons()).catch(() => {});
@@ -206,7 +206,7 @@
 
     function openNowPlaying() { 
         document.getElementById("nowPlaying").style.display = 'flex'; 
-        if (currentTitle) document.title = "Listen " + currentTitle + " - SAI Roots";
+        if (currentTitle) document.title = currentTitle + " - SAI Roots";
     }
 
     function closeNowPlaying() { 
