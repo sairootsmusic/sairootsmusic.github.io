@@ -156,7 +156,6 @@
     let currentTitle = "";
     const originalPageTitle = "Discography SAI Roots";
 
-    // --- SEO FIX: Hapus "Listen" total ---
     function autoDetectSong() {
         const urlParams = new URLSearchParams(window.location.search);
         const targetSlug = urlParams.get('song');
@@ -187,7 +186,6 @@
         document.getElementById("npCover").src = cover;
         document.getElementById("fullImg").src = cover;
 
-        // Update Judul Bersih: Nama Lagu - SAI Roots
         document.title = currentTitle + " - SAI Roots";
 
         audio.src = baseUrl + encodeURIComponent(currentTitle) + ".mp3?raw=true";
@@ -222,7 +220,6 @@
         document.title = originalPageTitle; 
     }
 
-    // --- MODAL GAMBAR FIX ---
     function showFullImg() {
         document.getElementById("imgPopup").style.display = "flex";
     }
@@ -266,6 +263,33 @@
     document.getElementById("miniPlayBtn").addEventListener('click', (e) => { e.stopPropagation(); togglePlay(); });
 
     autoDetectSong();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "SAI Roots Music",
+  "url": "https://sairootsmusic.github.io",
+  "founder": {
+    "@type": "Person",
+    "name": "Ahmad Supembri",
+    "jobTitle": "Musician & Founder"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  "name": "SAI Roots",
+  "genre": ["Reggae", "Rap"],
+  "sameAs": [
+    "https://www.youtube.com/@sairoots",
+    "https://instagram.com/ahmadsupembri",
+    "https://open.spotify.com/artist/0xOPCtZvhXVd9RTbU1aYTr"
+  ]
+}
 </script>
 </body>
 </html>
