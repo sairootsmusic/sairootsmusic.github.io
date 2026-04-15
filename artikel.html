@@ -52,7 +52,7 @@
                 if(!Array.isArray(files)) throw new Error();
 
                 list.innerHTML = "";
-                const htmlFiles = files.filter(f => f.name.endsWith('')).reverse();
+                const htmlFiles = files.filter(f => f.name.endsWith('.html')).reverse();
 
                 for (let file of htmlFiles) {
                     const fileRes = await fetch(file.download_url);
@@ -73,7 +73,7 @@
                             <div class="p-6">
                                 <h2 class="text-xl font-bold text-white mb-2 uppercase tracking-tight">${title}</h2>
                                 <p class="text-zinc-500 text-sm leading-relaxed mb-4">${summary}</p>
-                                <a href="artikel/${file.name}" class="text-blue-500 text-xs font-bold uppercase tracking-widest hover:text-white transition flex items-center">
+                                <a href="artikel/${file}" class="text-blue-500 text-xs font-bold uppercase tracking-widest hover:text-white transition flex items-center">
                                     Read Full Story <i class="fa-solid fa-arrow-right ml-2"></i>
                                 </a>
                             </div>
