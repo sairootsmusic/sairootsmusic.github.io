@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "SAI Roots Music",
-      "url": "https://sairootsmusic.github.io"
-    }
-    </script>
-    
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -19,62 +10,65 @@
     <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
     <link rel="manifest" href="/site.webmanifest">
     
-    <meta name="theme-color" content="#000000">
-    <meta name="msapplication-TileColor" content="#000000">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Articles | SAI Roots</title>
-    
+    <meta name="description" content="Kumpulan artikel musik dan berita terbaru dari SAI Roots Music.">
+    <meta name="theme-color" content="#0b0b0b">
+
     <meta property="og:title" content="Articles | SAI ROOTS">
     <meta property="og:site_name" content="SAI Roots Music">
-    <meta property="og:description" content="Artikel tentang SAI Roots.">
+    <meta property="og:description" content="Artikel tentang perjalanan musik SAI Roots.">
     <meta property="og:image" content="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg">
-    <meta property="og:url" content="https://sairootsmusic.github.io">
+    <meta property="og:url" content="https://sairootsmusic.github.io/artikel">
     <meta property="og:type" content="website">
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "SAI Roots Music",
+      "url": "https://sairootsmusic.github.io"
+    }
+    </script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background-color: #0b0b0b; color: #e5e7eb; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        body { background-color: #0b0b0b; color: #e5e7eb; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; min-height: 100vh; margin: 0; }
         .sai-card { background: #141414; border: 1px solid #222; border-radius: 12px; overflow: hidden; transition: 0.3s; }
-        .sai-card:hover { border-color: #3b82f6; }
-        .btn-home { color: #666; font-size: 14px; font-weight: 600; transition: 0.3s; }
+        .sai-card:hover { border-color: #3b82f6; transform: translateY(-2px); }
+        .btn-home { color: #666; font-size: 14px; font-weight: 600; transition: 0.3s; text-decoration: none; }
         .btn-home:hover { color: #fff; }
-        
-        .img-container { 
-            width: 100%; 
-            height: 220px; 
-            background: #000; 
-            overflow: hidden; 
-        }
-        .img-container img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            display: block; 
-        }
+        .img-container { width: 100%; height: 220px; background: #000; overflow: hidden; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        footer { text-align: center; margin-top: auto; padding: 40px 0 20px; }
+        .copyright-link { text-decoration: none; color: #333; font-size: 11px; letter-spacing: 0.5px; transition: 0.3s; }
+        .copyright-link:hover { color: #666; }
     </style>
 </head>
-<body class="pb-10">
+<body>
 
     <nav class="p-6 max-w-4xl mx-auto flex items-center justify-between w-full">
         <a href="/" class="btn-home"><i class="fa-solid fa-chevron-left mr-2"></i>Home</a>
         <div class="text-right">
-            <h1 class="text-2xl font-black uppercase italic tracking-tighter italic">LIST <span class="text-blue-500">ARTICLE</span></h1>
+            <h1 class="text-2xl font-black uppercase italic tracking-tighter">LIST <span class="text-blue-500">ARTICLE</span></h1>
         </div>
     </nav>
 
     <main class="max-w-4xl mx-auto px-4 mt-4 flex-grow w-full">
         <div id="article-list" class="space-y-8">
-            <div class="text-center py-20 text-zinc-700 animate-pulse uppercase tracking-widest text-xs">Loading Articles...</div>
+            <div class="text-center py-20 text-zinc-800 animate-pulse uppercase tracking-widest text-xs">
+                Synchronizing Database...
+            </div>
         </div>
     </main>
 
-    <div class="footer-text" style="text-align: center; margin-top: 40px; padding-bottom: 20px;">
-        <a href="copyright" style="text-decoration: none; color: #333; font-size: 11px; display: inline-block; transition: 0.3s; letter-spacing: 0.5px;">
+    <footer>
+        <a href="copyright" class="copyright-link">
             © 2026 SAI Roots Music. All Rights Reserved.
         </a>
-    </div>
+    </footer>
 
     <script>
         const REPO = "sairootsmusic/sairootsmusic.github.io";
@@ -83,49 +77,51 @@
         async function init() {
             const list = document.getElementById('article-list');
             try {
-                const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FOLDER}`);
+                const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FOLDER}?t=${Date.now()}`);
                 const files = await res.json();
-                
                 if(!Array.isArray(files)) throw new Error();
 
-                list.innerHTML = "";
                 const htmlFiles = files.filter(f => f.name.endsWith('.html')).reverse();
 
-                for (let file of htmlFiles) {
-                    const fileRes = await fetch(file.download_url);
-                    const htmlText = await fileRes.text();
+                const articleData = await Promise.all(htmlFiles.map(async (file) => {
+                    try {
+                        const fileRes = await fetch(file.download_url);
+                        const htmlText = await fileRes.text();
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(htmlText, 'text/html');
+
+                        return {
+                            title: doc.querySelector('h1')?.innerText || file.name.replace('.html', '').replace(/-/g, ' '),
+                            img: doc.querySelector('img')?.src || '',
+                            summary: doc.querySelector('.content')?.innerText.substring(0, 150) || 'Read more...',
+                            // CLEAN URL: Hilangkan .html di link
+                            link: `artikel/${file.name.replace('.html', '')}`
+                        };
+                    } catch (e) { return null; }
+                }));
+
+                list.innerHTML = "";
+                articleData.forEach(art => {
+                    if(!art) return;
+                    const imgHtml = art.img ? `<div class="img-container"><img src="${art.img}" alt="cover" loading="lazy"></div>` : '';
                     
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(htmlText, 'text/html');
-                    
-                    const title = doc.querySelector('h1')?.innerText || file.name.replace('.html', '').replace(/-/g, ' ');
-                    const img = doc.querySelector('img')?.src || '';
-                    const summary = doc.querySelector('div.content')?.innerText.substring(0, 150) + '...' || doc.querySelector('div')?.innerText.substring(0, 150) + '...' || 'Read more...';
-
-                    const imgHtml = img ? `<div class="img-container"><img src="${img}" alt="cover"></div>` : '';
-
-                    // LOGIKA CLEAN URL: Hapus .html dari nama file
-                    const cleanLink = `artikel/${file.name.replace('.html', '')}`;
-
-                    const card = `
-                        <div class="sai-card shadow-2xl">
+                    list.innerHTML += `
+                        <article class="sai-card shadow-2xl">
                             ${imgHtml}
                             <div class="p-6">
-                                <h2 class="text-xl font-bold text-white mb-2 uppercase tracking-tight">${title}</h2>
-                                <p class="text-zinc-500 text-sm leading-relaxed mb-4">${summary}</p>
-                                <a href="${cleanLink}" class="text-blue-500 text-xs font-bold uppercase tracking-widest hover:text-white transition flex items-center">
+                                <h2 class="text-xl font-bold text-white mb-2 uppercase tracking-tight">${art.title}</h2>
+                                <p class="text-zinc-500 text-sm leading-relaxed mb-4">${art.summary}...</p>
+                                <a href="${art.link}" class="text-blue-500 text-xs font-bold uppercase tracking-widest hover:text-white transition flex items-center">
                                     Read Full Story <i class="fa-solid fa-arrow-right ml-2"></i>
                                 </a>
                             </div>
-                        </div>
+                        </article>
                     `;
-                    list.innerHTML += card;
-                }
+                });
             } catch (e) {
-                list.innerHTML = `<p class="text-center text-zinc-600 py-20">No articles found.</p>`;
+                list.innerHTML = `<p class="text-center text-zinc-600 py-20 uppercase text-[10px] tracking-widest">No articles found.</p>`;
             }
         }
-
         init();
     </script>
 </body>
