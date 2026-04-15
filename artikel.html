@@ -61,7 +61,7 @@
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(htmlText, 'text/html');
                     
-                    const title = doc.querySelector('h1')?.innerText || file.name.replace('.html', '').replace(/-/g, ' ');
+                    const title = doc.querySelector('h1')?.innerText || file.name.replace('', '').replace(/-/g, ' ');
                     const img = doc.querySelector('img')?.src || '';
                     const summary = doc.querySelector('div')?.innerText.substring(0, 150) + '...' || 'Read more...';
 
@@ -73,7 +73,7 @@
                             <div class="p-6">
                                 <h2 class="text-xl font-bold text-white mb-2 uppercase tracking-tight">${title}</h2>
                                 <p class="text-zinc-500 text-sm leading-relaxed mb-4">${summary}</p>
-                                <a href="artikel/${file}" class="text-blue-500 text-xs font-bold uppercase tracking-widest hover:text-white transition flex items-center">
+                                <a href="artikel/${file.name}" class="text-blue-500 text-xs font-bold uppercase tracking-widest hover:text-white transition flex items-center">
                                     Read Full Story <i class="fa-solid fa-arrow-right ml-2"></i>
                                 </a>
                             </div>
