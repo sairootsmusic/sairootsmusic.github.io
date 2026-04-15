@@ -8,25 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { background-color: #0b0b0b; color: #e5e7eb; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
-        .sai-card { background: #141414; border: 1px solid #222; border-radius: 12px; overflow: hidden; transition: 0.3s; }
-        .sai-card:hover { border-color: #3b82f6; transform: translateY(-2px); }
+        .sai-card { background: #141414; border: 1px solid #222; border-radius: 12px; overflow: hidden; transition: 0.2s; }
+        .sai-card:hover { border-color: #3b82f6; }
         .btn-home { color: #666; font-size: 14px; font-weight: 600; transition: 0.3s; }
         .btn-home:hover { color: #fff; }
-        
-        .img-container { 
-            width: 100%; 
-            height: 220px; 
-            background: #000; 
-            overflow: hidden; 
-        }
-        .img-container img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            display: block; 
-        }
-        /* Skeleton loading sederhana */
-        .loading-state { color: #333; text-transform: uppercase; letter-spacing: 0.2em; font-size: 10px; font-weight: 900; }
+        .img-placeholder { width: 100%; height: 180px; background: linear-gradient(45deg, #111, #1a1a1a); display: flex; items-center; justify-center; }
     </style>
 </head>
 <body class="pb-10">
@@ -39,16 +25,14 @@
     </nav>
 
     <main class="max-w-4xl mx-auto px-4 mt-4 flex-grow w-full">
-        <div id="article-list" class="space-y-8">
-            <div class="text-center py-20 animate-pulse loading-state">Fetching Articles Data...</div>
+        <div id="article-list" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="col-span-full text-center py-20 text-zinc-800 text-[10px] font-black uppercase tracking-[0.3em]">Loading Database...</div>
         </div>
     </main>
 
-    <div class="py-10 text-center">
-        <a href="#" class="text-[10px] text-zinc-800 font-bold uppercase tracking-widest no-underline transition hover:text-zinc-600">
-            © 2026 SAI Roots Music. All Rights Reserved.
-        </a>
-    </div>
+    <footer class="py-10 text-center">
+        <p class="text-[10px] text-zinc-800 font-bold uppercase tracking-widest">© 2026 SAI Roots Music. All Rights Reserved.</p>
+    </footer>
 
     <script>
         const REPO = "sairootsmusic/sairootsmusic.github.io";
@@ -57,69 +41,42 @@
         async function init() {
             const list = document.getElementById('article-list');
             try {
-                // Ambil daftar file dari GitHub API
-                const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FOLDER}?t=${Date.now()}`);
+                // HANYA AMBIL DAFTAR FILE (SANGAT CEPAT)
+                const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FOLDER}`);
                 const files = await res.json();
                 
-                if(!Array.isArray(files)) throw new Error("Data not found");
+                if(!Array.isArray(files)) throw new Error();
 
                 const htmlFiles = files.filter(f => f.name.endsWith('.html')).reverse();
-                
-                // PROSES PARALEL: Ambil semua isi file secara bersamaan (JAUH LEBIH CEPAT)
-                const articleData = await Promise.all(htmlFiles.map(async (file) => {
-                    try {
-                        const fileRes = await fetch(file.download_url);
-                        const htmlText = await fileRes.text();
-                        
-                        const parser = new DOMParser();
-                        const doc = parser.parseFromString(htmlText, 'text/html');
-                        
-                        // Ekstraksi data dari file HTML artikel
-                        const title = doc.querySelector('h1')?.innerText || file.name.replace('.html', '').replace(/-/g, ' ');
-                        const img = doc.querySelector('img')?.src || '';
-                        const summary = doc.querySelector('.content')?.innerText.substring(0, 150) || 
-                                         doc.querySelector('body')?.innerText.substring(0, 150) || 
-                                         "Read more...";
-
-                        return {
-                            title: title,
-                            img: img,
-                            summary: summary.replace(/\s+/g, ' ').trim() + '...',
-                            link: `artikel/${file.name}` // Link utuh dengan .html
-                        };
-                    } catch (e) {
-                        return null; // Skip file yang error
-                    }
-                }));
-
-                // Render semua artikel yang berhasil di-fetch
                 list.innerHTML = "";
-                articleData.forEach(art => {
-                    if(!art) return;
-                    
-                    const imgHtml = art.img ? `<div class="img-container"><img src="${art.img}" alt="cover" loading="lazy"></div>` : '';
+
+                htmlFiles.forEach(file => {
+                    // Judul diambil otomatis dari nama file biar instan
+                    // Contoh: 'album-critical-fire.html' -> 'ALBUM CRITICAL FIRE'
+                    const cleanTitle = file.name
+                        .replace('.html', '')
+                        .replace(/-/g, ' ')
+                        .toUpperCase();
 
                     const card = `
-                        <div class="sai-card shadow-2xl">
-                            ${imgHtml}
-                            <div class="p-6">
-                                <h2 class="text-xl font-bold text-white mb-2 uppercase tracking-tight">${art.title}</h2>
-                                <p class="text-zinc-500 text-sm leading-relaxed mb-4">${art.summary}</p>
-                                <a href="${art.link}" class="text-blue-500 text-xs font-bold uppercase tracking-widest hover:text-white transition flex items-center">
-                                    Read Full Story <i class="fa-solid fa-arrow-right ml-2"></i>
-                                </a>
+                        <a href="artikel/${file.name}" class="sai-card group block no-underline">
+                            <div class="img-placeholder">
+                                <i class="fa-solid fa-newspaper text-zinc-800 text-4xl group-hover:text-blue-500 transition-colors"></i>
                             </div>
-                        </div>
+                            <div class="p-5">
+                                <span class="text-[9px] text-blue-500 font-black tracking-widest uppercase">Latest Post</span>
+                                <h2 class="text-lg font-bold text-white mt-1 leading-tight group-hover:text-blue-400 transition-colors">${cleanTitle}</h2>
+                                <div class="mt-4 flex items-center text-zinc-600 text-[10px] font-bold uppercase tracking-widest">
+                                    View Article <i class="fa-solid fa-arrow-right ml-2 text-[8px]"></i>
+                                </div>
+                            </div>
+                        </a>
                     `;
                     list.innerHTML += card;
                 });
 
-                if (articleData.filter(a => a !== null).length === 0) {
-                    list.innerHTML = `<p class="text-center text-zinc-700 py-20 uppercase text-xs tracking-widest">No articles published.</p>`;
-                }
-
             } catch (e) {
-                list.innerHTML = `<p class="text-center text-red-900 py-20 uppercase text-xs font-black">Sync Error. Check Repository.</p>`;
+                list.innerHTML = `<div class="col-span-full text-center py-20 text-red-900 font-black text-xs">DATABASE SYNC ERROR</div>`;
             }
         }
 
