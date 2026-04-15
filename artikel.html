@@ -13,53 +13,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Articles | SAI Roots</title>
-    <meta name="description" content="Kumpulan artikel musik dan berita terbaru dari SAI Roots Music.">
+    <meta name="description" content="Kumpulan artikel musik, rilisan terbaru, dan perjalanan kreatif SAI Roots Music.">
     <meta name="theme-color" content="#0b0b0b">
 
-    <meta property="og:title" content="Articles | SAI ROOTS">
-    <meta property="og:site_name" content="SAI Roots Music">
-    <meta property="og:description" content="Artikel tentang perjalanan musik SAI Roots.">
-    <meta property="og:image" content="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg">
-    <meta property="og:url" content="https://sairootsmusic.github.io/artikel">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sairootsmusic.github.io/artikel">
+    <meta property="og:title" content="Articles | SAI ROOTS">
+    <meta property="og:description" content="Jelajahi berita dan artikel terbaru dari SAI Roots Music.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sairootsmusic.github.io/artikel">
+    <meta property="twitter:title" content="Articles | SAI ROOTS">
+    <meta property="twitter:description" content="Jelajahi berita dan artikel terbaru dari SAI Roots Music.">
+    <meta property="twitter:image" content="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg">
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "SAI Roots Music",
-      "url": "https://sairootsmusic.github.io"
+      "@type": "CollectionPage",
+      "name": "SAI Roots Articles",
+      "description": "Archive of music articles and news by SAI Roots Music",
+      "url": "https://sairootsmusic.github.io/artikel"
     }
     </script>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background-color: #0b0b0b; color: #e5e7eb; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; min-height: 100vh; margin: 0; }
-        .sai-card { background: #141414; border: 1px solid #222; border-radius: 12px; overflow: hidden; transition: 0.3s; }
-        .sai-card:hover { border-color: #3b82f6; transform: translateY(-2px); }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        
+        body { 
+            background-color: #0b0b0b; 
+            color: #e5e7eb; 
+            font-family: 'Inter', sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh; 
+            margin: 0; 
+        }
+        
+        /* Card & Effects */
+        .sai-card { 
+            background: #141414; 
+            border: 1px solid #222; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            transition: all 0.3s ease; 
+        }
+        .sai-card:hover { 
+            border-color: #3b82f6; 
+            transform: translateY(-4px); 
+            box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3);
+        }
+        
+        /* Navigation */
         .btn-home { color: #666; font-size: 14px; font-weight: 600; transition: 0.3s; text-decoration: none; }
         .btn-home:hover { color: #fff; }
-        .img-container { width: 100%; height: 220px; background: #000; overflow: hidden; }
+        
+        /* Image Handling */
+        .img-container { width: 100%; height: 220px; background: #000; overflow: hidden; position: relative; }
         .img-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        footer { text-align: center; margin-top: auto; padding: 40px 0 20px; }
-        .copyright-link { text-decoration: none; color: #333; font-size: 11px; letter-spacing: 0.5px; transition: 0.3s; }
-        .copyright-link:hover { color: #666; }
+        
+        /* Footer */
+        footer { text-align: center; margin-top: auto; padding: 50px 0 30px; border-top: 1px solid #111; }
+        .copyright-link { text-decoration: none; color: #333; font-size: 11px; letter-spacing: 1px; font-weight: 700; transition: 0.3s; text-transform: uppercase; }
+        .copyright-link:hover { color: #555; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0b0b0b; }
+        ::-webkit-scrollbar-thumb { background: #222; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #333; }
     </style>
 </head>
 <body>
 
-    <nav class="p-6 max-w-4xl mx-auto flex items-center justify-between w-full">
-        <a href="/" class="btn-home"><i class="fa-solid fa-chevron-left mr-2"></i>Home</a>
+    <nav class="p-8 max-w-5xl mx-auto flex items-center justify-between w-full">
+        <a href="/" class="btn-home flex items-center gap-2">
+            <i class="fa-solid fa-chevron-left text-xs"></i> HOME
+        </a>
         <div class="text-right">
-            <h1 class="text-2xl font-black uppercase italic tracking-tighter">LIST <span class="text-blue-500">ARTICLE</span></h1>
+            <h1 class="text-2xl font-black uppercase italic tracking-tighter leading-none">
+                LIST <span class="text-blue-500">ARTICLE</span>
+            </h1>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto px-4 mt-4 flex-grow w-full">
-        <div id="article-list" class="space-y-8">
-            <div class="text-center py-20 text-zinc-800 animate-pulse uppercase tracking-widest text-xs">
-                Synchronizing Database...
+    <main class="max-w-5xl mx-auto px-6 mt-4 flex-grow w-full">
+        <div id="article-list" class="space-y-10">
+            <div class="flex flex-col items-center justify-center py-32 space-y-4">
+                <div class="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                <p class="text-zinc-800 text-[10px] font-black uppercase tracking-[0.4em]">Synchronizing Database</p>
             </div>
         </div>
     </main>
@@ -77,12 +122,15 @@
         async function init() {
             const list = document.getElementById('article-list');
             try {
+                // Fetch list dengan cache breaker
                 const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FOLDER}?t=${Date.now()}`);
                 const files = await res.json();
-                if(!Array.isArray(files)) throw new Error();
+                
+                if(!Array.isArray(files)) throw new Error("Invalid Repository");
 
                 const htmlFiles = files.filter(f => f.name.endsWith('.html')).reverse();
 
+                // Paralel Fetching untuk kecepatan maksimal
                 const articleData = await Promise.all(htmlFiles.map(async (file) => {
                     try {
                         const fileRes = await fetch(file.download_url);
@@ -90,38 +138,59 @@
                         const parser = new DOMParser();
                         const doc = parser.parseFromString(htmlText, 'text/html');
 
+                        // Clean Slug untuk URL rapi
+                        const slug = file.name.replace('.html', '');
+
                         return {
-                            title: doc.querySelector('h1')?.innerText || file.name.replace('.html', '').replace(/-/g, ' '),
+                            title: doc.querySelector('h1')?.innerText || slug.replace(/-/g, ' '),
                             img: doc.querySelector('img')?.src || '',
-                            summary: doc.querySelector('.content')?.innerText.substring(0, 150) || 'Read more...',
-                            // CLEAN URL: Hilangkan .html di link
-                            link: `artikel/${file.name.replace('.html', '')}`
+                            summary: doc.querySelector('.content')?.innerText.substring(0, 160) || 'Click to read the full story of SAI Roots.',
+                            link: `artikel/${slug}` // CLEAN URL (TANPA .HTML)
                         };
                     } catch (e) { return null; }
                 }));
 
-                list.innerHTML = "";
+                list.innerHTML = ""; // Clear loading
+                
                 articleData.forEach(art => {
                     if(!art) return;
-                    const imgHtml = art.img ? `<div class="img-container"><img src="${art.img}" alt="cover" loading="lazy"></div>` : '';
+                    
+                    const imgHtml = art.img ? 
+                        `<div class="img-container"><img src="${art.img}" alt="${art.title}" loading="lazy"></div>` : 
+                        `<div class="img-container flex items-center justify-center bg-zinc-900"><i class="fa-solid fa-music text-zinc-800 text-4xl"></i></div>`;
                     
                     list.innerHTML += `
                         <article class="sai-card shadow-2xl">
                             ${imgHtml}
-                            <div class="p-6">
-                                <h2 class="text-xl font-bold text-white mb-2 uppercase tracking-tight">${art.title}</h2>
-                                <p class="text-zinc-500 text-sm leading-relaxed mb-4">${art.summary}...</p>
-                                <a href="${art.link}" class="text-blue-500 text-xs font-bold uppercase tracking-widest hover:text-white transition flex items-center">
-                                    Read Full Story <i class="fa-solid fa-arrow-right ml-2"></i>
+                            <div class="p-8">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <span class="bg-blue-600 text-white text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-widest">Article</span>
+                                    <span class="text-zinc-700 text-[10px] font-bold uppercase tracking-widest">SAI Roots Music</span>
+                                </div>
+                                <h2 class="text-2xl font-black text-white mb-3 uppercase tracking-tighter leading-tight">
+                                    ${art.title}
+                                </h2>
+                                <p class="text-zinc-500 text-sm leading-relaxed mb-6 line-clamp-2">
+                                    ${art.summary}...
+                                </p>
+                                <a href="${art.link}" class="text-blue-500 text-[11px] font-black uppercase tracking-[0.2em] hover:text-white transition-all flex items-center group">
+                                    Read Full Story 
+                                    <i class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
                                 </a>
                             </div>
                         </article>
                     `;
                 });
+
+                if (list.innerHTML === "") {
+                    list.innerHTML = `<p class="text-center py-20 text-zinc-800 font-black uppercase text-xs tracking-[0.3em]">No articles published yet.</p>`;
+                }
+
             } catch (e) {
-                list.innerHTML = `<p class="text-center text-zinc-600 py-20 uppercase text-[10px] tracking-widest">No articles found.</p>`;
+                list.innerHTML = `<div class="text-center py-20"><i class="fa-solid fa-triangle-exclamation text-red-900 text-2xl mb-4"></i><p class="text-red-900 font-black uppercase text-xs tracking-widest">Sync Error: Check Connection</p></div>`;
             }
         }
+
         init();
     </script>
 </body>
