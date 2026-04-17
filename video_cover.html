@@ -55,8 +55,8 @@
         .thumb-container { background: #1a1a1a; width: 100%; position: relative; padding-bottom: 56.25%; }
         .thumb-container img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
 
-        /* KHUSUS SITEMAP: Robot crawler bakal baca link di sini */
-        #sitemap-area { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+        /* SITEMAP OTOMATIS: Area tersembunyi untuk crawler */
+        #sitemap-area { position: absolute; left: -9999px; visibility: hidden; }
     </style>
 </head>
 <body>
@@ -79,9 +79,7 @@
 
         <div id="videoGrid" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
         
-        <div id="sitemap-area">
-            <a href="video_cover?v=GOTJAEN_uzU">Doraemon No Uta - SAI Roots</a>
-            </div>
+        <div id="sitemap-area"></div>
     </div>
 
     <div id="videoModal">
@@ -138,9 +136,13 @@
             try {
                 const r = await fetch('videos.json');
                 videoData = await r.json();
+                
+                // [OTOMATIS] Bikin link sitemap dari JSON biar crawler nangkep
+                const sitemapArea = document.getElementById('sitemap-area');
+                sitemapArea.innerHTML = videoData.map(v => `<a href="?v=${v.id}">${v.title}</a>`).join('');
+                
                 display(videoData);
 
-                // GSC / SEO: Handle URL parameter ?v=
                 const urlParams = new URLSearchParams(window.location.search);
                 const vid = urlParams.get('v');
                 if(vid) {
@@ -176,8 +178,6 @@
             if(!v) return;
             
             currentVideoId = id;
-            
-            // SEO: Ubah URL jadi ?v= saat video dibuka
             window.history.pushState({}, '', '?v=' + id);
             
             const m = document.getElementById('videoModal');
