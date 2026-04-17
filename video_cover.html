@@ -66,7 +66,7 @@
 
     <nav class="p-5 flex items-center sticky top-0 bg-black/80 backdrop-blur-md z-50 border-b border-zinc-900">
         <a href="/" class="text-zinc-400 hover:text-white flex items-center gap-1 font-medium transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
             </svg>
             <span class="text-sm tracking-wide uppercase">Home</span>
@@ -80,9 +80,7 @@
         <input type="search" id="searchInput" placeholder="Search cover song video..." 
                class="w-full bg-zinc-900 border border-zinc-800 p-4 rounded-2xl mb-10 focus:ring-2 focus:ring-green-600 outline-none">
 
-        <div id="videoGrid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <p class="text-zinc-500 text-xs animate-pulse">Loading Collection...</p>
-        </div>
+        <div id="videoGrid" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
     </main>
 
     <div id="videoModal" aria-hidden="true" role="dialog">
@@ -116,7 +114,11 @@
 
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('youtube-player', {
-                playerVars: { 'autoplay': 1, 'rel': 0, 'enablejsapi': 1 },
+                playerVars: { 
+                    'autoplay': 1, 
+                    'rel': 0, 
+                    'enablejsapi': 1 
+                },
                 events: {
                     'onStateChange': onPlayerStateChange
                 }
@@ -137,25 +139,31 @@
 
         async function load() {
             try {
-                // [FITUR] Load dari videos.json Tetap Sama
                 const r = await fetch('videos.json');
                 videoData = await r.json();
                 display(videoData);
                 injectVideoSchema(videoData);
                 
-                if(window.location.hash) openModal(window.location.hash.substring(1));
-            } catch(e) { console.log("Gagal memuat data."); }
+                // [FITUR] CEK QUERY ?v= AGAR BISA TERINDEKS SEPERTI music?song=
+                const urlParams = new URLSearchParams(window.location.search);
+                const vid = urlParams.get('v');
+                if(vid) {
+                    openModal(vid);
+                }
+            } catch(e) { 
+                console.log("Gagal memuat data video."); 
+            }
         }
 
         function display(data) {
             const g = document.getElementById('videoGrid');
             g.innerHTML = data.map(v => `
                 <article class="video-card" onclick="openModal('${v.id}')">
-                    <a href="https://www.youtube.com/watch?v=${v.id}" class="sr-only" target="_blank">${v.title}</a>
+                    <a href="video_cover?v=${v.id}" class="sr-only">${v.title}</a>
                     <div class="thumb-container">
                         <img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" 
                              onerror="this.src='https://i.ytimg.com/vi/${v.id}/mqdefault.jpg'"
-                             loading="lazy" alt="${v.title}">
+                             loading="lazy" alt="Thumbnail ${v.title}">
                     </div>
                     <div class="p-5">
                         <div class="flex items-center gap-1.5 mb-2">
@@ -186,13 +194,15 @@
             document.head.appendChild(script);
         }
 
-        // [FITUR] Modal Logic Tetap Sama
         function openModal(id) {
             const v = videoData.find(x => x.id === id);
             if(!v) return;
             
             currentVideoId = id;
-            window.location.hash = id;
+            
+            // [FITUR] UPDATE URL TANPA RELOAD KE ?v=ID AGAR BISA TERINDEKS
+            const targetUrl = window.location.pathname + '?v=' + id;
+            window.history.pushState({path:targetUrl},'',targetUrl);
             
             const m = document.getElementById('videoModal');
             m.style.display = 'block';
@@ -213,22 +223,31 @@
         function toggleMinimize() {
             const m = document.getElementById('videoModal');
             m.classList.toggle('minimized');
-            document.body.style.overflow = m.classList.contains('minimized') ? 'auto' : 'hidden';
+            if (m.classList.contains('minimized')) {
+                document.body.style.overflow = 'auto';
+            } else {
+                document.body.style.overflow = 'hidden';
+            }
         }
 
         function closeModal() {
-            if(player && player.stopVideo) player.stopVideo();
+            if(player && player.stopVideo) {
+                player.stopVideo();
+            }
             const m = document.getElementById('videoModal');
             m.style.display = 'none';
             m.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = 'auto';
-            history.pushState("", document.title, window.location.pathname);
+            
+            // [FITUR] KEMBALIKAN URL KE BERSIH SAAT CLOSE
+            const cleanUrl = window.location.pathname;
+            window.history.pushState({path:cleanUrl},'',cleanUrl);
         }
 
-        // [FITUR] Search Tetap Sama
         document.getElementById('searchInput').addEventListener('input', e => {
             const t = e.target.value.toLowerCase();
-            display(videoData.filter(v => v.title.toLowerCase().includes(t)));
+            const filtered = videoData.filter(v => v.title.toLowerCase().includes(t));
+            display(filtered);
         });
 
         window.onload = load;
