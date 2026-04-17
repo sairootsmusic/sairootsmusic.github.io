@@ -25,20 +25,12 @@
     <meta property="og:image" content="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg">
 
     <script type="application/ld+json">
-    [
-        {
-          "@type": "WebSite",
-          "name": "SAI Roots Music",
-          "url": "https://sairootsmusic.github.io"
-        },
-        {
-          "@context": "https://schema.org",
-          "@type": "CollectionPage",
-          "name": "SAI Roots Cover Song",
-          "description": "Archive of music cover by SAI Roots Music",
-          "url": "https://sairootsmusic.github.io/video_cover"
-        }
-    ]
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "SAI Roots Music",
+      "url": "https://sairootsmusic.github.io"
+    }
     </script>
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -63,8 +55,8 @@
         .thumb-container { background: #1a1a1a; width: 100%; position: relative; padding-bottom: 56.25%; }
         .thumb-container img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
 
-        /* [SEO] Kunci agar Sitemap Generator nangkep link video */
-        #sitemap-links { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+        /* KHUSUS SITEMAP: Robot crawler bakal baca link di sini */
+        #sitemap-area { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
     </style>
 </head>
 <body>
@@ -86,8 +78,10 @@
                class="w-full bg-zinc-900 border border-zinc-800 p-4 rounded-2xl mb-10 focus:ring-2 focus:ring-green-600 outline-none">
 
         <div id="videoGrid" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
-
-        <div id="sitemap-links"></div>
+        
+        <div id="sitemap-area">
+            <a href="video_cover?v=GOTJAEN_uzU">Doraemon No Uta - SAI Roots</a>
+            </div>
     </div>
 
     <div id="videoModal">
@@ -122,12 +116,16 @@
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('youtube-player', {
                 playerVars: { 'autoplay': 1, 'rel': 0, 'enablejsapi': 1 },
-                events: { 'onStateChange': onPlayerStateChange }
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
             });
         }
 
         function onPlayerStateChange(event) {
-            if (event.data == YT.PlayerState.ENDED) { playNextVideo(); }
+            if (event.data == YT.PlayerState.ENDED) {
+                playNextVideo();
+            }
         }
 
         function playNextVideo() {
@@ -141,12 +139,8 @@
                 const r = await fetch('videos.json');
                 videoData = await r.json();
                 display(videoData);
-                
-                // SEO: Tambahin link statis ke DOM buat crawler
-                const sitemapBox = document.getElementById('sitemap-links');
-                sitemapBox.innerHTML = videoData.map(v => `<a href="video_cover?v=${v.id}">${v.title}</a>`).join('');
 
-                // GSC: Handle URL parameter ?v= agar terbaca Google
+                // GSC / SEO: Handle URL parameter ?v=
                 const urlParams = new URLSearchParams(window.location.search);
                 const vid = urlParams.get('v');
                 if(vid) {
@@ -161,15 +155,13 @@
             const g = document.getElementById('videoGrid');
             g.innerHTML = data.map(v => `
                 <div class="video-card" onclick="openModal('${v.id}')">
-                    <a href="video_cover?v=${v.id}" class="sr-only">${v.title}</a>
                     <div class="thumb-container">
                         <img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" 
                              onerror="this.src='https://i.ytimg.com/vi/${v.id}/mqdefault.jpg'"
-                             loading="lazy" alt="${v.title}">
+                             loading="lazy">
                     </div>
                     <div class="p-5">
                         <div class="flex items-center gap-1.5 mb-2">
-                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                             <span class="text-green-500 text-[10px] font-bold tracking-widest uppercase">SAI Roots</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2 uppercase leading-tight">${v.title}</h3>
@@ -184,9 +176,9 @@
             if(!v) return;
             
             currentVideoId = id;
-            // Update URL tanpa reload biar Googlebot tau ini halaman unik
-            const newurl = window.location.pathname + '?v=' + id;
-            window.history.pushState({path:newurl},'',newurl);
+            
+            // SEO: Ubah URL jadi ?v= saat video dibuka
+            window.history.pushState({}, '', '?v=' + id);
             
             const m = document.getElementById('videoModal');
             m.style.display = 'block';
@@ -213,8 +205,7 @@
             if(player && player.stopVideo) player.stopVideo();
             document.getElementById('videoModal').style.display = 'none';
             document.body.style.overflow = 'auto';
-            // Bersihin URL pas ditutup
-            window.history.pushState({path:window.location.pathname},'',window.location.pathname);
+            window.history.pushState({}, '', window.location.pathname);
         }
 
         document.getElementById('searchInput').addEventListener('input', e => {
