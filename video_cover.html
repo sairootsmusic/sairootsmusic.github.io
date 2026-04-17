@@ -25,12 +25,21 @@
     <meta property="og:image" content="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg">
 
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "SAI Roots Music",
-      "url": "https://sairootsmusic.github.io"
-    }
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "SAI Roots Music",
+        "url": "https://sairootsmusic.github.io"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "SAI Roots Articles",
+        "description": "Archive of music articles and news by SAI Roots Music",
+        "url": "https://sairootsmusic.github.io/artikel"
+      }
+    ]
     </script>
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -55,17 +64,15 @@
         .thumb-container { background: #1a1a1a; width: 100%; position: relative; padding-bottom: 56.25%; }
         .thumb-container img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
 
-        /* SITEMAP OTOMATIS: Area tersembunyi untuk crawler */
-        #sitemap-area { position: absolute; left: -9999px; visibility: hidden; }
+        /* AREA OTOMATIS: Hidden dari user, terlihat oleh Google Bot */
+        #auto-sitemap-links { position: absolute; left: -9999px; visibility: hidden; }
     </style>
 </head>
 <body>
 
     <nav class="p-5 flex items-center sticky top-0 bg-black/80 backdrop-blur-md z-50 border-b border-zinc-900">
         <a href="/" class="text-zinc-400 hover:text-white flex items-center gap-1 font-medium transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
-            </svg>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg>
             <span class="text-sm tracking-wide uppercase">Home</span>
         </a>
         <div class="ml-auto text-xl font-black italic uppercase tracking-tighter">
@@ -79,7 +86,7 @@
 
         <div id="videoGrid" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
         
-        <div id="sitemap-area"></div>
+        <div id="auto-sitemap-links"></div>
     </div>
 
     <div id="videoModal">
@@ -114,16 +121,8 @@
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('youtube-player', {
                 playerVars: { 'autoplay': 1, 'rel': 0, 'enablejsapi': 1 },
-                events: {
-                    'onStateChange': onPlayerStateChange
-                }
+                events: { 'onStateChange': (e) => { if (e.data == YT.PlayerState.ENDED) playNextVideo(); } }
             });
-        }
-
-        function onPlayerStateChange(event) {
-            if (event.data == YT.PlayerState.ENDED) {
-                playNextVideo();
-            }
         }
 
         function playNextVideo() {
@@ -137,9 +136,11 @@
                 const r = await fetch('videos.json');
                 videoData = await r.json();
                 
-                // [OTOMATIS] Bikin link sitemap dari JSON biar crawler nangkep
-                const sitemapArea = document.getElementById('sitemap-area');
-                sitemapArea.innerHTML = videoData.map(v => `<a href="?v=${v.id}">${v.title}</a>`).join('');
+                // [OTOMATISASI SITEMAP] Loop semua data JSON jadi link fisik
+                const sitemapArea = document.getElementById('auto-sitemap-links');
+                sitemapArea.innerHTML = videoData.map(v => 
+                    `<a href="https://sairootsmusic.github.io/video_cover?v=${v.id}">${v.title}</a>`
+                ).join('');
                 
                 display(videoData);
 
@@ -176,8 +177,9 @@
         function openModal(id) {
             const v = videoData.find(x => x.id === id);
             if(!v) return;
-            
             currentVideoId = id;
+            
+            // SEO: Update URL agar Google tau ini halaman video spesifik
             window.history.pushState({}, '', '?v=' + id);
             
             const m = document.getElementById('videoModal');
