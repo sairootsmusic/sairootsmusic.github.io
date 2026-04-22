@@ -30,14 +30,14 @@
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "SAI Roots Music",
-        "url": "https://sairootsmusic.github.io"
+        "url": "https://sairootsmusic.com"
       },
       {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
         "name": "SAI Roots Articles",
         "description": "Archive of music articles and news by SAI Roots Music",
-        "url": "https://sairootsmusic.github.io/artikel"
+        "url": "https://sairootsmusic.com/artikel"
       }
     ]
     </script>
@@ -139,7 +139,7 @@
                 // [OTOMATISASI SITEMAP] Loop semua data JSON jadi link fisik
                 const sitemapArea = document.getElementById('auto-sitemap-links');
                 sitemapArea.innerHTML = videoData.map(v => 
-                    `<a href="https://sairootsmusic.github.io/video_cover?v=${v.id}">${v.title}</a>`
+                    `<a href="https://sairootsmusic.com/video_cover?v=${v.id}">${v.title}</a>`
                 ).join('');
                 
                 display(videoData);
