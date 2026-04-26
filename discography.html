@@ -1,199 +1,96 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<script type="application/ld+json">
-{
- "@context":"https://schema.org",
- "@type":"WebSite",
- "name":"SAI Roots Music",
- "url":"https://sairootsmusic.com"
-}
-</script>
-
-<link rel="canonical" href="https://sairootsmusic.com/discography" />
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
-<link rel="manifest" href="/site.webmanifest">
-
-<title>Discography - SAI Roots Music</title>
-<meta name="description" content="Koleksi album, single, dan pemutar musik resmi SAI Roots Music. Dengarkan rilisan terbaru langsung dari website resmi.">
-
-<meta property="og:title" content="Discography - SAI Roots Music">
-<meta property="og:site_name" content="SAI Roots Music">
-<meta property="og:image" content="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg">
-<meta property="og:url" content="https://sairootsmusic.com/discography">
-<meta property="og:type" content="website">
-
-<link rel="stylesheet" href="/assets/asset.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "SAI Roots Music",
+      "url": "https://sairootsmusic.com"
+    }
+    </script>
+    <link rel="canonical" href="https://sairootsmusic.com/dicography" />
+    <title>Discography - SAI Roots Music</title>
+    <meta name="description" content="Koleksi Album dan Single dari SAI Roots Music. Streaming langsung di sini.">
+    <link rel="stylesheet" href="/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
 <header>
-<div class="container">
-<div class="navbar">
-
-<a href="/" class="brand">
-<img src="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/android-chrome-192x192.png" alt="SAI Roots Logo">
-<span>SAI Roots</span>
-</a>
-
-<div class="search-wrap">
-<input type="text" class="search-input" placeholder="Cari lagu, album, single...">
-<button class="search-btn">⌕</button>
-</div>
-
-<button class="menu-btn">☰</button>
-
-</div>
-</div>
+    <div class="logo">SAI ROOTS</div>
+    <div class="nav-container">
+        <input type="text" id="siteSearch" class="search-bar" placeholder="Cari musik...">
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    </div>
+    <nav class="nav-menu" id="navMenu">
+        <a href="/">Home</a>
+        <a href="/dicography">Discography</a>
+        <a href="/lyric">Koleksi Lirik</a>
+        <a href="/article">Artikel</a>
+        <a href="/video_cover">Video Cover</a>
+        <hr style="border: 0.5px solid #333; margin: 10px 0;">
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="/privacy">Privacy Policy</a>
+    </nav>
 </header>
 
-<div class="overlay"></div>
+<main style="padding: 20px 5%; margin-bottom: 120px;">
+    <h1 style="margin-bottom: 30px;">Discography</h1>
+    
+    <div id="music-list" class="grid-container">
+        <div class="music-card" onclick="playMusic('/music/contoh-lagu.mp3', 'Judul Lagu', 'Single')">
+            <div style="background: #282828; aspect-ratio: 1/1; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; cursor: pointer;">
+                <span style="font-size: 3rem;">🎵</span>
+            </div>
+            <h3 style="font-size: 1rem; margin: 0;">Judul Lagu</h3>
+            <p style="color: var(--text-gray); font-size: 0.8rem;">Single</p>
+        </div>
+    </div>
+</main>
 
-<div class="drawer">
-<div class="drawer-title">Menu</div>
-<a href="/discography">Discography</a>
-<a href="/lyric">Koleksi Lirik</a>
-<a href="/article">Artikel</a>
-<a href="/video_cover">Video Cover</a>
-<a href="/about">About</a>
-<a href="/contact">Contact</a>
-<a href="/privacy">Privacy Policy</a>
+<div id="spotify-player" class="player-container">
+    <div class="player-info">
+        <div id="player-title">Pilih Lagu...</div>
+        <div id="player-sub" style="font-size: 0.7rem; color: var(--text-gray);">SAI Roots</div>
+    </div>
+    
+    <div class="player-controls">
+        <audio id="main-audio" src=""></audio>
+        <button onclick="togglePlay()" id="play-btn" class="play-circle">▶</button>
+    </div>
+
+    <div class="player-extra">
+        <button onclick="shareMusic()" style="background:none; border:none; color:white; cursor:pointer;">📤 Share</button>
+    </div>
 </div>
 
-<section class="hero" style="background-image:url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1400&q=80');min-height:65vh;">
-<div class="hero-inner">
+<script src="/app.js"></script>
+<script>
+    const audio = document.getElementById('main-audio');
+    const playBtn = document.getElementById('play-btn');
 
-<div class="hero-tag">OFFICIAL RELEASE COLLECTION</div>
+    function playMusic(src, title, sub) {
+        audio.src = src;
+        document.getElementById('player-title').innerText = title;
+        document.getElementById('player-sub').innerText = sub;
+        audio.play();
+        playBtn.innerText = "⏸";
+        document.getElementById('spotify-player').style.display = "flex";
+    }
 
-<h1>Discography</h1>
+    function togglePlay() {
+        if (audio.paused) {
+            audio.play();
+            playBtn.innerText = "⏸";
+        } else {
+            audio.pause();
+            playBtn.innerText = "▶";
+        }
+    }
+</script>
 
-<p>
-Album, single, dan rilisan resmi SAI Roots. Putar musik langsung dari website.
-</p>
-
-<div class="hero-actions">
-<a href="#musicSection" class="btn btn-primary">Browse Music</a>
-<a href="/" class="btn btn-dark">Back Home</a>
-</div>
-
-</div>
-</section>
-
-<section class="section" id="musicSection">
-<div class="container">
-
-<h2 class="section-title">Latest Music</h2>
-
-<div class="grid" id="latestMusic">
-
-<div class="music-card">
-<div class="music-cover">
-<img src="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg">
-<div class="play-badge">▶</div>
-</div>
-<div class="music-body">
-<div class="music-title">Loading...</div>
-<div class="music-meta">Memuat rilisan</div>
-</div>
-</div>
-
-</div>
-
-</div>
-</section>
-
-<section class="section">
-<div class="container">
-
-<h2 class="section-title">Listen Everywhere</h2>
-
-<div class="feature-grid">
-
-<div class="feature-card">
-<div class="feature-icon">🎧</div>
-<div class="feature-title">Official Audio</div>
-<div class="feature-desc">
-Nikmati rilisan resmi langsung dari website dan platform streaming.
-</div>
-</div>
-
-<div class="feature-card">
-<div class="feature-icon">📀</div>
-<div class="feature-title">Singles & Albums</div>
-<div class="feature-desc">
-Semua karya terbaru dan arsip rilisan akan terus diperbarui.
-</div>
-</div>
-
-<div class="feature-card">
-<div class="feature-icon">🔗</div>
-<div class="feature-title">Easy Share</div>
-<div class="feature-desc">
-Bagikan lagu favoritmu ke teman dengan sekali klik.
-</div>
-</div>
-
-</div>
-
-</div>
-</section>
-
-<footer>
-<div class="container">
-<div class="footer-wrap">
-
-<div class="footer-grid">
-
-<div>
-<div class="footer-title">Streaming</div>
-<div class="footer-platforms">
-<a href="https://www.youtube.com/@sairoots" target="_blank">YouTube</a>
-<a href="https://music.youtube.com/channel/UC2EfMkjDMG9LTWfc1llL4AQ" target="_blank">YouTube Music</a>
-<a href="https://open.spotify.com/artist/0xOPCtZvhXVd9RTbU1aYTr" target="_blank">Spotify</a>
-<a href="https://music.apple.com/id/artist/sai-roots/1892187423?l=id" target="_blank">Apple Music</a>
-<a href="https://m.soundcloud.com/sairoots" target="_blank">SoundCloud</a>
-<a href="https://link.deezer.com/s/3366qh6efN8QoSqSPCEsB" target="_blank">Deezer</a>
-<a href="https://music.amazon.com/artists/B0GTFWNC32/sai-roots" target="_blank">Amazon Music</a>
-</div>
-</div>
-
-<div>
-<div class="footer-title">Social</div>
-<div class="footer-links">
-<a href="https://instagram.com/ahmadsupembri" target="_blank">Instagram</a>
-<a href="https://tiktok.com/@ahmadsupembri" target="_blank">TikTok</a>
-<a href="https://facebook.com/ahmadsupembri" target="_blank">Facebook</a>
-</div>
-</div>
-
-<div>
-<div class="footer-title">Website</div>
-<div class="footer-links">
-<a href="/about">About</a>
-<a href="/contact">Contact</a>
-<a href="/privacy">Privacy Policy</a>
-</div>
-</div>
-
-</div>
-
-<div class="copy">
-© 2026 SAI Roots Music. All Rights Reserved
-</div>
-
-</div>
-</div>
-</footer>
-
-<script src="/assets/asset.js"></script>
 </body>
 </html>
