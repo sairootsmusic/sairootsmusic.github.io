@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -20,83 +23,138 @@
     <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
     <link rel="manifest" href="/site.webmanifest">
 
-    <title>SAI Roots Music - Official Website</title>
+    <title>SAI Roots Music | Official Website</title>
     <meta name="description" content="Official Website SAI Roots Music. Dengarkan lagu reggae rap indie terbaru, baca lirik lengkap, dan streaming di Spotify, YouTube Music, SoundCloud, serta Amazon Music.">
-
-    <meta property="og:title" content="SAI Roots Music">
+    
+    <meta property="og:title" content="SAI Roots Music | Official Website">
     <meta property="og:site_name" content="SAI Roots Music">
     <meta property="og:image" content="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg">
     <meta property="og:url" content="https://sairootsmusic.com/">
     <meta property="og:type" content="website">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
-<header>
-    <div class="logo">SAI ROOTS</div>
-    
-    <div class="nav-container">
-        <input type="text" id="siteSearch" class="search-bar" placeholder="Cari lirik/artikel...">
-        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    </div>
+    <header>
+        <div class="header-inner">
+            <a href="/" class="logo">SAI Roots</a>
+            
+            <div class="search-container">
+                <input type="text" id="smartSearch" class="search-bar" placeholder="Cari lirik, artikel, rilis...">
+            </div>
 
-    <nav class="nav-menu" id="navMenu">
-        <a href="/dicography">Discography</a>
-        <a href="/lyric">Koleksi Lirik</a>
-        <a href="/article">Artikel</a>
-        <a href="/video_cover">Video Cover</a>
-        <hr style="border: 0.5px solid #333; margin: 10px 0;">
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
-        <a href="/privacy">Privacy Policy</a>
-    </nav>
-</header>
+            <button class="nav-toggle" id="menuBtn">☰</button>
 
-<main style="padding: 20px 5%; min-height: 80vh;">
-    <section id="hero">
-        <h1 style="font-size: 2.5rem; margin-bottom: 10px;">SAI Roots</h1>
-        <p style="color: var(--text-gray);">Independent Roots Reggae & Rap Project.</p>
-    </section>
-
-    <section id="latest-posts" style="margin-top: 40px;">
-        <h2 style="border-left: 4px solid var(--primary-color); padding-left: 15px; margin-bottom: 20px;">Terbaru</h2>
-        <div id="index-feed" class="grid-container">
-            <p style="color: var(--text-gray);">Memuat konten...</p>
+            <nav class="nav-links" id="navLinks">
+                <a href="/discography">Discography</a>
+                <a href="/lyric">Koleksi Lirik</a>
+                <a href="/article">Artikel</a>
+                <a href="/video_cover">Video Cover</a>
+                <span class="nav-sep">|</span>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+                <a href="/privacy">Privacy Policy</a>
+            </nav>
         </div>
-    </section>
-</main>
+    </header>
 
-<footer>
-    <div class="social-icons">
-        <a href="https://www.youtube.com/@sairoots" target="_blank">YouTube</a>
-        <a href="https://music.youtube.com/channel/UC2EfMkjDMG9LTWfc1llL4AQ" target="_blank">YouTube Music</a>
-        <a href="https://open.spotify.com/artist/0xOPCtZvhXVd9RTbU1aYTr" target="_blank">Spotify</a>
-        <a href="https://music.apple.com/id/artist/sai-roots/1892187423?l=id" target="_blank">Apple Music</a>
-        <a href="https://m.soundcloud.com/sairoots" target="_blank">SoundCloud</a>
-        <a href="https://link.deezer.com/s/3366qh6efN8QoSqSPCEsB" target="_blank">Deezer</a>
-        <a href="https://music.amazon.com/artists/B0GTFWNC32/sai-roots" target="_blank">Amazon Music</a>
-        <a href="https://instagram.com/ahmadsupembri" target="_blank">Instagram</a>
-        <a href="https://tiktok.com/@ahmadsupembri" target="_blank">Tiktok</a>
-        <a href="https://facebook.com/ahmadsupembri" target="_blank">Facebook</a>
-    </div>
+    <main>
+        <section style="margin-bottom: 50px; text-align: center;">
+            <h1 class="page-title">SAI Roots Music</h1>
+            <p class="page-description">Eksplorasi Roots Reggae, Ska, dan Reggae Rap.</p>
+        </section>
 
-    <div class="footer-links" style="margin-bottom: 20px;">
-        <a href="/about" style="color: var(--text-gray); text-decoration: none;">About</a> | 
-        <a href="/contact" style="color: var(--text-gray); text-decoration: none;">Contact</a> | 
-        <a href="/privacy" style="color: var(--text-gray); text-decoration: none;">Privacy Policy</a>
-    </div>
+        <section>
+            <h2 class="section-title">Update Terbaru</h2>
+            <div class="post-grid" id="latestPosts">
+                <p style="color: var(--text-secondary);">Memuat konten terbaru...</p>
+            </div>
+        </section>
+    </main>
 
-    <p style="font-size: 0.8rem; color: var(--text-gray);">© 2026 SAI Roots Music. All Rights Reserved</p>
-</footer>
+    <footer>
+        <div class="social-grid">
+            <a href="https://www.youtube.com/@sairoots" target="_blank" class="social-link">YouTube</a>
+            <a href="https://music.youtube.com/channel/UC2EfMkjDMG9LTWfc1llL4AQ" target="_blank" class="social-link">YouTube Music</a>
+            <a href="https://open.spotify.com/artist/0xOPCtZvhXVd9RTbU1aYTr" target="_blank" class="social-link">Spotify</a>
+            <a href="https://music.apple.com/id/artist/sai-roots/1892187423?l=id" target="_blank" class="social-link">Apple Music</a>
+            <a href="https://m.soundcloud.com/sairoots" target="_blank" class="social-link">SoundCloud</a>
+            <a href="https://link.deezer.com/s/3366qh6efN8QoSqSPCEsB" target="_blank" class="social-link">Deezer</a>
+            <a href="https://music.amazon.com/artists/B0GTFWNC32/sai-roots" target="_blank" class="social-link">Amazon Music</a>
+            <a href="https://instagram.com/ahmadsupembri" target="_blank" class="social-link">Instagram</a>
+            <a href="https://tiktok.com/@ahmadsupembri" target="_blank" class="social-link">Tiktok</a>
+            <a href="https://facebook.com/ahmadsupembri" target="_blank" class="social-link">Facebook</a>
+        </div>
 
-<script>
-    function toggleMenu() {
-        const nav = document.getElementById('navMenu');
-        nav.classList.toggle('active');
-    }
-</script>
+        <div class="footer-nav">
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+            <a href="/privacy">Privacy Policy</a>
+        </div>
 
+        <div class="copyright">
+            © 2026 SAI Roots Music. All Rights Reserved
+        </div>
+    </footer>
+
+    <script>
+        // 1. Hamburger Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // 2. Fetch 5 Data Terbaru (Lirik & Artikel)
+        async function fetchLatestUpdates() {
+            const container = document.getElementById('latestPosts');
+            try {
+                const response = await fetch('/data.json');
+                if (!response.ok) throw new Error('Data tidak ditemukan');
+                
+                const data = await response.json();
+                
+                // Menggabungkan array artikel dan lirik
+                let allItems = [];
+                if (data.articles) allItems = allItems.concat(data.articles.map(i => ({...i, type: 'Artikel'})));
+                if (data.lyrics) allItems = allItems.concat(data.lyrics.map(i => ({...i, type: 'Lirik'})));
+
+                // Ambil 5 teratas (asumsi data.json sudah diurutkan dari admin_post)
+                const latest = allItems.slice(0, 5);
+                
+                if (latest.length === 0) {
+                    container.innerHTML = '<p>Belum ada rilis atau artikel terbaru.</p>';
+                    return;
+                }
+
+                container.innerHTML = '';
+                latest.forEach(item => {
+                    const card = `
+                        <div class="card">
+                            <span class="card-tag">${item.type}</span>
+                            <h3 class="card-title">${item.title}</h3>
+                            <a href="${item.url}" class="btn-read">Baca Selengkapnya</a>
+                        </div>
+                    `;
+                    container.innerHTML += card;
+                });
+
+            } catch (err) {
+                container.innerHTML = '<p style="color: var(--text-secondary);">Gagal memuat data terbaru.</p>';
+            }
+        }
+
+        // 3. Smart Search Logic (Simpel)
+        const searchBar = document.getElementById('smartSearch');
+        searchBar.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const q = searchBar.value.toLowerCase();
+                alert('Mencari: ' + q);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', fetchLatestUpdates);
+    </script>
 </body>
 </html>
