@@ -37,13 +37,15 @@
 
     <header>
         <div class="header-inner">
-            <a href="/" class="logo">SAI Roots</a>
+            <a href="/" class="logo">
+                <img src="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg" alt="SAI Roots" style="height: 40px; border-radius: 4px; display: block;">
+            </a>
             
             <div class="search-container">
                 <input type="text" id="smartSearch" class="search-bar" placeholder="Cari lirik, artikel, rilis...">
             </div>
 
-            <button class="nav-toggle" id="menuBtn">☰</button>
+            <button class="nav-toggle" id="menuBtn" aria-label="Menu">☰</button>
 
             <nav class="nav-links" id="navLinks">
                 <a href="/discography">Discography</a>
@@ -61,7 +63,7 @@
     <main>
         <section style="margin-bottom: 50px; text-align: center;">
             <h1 class="page-title">SAI Roots Music</h1>
-            <p class="page-description">Eksplorasi Roots Reggae, Ska, dan Reggae Rap.</p>
+            <p class="page-description">Proyek musik independen: Roots Reggae, Ska, dan Reggae Rap.</p>
         </section>
 
         <section>
@@ -98,31 +100,26 @@
     </footer>
 
     <script>
-        // 1. Hamburger Menu Toggle
+        // Hamburger Menu Toggle
         const menuBtn = document.getElementById('menuBtn');
         const navLinks = document.getElementById('navLinks');
-
         menuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
 
-        // 2. Fetch 5 Data Terbaru (Lirik & Artikel)
+        // Fetch 5 Data Terbaru dari data.json
         async function fetchLatestUpdates() {
             const container = document.getElementById('latestPosts');
             try {
                 const response = await fetch('/data.json');
                 if (!response.ok) throw new Error('Data tidak ditemukan');
-                
                 const data = await response.json();
                 
-                // Menggabungkan array artikel dan lirik
                 let allItems = [];
                 if (data.articles) allItems = allItems.concat(data.articles.map(i => ({...i, type: 'Artikel'})));
                 if (data.lyrics) allItems = allItems.concat(data.lyrics.map(i => ({...i, type: 'Lirik'})));
 
-                // Ambil 5 teratas (asumsi data.json sudah diurutkan dari admin_post)
                 const latest = allItems.slice(0, 5);
-                
                 if (latest.length === 0) {
                     container.innerHTML = '<p>Belum ada rilis atau artikel terbaru.</p>';
                     return;
@@ -130,27 +127,23 @@
 
                 container.innerHTML = '';
                 latest.forEach(item => {
-                    const card = `
+                    container.innerHTML += `
                         <div class="card">
                             <span class="card-tag">${item.type}</span>
                             <h3 class="card-title">${item.title}</h3>
-                            <a href="${item.url}" class="btn-read">Baca Selengkapnya</a>
+                            <a href="${item.url}" class="btn-read">Lihat Selengkapnya</a>
                         </div>
                     `;
-                    container.innerHTML += card;
                 });
-
             } catch (err) {
                 container.innerHTML = '<p style="color: var(--text-secondary);">Gagal memuat data terbaru.</p>';
             }
         }
 
-        // 3. Smart Search Logic (Simpel)
-        const searchBar = document.getElementById('smartSearch');
-        searchBar.addEventListener('keypress', (e) => {
+        // Smart Search Dasar
+        document.getElementById('smartSearch').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-                const q = searchBar.value.toLowerCase();
-                alert('Mencari: ' + q);
+                alert('Mencari: ' + e.target.value.toLowerCase());
             }
         });
 
