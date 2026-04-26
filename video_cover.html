@@ -1,223 +1,1141 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    
-    <link rel="canonical" href="https://sairootsmusic.com/video_cover" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
-    <link rel="manifest" href="/site.webmanifest">
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cover Song by SAI Roots</title>
-    <meta name="description" content="Kumpulan lagu cover dari SAI Roots.">
-    <meta name="theme-color" content="#0b0b0b">
-    <meta name="msapplication-TileColor" content="#000000">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta property="og:site_name" content="SAI Roots Music">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="video_cover">
-    <meta property="og:title" content="Cover Song by SAI Roots">
-    <meta property="og:description" content="Cover Song by SAI Roots.">
-    <meta property="og:image" content="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg">
+  <!-- STRUKTUR LAMA -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "SAI Roots Music",
+    "url": "https://sairootsmusic.com"
+  }
+  </script>
+  <link rel="canonical" href="https://sairootsmusic.com/video-cover" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+  <link rel="manifest" href="/site.webmanifest">
 
-    <script type="application/ld+json">
-    [
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "SAI Roots Music",
-        "url": "https://sairootsmusic.com"
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "CollectionPage",
-        "name": "SAI Roots Articles",
-        "description": "Archive of music articles and news by SAI Roots Music",
-        "url": "https://sairootsmusic.com/artikel"
-      }
-    ]
-    </script>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body { background-color: #000; color: #fff; font-family: 'Inter', sans-serif; }
-        .video-card { background: #111; border-radius: 15px; border: 1px solid #222; transition: 0.3s; cursor: pointer; position: relative; overflow: hidden; }
-        .video-card:hover { border-color: #22c55e; } 
-        
-        #videoModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 100; overflow-y: auto; transition: 0.3s; }
-        #videoModal.minimized { 
-            inset: auto; right: 15px; bottom: 80px; width: 300px; height: auto; 
-            background: #1a1a1a; border: 2px solid #22c55e; border-radius: 12px; overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8); z-index: 1000;
-        }
-        #videoModal.minimized .desc-content { display: none; }
-        #videoModal.minimized .header-controls { background: #000; padding: 5px 10px; }
-        
-        .aspect-video { position: relative; padding-bottom: 56.25%; height: 0; background: #000; }
-        .aspect-video #youtube-player { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0; }
-        .line-clamp { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        
-        .thumb-container { background: #1a1a1a; width: 100%; position: relative; padding-bottom: 56.25%; }
-        .thumb-container img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+  <title>Video Cover — SAI Roots Music</title>
+  <meta name="description" content="Tonton koleksi video cover SAI Roots Music. Cover lagu-lagu reggae rap indie langsung dari YouTube.">
 
-        /* AREA OTOMATIS: Hidden dari user, terlihat oleh Google Bot */
-        #auto-sitemap-links { position: absolute; left: -9999px; visibility: hidden; }
-    </style>
+  <meta property="og:title" content="Video Cover — SAI Roots Music">
+  <meta property="og:site_name" content="SAI Roots Music">
+  <meta property="og:image" content="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg">
+  <meta property="og:url" content="https://sairootsmusic.com/video-cover">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <style>
+    /* ── VIDEO GRID ── */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    /* ── VIDEO CARD ── */
+    .video-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .video-card:hover {
+      border-color: #FF0000;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(255,0,0,0.12);
+    }
+    .vc-thumb {
+      position: relative;
+      aspect-ratio: 16/9;
+      background: var(--secondary);
+      overflow: hidden;
+    }
+    .vc-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .video-card:hover .vc-thumb img {
+      transform: scale(1.04);
+    }
+    .vc-play-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .video-card:hover .vc-play-overlay { opacity: 1; }
+    .vc-play-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #FF0000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--transition);
+    }
+    .video-card:hover .vc-play-icon { transform: scale(1.1); }
+    .vc-duration {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      font-size: 0.72rem;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .vc-yt-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: #FF0000;
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .vc-body { padding: 14px; }
+    .vc-title {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .vc-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .vc-date { display: flex; align-items: center; gap: 4px; }
+    .vc-views { display: flex; align-items: center; gap: 4px; }
+
+    /* ── FEATURED VIDEO ── */
+    .featured-video {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 48px;
+    }
+    .fv-embed {
+      position: relative;
+      aspect-ratio: 16/9;
+      width: 100%;
+      background: #000;
+    }
+    .fv-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    .fv-body { padding: 24px; }
+    .fv-label {
+      font-size: 0.72rem;
+      color: #FF0000;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+    }
+    .fv-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .fv-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .fv-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .fv-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 0.83rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+      border: none;
+      font-family: var(--font-main);
+    }
+    .fv-btn-yt {
+      background: #FF0000;
+      color: #fff;
+    }
+    .fv-btn-yt:hover { background: #cc0000; }
+    .fv-btn-share {
+      background: transparent;
+      border: 1px solid var(--card-border);
+      color: var(--text);
+    }
+    .fv-btn-share:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── VIDEO MODAL ── */
+    .video-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition);
+    }
+    .video-modal-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .video-modal {
+      background: var(--secondary);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 860px;
+      overflow: hidden;
+      transform: scale(0.95);
+      transition: transform var(--transition);
+    }
+    .video-modal-overlay.active .video-modal { transform: scale(1); }
+    .vm-embed {
+      position: relative;
+      aspect-ratio: 16/9;
+      background: #000;
+    }
+    .vm-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    .vm-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.6);
+      border: none;
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      transition: background var(--transition);
+    }
+    .vm-close:hover { background: #FF0000; }
+    .vm-body { padding: 20px 24px; }
+    .vm-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .vm-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .vm-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .vm-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--text);
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition);
+      font-family: var(--font-main);
+    }
+    .vm-action-btn:hover { border-color: #FF0000; color: #FF0000; }
+    .vm-action-btn.yt {
+      background: #FF0000;
+      border-color: #FF0000;
+      color: #fff;
+    }
+    .vm-action-btn.yt:hover { background: #cc0000; }
+
+    /* ── FILTER BAR ── */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .filter-btn {
+      padding: 7px 18px;
+      border-radius: 24px;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--text-muted);
+      font-size: 0.83rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition);
+      font-family: var(--font-main);
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: #FF0000;
+      border-color: #FF0000;
+      color: var(--white);
+    }
+    .filter-search {
+      margin-left: auto;
+      position: relative;
+    }
+    .filter-search input {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 8px 36px 8px 16px;
+      color: var(--text);
+      font-size: 0.85rem;
+      font-family: var(--font-main);
+      outline: none;
+      width: 220px;
+      transition: border-color var(--transition);
+    }
+    .filter-search input:focus { border-color: #FF0000; }
+    .filter-search svg {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    /* ── SORT BAR ── */
+    .sort-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .sort-select {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 6px 12px;
+      color: var(--text);
+      font-size: 0.83rem;
+      font-family: var(--font-main);
+      outline: none;
+      cursor: pointer;
+    }
+    .result-count { margin-left: auto; font-size: 0.82rem; color: var(--text-muted); }
+
+    /* ── PAGE BTN ── */
+    .page-btn {
+      width: 40px; height: 40px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--text);
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all var(--transition);
+      font-family: var(--font-main);
+    }
+    .page-btn:hover { border-color: #FF0000; color: #FF0000; }
+    .page-btn.active { background: #FF0000; border-color: #FF0000; color: #fff; }
+
+    /* ── YT CHANNEL STRIP ── */
+    .yt-channel-strip {
+      background: linear-gradient(135deg, #1a0000, #2d0000);
+      border: 1px solid rgba(255,0,0,0.2);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .yt-channel-strip .yt-icon {
+      width: 48px;
+      height: 48px;
+      background: #FF0000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .yt-channel-strip .yt-info h3 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+    .yt-channel-strip .yt-info p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .yt-subscribe-btn {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      background: #FF0000;
+      border: none;
+      color: #fff;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition);
+      font-family: var(--font-main);
+      text-decoration: none;
+    }
+    .yt-subscribe-btn:hover { background: #cc0000; transform: translateY(-1px); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) { .video-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) {
+      .video-grid { grid-template-columns: 1fr; }
+      .filter-search { margin-left: 0; width: 100%; }
+      .filter-search input { width: 100%; }
+      .yt-subscribe-btn { margin-left: 0; }
+      .fv-title { font-size: 1.1rem; }
+    }
+  </style>
 </head>
 <body>
 
-    <nav class="p-5 flex items-center sticky top-0 bg-black/80 backdrop-blur-md z-50 border-b border-zinc-900">
-        <a href="/" class="text-zinc-400 hover:text-white flex items-center gap-1 font-medium transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg>
-            <span class="text-sm tracking-wide uppercase">Home</span>
+<!-- ══════════════════════════════════════
+     HEADER
+══════════════════════════════════════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">SAI <span>Roots</span></a>
+    <div class="header-search">
+      <input type="text" id="globalSearch" placeholder="Cari lagu, lirik, artikel..." autocomplete="off">
+      <span class="search-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+      </span>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="nav-overlay" id="navOverlay"></div>
+<nav class="side-nav" id="sideNav">
+  <ul>
+    <li><a href="/">🏠 Beranda</a></li>
+    <li><a href="/discography">🎵 Discography</a></li>
+    <li><a href="/lyric">📝 Koleksi Lirik</a></li>
+    <li><a href="/article">📰 Artikel</a></li>
+    <li><a href="/video-cover" class="active">🎬 Video Cover</a></li>
+  </ul>
+  <div class="nav-divider"></div>
+  <ul class="nav-secondary">
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/privacy">Privacy Policy</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════════════════════
+     MAIN
+══════════════════════════════════════ -->
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="breadcrumb">
+        <a href="/">Beranda</a>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+        <span>Video Cover</span>
+      </div>
+      <h1>🎬 Video Cover</h1>
+      <p>Koleksi video cover SAI Roots Music langsung dari YouTube.</p>
+    </div>
+  </div>
+
+  <div class="section">
+
+    <!-- YT CHANNEL STRIP -->
+    <div class="yt-channel-strip">
+      <div class="yt-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff">
+          <path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+        </svg>
+      </div>
+      <div class="yt-info">
+        <h3>SAI Roots — YouTube</h3>
+        <p>Subscribe untuk video terbaru dari SAI Roots Music</p>
+      </div>
+      <a href="https://www.youtube.com/@sairoots" target="_blank" rel="noopener" class="yt-subscribe-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+        </svg>
+        Subscribe
+      </a>
+    </div>
+
+    <!-- FEATURED VIDEO -->
+    <div id="featuredVideoWrap"></div>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">Semua</button>
+      <button class="filter-btn" data-filter="cover">🎸 Cover</button>
+      <button class="filter-btn" data-filter="original">🎵 Original</button>
+      <button class="filter-btn" data-filter="live">🎤 Live</button>
+      <div class="filter-search">
+        <input type="text" id="videoSearch" placeholder="Cari video...">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- SORT BAR -->
+    <div class="sort-bar">
+      <span>Urutkan:</span>
+      <select class="sort-select" id="sortSelect">
+        <option value="newest">Terbaru</option>
+        <option value="oldest">Terlama</option>
+        <option value="az">A–Z</option>
+        <option value="za">Z–A</option>
+      </select>
+      <span class="result-count" id="resultCount">Memuat...</span>
+    </div>
+
+    <!-- VIDEO GRID -->
+    <div class="video-grid" id="videoGrid">
+      <div style="grid-column:1/-1;text-align:center;padding:60px 0">
+        <div class="spinner"></div>
+        <p style="color:var(--text-muted);margin-top:12px">Memuat video...</p>
+      </div>
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="pagination" id="videoPagination"></div>
+
+  </div>
+</main>
+
+<!-- ══════════════════════════════════════
+     VIDEO MODAL
+══════════════════════════════════════ -->
+<div class="video-modal-overlay" id="videoModalOverlay">
+  <div class="video-modal">
+    <div class="vm-embed">
+      <button class="vm-close" id="vmClose">✕</button>
+      <iframe id="vmIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="vm-body">
+      <div class="vm-title" id="vmTitle"></div>
+      <div class="vm-meta" id="vmMeta"></div>
+      <div class="vm-actions">
+        <a class="vm-action-btn yt" id="vmYtBtn" href="#" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+          </svg>
+          Tonton di YouTube
         </a>
-        <div class="ml-auto text-xl font-black italic uppercase tracking-tighter">
-            COVER <span class="text-green-500">SONG</span>
-        </div>
-    </nav>
-
-    <div class="max-w-5xl mx-auto p-6">
-        <input type="text" id="searchInput" placeholder="Search cover song video..." 
-               class="w-full bg-zinc-900 border border-zinc-800 p-4 rounded-2xl mb-10 focus:ring-2 focus:ring-green-600 outline-none">
-
-        <div id="videoGrid" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
-        
-        <div id="auto-sitemap-links"></div>
+        <button class="vm-action-btn" id="vmShareBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+          </svg>
+          Bagikan
+        </button>
+        <button class="vm-action-btn" id="vmCopyBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          Salin Link
+        </button>
+      </div>
     </div>
+  </div>
+</div>
 
-    <div id="videoModal">
-        <div class="max-w-4xl mx-auto md:mt-10 bg-black rounded-2xl overflow-hidden shadow-2xl border border-zinc-800">
-            <div class="header-controls flex justify-between p-4 bg-zinc-900/50">
-                <button onclick="toggleMinimize()" class="text-green-400 font-bold text-xs uppercase tracking-widest">[-] Minimize</button>
-                <button onclick="closeModal()" class="text-red-500 font-bold text-xs uppercase tracking-widest">✕ Close</button>
-            </div>
-            
-            <div class="aspect-video">
-                <div id="youtube-player"></div>
-            </div>
-            
-            <div class="p-6 desc-content">
-                <h2 id="mTitle" class="text-2xl font-bold mb-4"></h2>
-                <div class="flex items-center gap-2 mb-6">
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                    <span class="text-zinc-400 text-xs font-bold uppercase tracking-wider">SAI Roots</span>
-                </div>
-                <div id="mDesc" class="text-zinc-400 text-sm leading-relaxed whitespace-pre-wrap border-t border-zinc-800 pt-4"></div>
-            </div>
-        </div>
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-social">
+      <a href="https://www.youtube.com/@sairoots" target="_blank" rel="noopener" class="social-link">
+        <svg viewBox="0 0 24 24" fill="#FF0000"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+        YouTube
+      </a>
+      <a href="https://music      .youtube.com/channel/UC2EfMkjDMG9LTWfc1llL4AQ" target="_blank" rel="noopener" class="social-link">
+        <svg viewBox="0 0 24 24" fill="#FF0000"><path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm0 19.104c-3.924 0-7.104-3.18-7.104-7.104S8.076 4.896 12 4.896s7.104 3.18 7.104 7.104-3.18 7.104-7.104 7.104zm0-13.332c-3.432 0-6.228 2.796-6.228 6.228S8.568 18.228 12 18.228s6.228-2.796 6.228-6.228S15.432 5.772 12 5.772zM9.684 15.54V8.46L15.816 12z"/></svg>
+        YouTube Music
+      </a>
+      <a href="https://open.spotify.com/artist/0xOPCtZvhXVd9RTbU1aYTr" target="_blank" rel="noopener" class="social-link">
+        <svg viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+        Spotify
+      </a>
+      <a href="https://music.apple.com/id/artist/sai-roots/1892187423?l=id" target="_blank" rel="noopener" class="social-link">
+        <svg viewBox="0 0 24 24" fill="#FA243C"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Apple Music
+      </a>
+      <a href="https://m.soundcloud.com/sairoots" target="_blank" rel="noopener" class="social-link">
+        <svg viewBox="0 0 24 24" fill="#FF5500"><path d="M11.56 8.87V17h8.76c1.24-.02 2.17-.82 2.17-2.02 0-1.2-.93-2-2.05-2.08-.05-.01-.1-.01-.15-.01-.13 0-.26.01-.39.04.08-.28.12-.57.12-.88 0-1.77-1.43-3.2-3.2-3.2-.68 0-1.31.22-1.82.59-.35-1.96-2.08-3.44-4.17-3.44-2.33 0-4.22 1.9-4.22 4.24 0 .28.03.55.07.82C4.38 12.45 3 13.94 3 15.72c0 1.77 1.38 3.28 3.14 3.28h5.42V8.87z"/></svg>
+        SoundCloud
+      </a>
+      <a href="https://link.deezer.com/s/3366qh6efN8QoSqSPCEsB" target="_blank" rel="noopener" class="social-link">
+        <svg viewBox="0 0 24 24" fill="#A238FF"><path d="M18.81 11.784h-2.49v1.215h2.49v-1.215zm0-2.431h-2.49v1.216h2.49V9.353zm0 4.862h-2.49v1.216h2.49v-1.216zm-3.675 0h-2.492v1.216h2.492v-1.216zm0-2.431h-2.492v1.215h2.492v-1.215zm0-2.431h-2.492v1.216h2.492V9.353zm-3.674 4.862H9.959v1.216h2.492v-1.216zm0-2.431H9.959v1.215h2.492v-1.215zm0-2.431H9.959v1.216h2.492V9.353zm-3.675 4.862H5.294v1.216h2.492v-1.216zm0-2.431H5.294v1.215h2.492v-1.215zm0 4.902H5.294V15.93h2.492v1.216zM2 14.216h2.491v-1.216H2v1.216zm0 2.43h2.491V15.43H2v1.216z"/></svg>
+        Deezer
+      </a>
+      <a href="https://music.amazon.com/artists/B0GTFWNC32/sai-roots" target="_blank" rel="noopener" class="social-link">
+        <svg viewBox="0 0 24 24" fill="#FF9900"><path d="M13.958 10.09c0 1.232.029 2.256-.591 3.351-.502.891-1.301 1.438-2.186 1.438-1.214 0-1.922-.924-1.922-2.292 0-2.692 2.415-3.182 4.699-3.182v.685zm3.186 7.705c-.209.189-.512.201-.745.073-1.047-.872-1.237-1.276-1.814-2.106-1.734 1.767-2.962 2.297-5.209 2.297-2.66 0-4.731-1.641-4.731-4.925 0-2.565 1.391-4.309 3.37-5.164 1.715-.754 4.109-.891 5.942-1.097v-.41c0-.753.06-1.642-.383-2.294-.385-.579-1.124-.82-1.775-.82-1.205 0-2.277.618-2.54 1.897-.054.285-.261.567-.549.582l-3.061-.333c-.259-.056-.548-.266-.472-.661C5.754 2.507 8.816 1.5 11.56 1.5c1.4 0 3.231.373 4.337 1.435 1.403 1.308 1.269 3.053 1.269 4.952v4.484c0 1.349.561 1.941 1.089 2.67.186.261.226.574-.009.769-.591.487-1.639 1.394-2.213 1.902l.011-.917zM21.5 18.493c-2.44 1.843-5.978 2.822-9.024 2.822-4.269 0-8.11-1.578-11.015-4.202-.228-.206-.025-.487.249-.328 3.137 1.826 7.013 2.926 11.022 2.926 2.703 0 5.672-.56 8.402-1.718.413-.175.757.271.366.5z"/></svg>
+        Amazon Music
+      </a>
+      <a href="https://instagram.com/ahmadsupembri" target="_blank" rel="noopener" class="social-link">
+        <svg viewBox="0 0 24 24" fill="url(#igGradVid)">
+          <defs>
+            <linearGradient id="igGradVid" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#f09433"/>
+              <stop offset="25%" style="stop-color:#e6683c"/>
+              <stop offset="50%" style="stop-color:#dc2743"/>
+              <stop offset="75%" style="stop-color:#cc2366"/>
+              <stop offset="100%" style="stop-color:#bc1888"/>
+            </linearGradient>
+          </defs>
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+        Instagram
+      </a>
+      <a href="https://tiktok.com/@ahmadsupembri" target="_blank" rel="noopener" class="social-link">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+        TikTok
+      </a>
+      <a href="https://facebook.com/ahmadsupembri" target="_blank" rel="noopener" class="social-link">
+        <svg viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        Facebook
+      </a>
     </div>
+    <div class="footer-links">
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <a href="/privacy">Privacy Policy</a>
+    </div>
+    <div class="footer-divider"></div>
+    <p class="footer-copy">© 2026 SAI Roots Music. All Rights Reserved</p>
+  </div>
+</footer>
 
-    <script src="https://www.youtube.com/iframe_api"></script>
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
 
-    <script>
-        let videoData = [];
-        let player;
-        let currentVideoId = '';
+<!-- ══════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════ -->
+<script>
+// ══════════════════════════════════════
+// CONFIG
+// ══════════════════════════════════════
+const REPO     = 'sairootsmusic/sairootsmusic.com';
+const RAW_BASE = `https://raw.githubusercontent.com/${REPO}/main`;
+const API_BASE = `https://api.github.com/repos/${REPO}/contents/video`;
+const PER_PAGE = 9;
 
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('youtube-player', {
-                playerVars: { 'autoplay': 1, 'rel': 0, 'enablejsapi': 1 },
-                events: { 'onStateChange': (e) => { if (e.data == YT.PlayerState.ENDED) playNextVideo(); } }
-            });
-        }
+// ══════════════════════════════════════
+// STATE
+// ══════════════════════════════════════
+let allVideos    = [];
+let filtered     = [];
+let currentPage  = 1;
+let activeFilter = 'all';
+let currentVideo = null;
 
-        function playNextVideo() {
-            const currentIndex = videoData.findIndex(v => v.id === currentVideoId);
-            const nextIndex = (currentIndex + 1) % videoData.length;
-            openModal(videoData[nextIndex].id);
-        }
+// ══════════════════════════════════════
+// HAMBURGER
+// ══════════════════════════════════════
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const sideNav      = document.getElementById('sideNav');
+const navOverlay   = document.getElementById('navOverlay');
 
-        async function load() {
-            try {
-                const r = await fetch('videos.json');
-                videoData = await r.json();
-                
-                // [OTOMATISASI SITEMAP] Loop semua data JSON jadi link fisik
-                const sitemapArea = document.getElementById('auto-sitemap-links');
-                sitemapArea.innerHTML = videoData.map(v => 
-                    `<a href="https://sairootsmusic.com/video_cover?v=${v.id}">${v.title}</a>`
-                ).join('');
-                
-                display(videoData);
+hamburgerBtn.addEventListener('click', () => {
+  hamburgerBtn.classList.toggle('active');
+  sideNav.classList.toggle('active');
+  navOverlay.classList.toggle('active');
+});
+navOverlay.addEventListener('click', () => {
+  hamburgerBtn.classList.remove('active');
+  sideNav.classList.remove('active');
+  navOverlay.classList.remove('active');
+});
 
-                const urlParams = new URLSearchParams(window.location.search);
-                const vid = urlParams.get('v');
-                if(vid) {
-                    openModal(vid);
-                } else if(window.location.hash) {
-                    openModal(window.location.hash.substring(1));
-                }
-            } catch(e) { console.log("Gagal memuat data."); }
-        }
+// ══════════════════════════════════════
+// FETCH VIDEOS
+// ══════════════════════════════════════
+async function fetchVideos() {
+  try {
+    const res   = await fetch(API_BASE);
+    if (!res.ok) throw new Error();
+    const files = await res.json();
+    const jsons = files.filter(f => f.name.endsWith('.json'));
+    const all   = await Promise.all(
+      jsons.map(f => fetch(f.download_url).then(r => r.json()).catch(() => null))
+    );
+    allVideos = all
+      .filter(Boolean)
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
+    renderFeatured();
+    applyFilter();
+  } catch {
+    document.getElementById('videoGrid').innerHTML = `
+      <div style="grid-column:1/-1">
+        <div class="empty-state">
+          <div class="empty-icon">🎬</div>
+          <h3>Belum ada video</h3>
+          <p>Upload video pertama melalui admin panel.</p>
+        </div>
+      </div>`;
+    document.getElementById('resultCount').textContent = '0 video';
+  }
+}
 
-        function display(data) {
-            const g = document.getElementById('videoGrid');
-            g.innerHTML = data.map(v => `
-                <div class="video-card" onclick="openModal('${v.id}')">
-                    <div class="thumb-container">
-                        <img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" 
-                             onerror="this.src='https://i.ytimg.com/vi/${v.id}/mqdefault.jpg'"
-                             loading="lazy">
-                    </div>
-                    <div class="p-5">
-                        <div class="flex items-center gap-1.5 mb-2">
-                            <span class="text-green-500 text-[10px] font-bold tracking-widest uppercase">SAI Roots</span>
-                        </div>
-                        <h3 class="font-bold text-lg mb-2 uppercase leading-tight">${v.title}</h3>
-                        <p class="text-zinc-500 text-xs line-clamp">${v.description.substring(0, 120)}...</p>
-                    </div>
-                </div>
-            `).join('');
-        }
+// ══════════════════════════════════════
+// EXTRACT YOUTUBE ID
+// ══════════════════════════════════════
+function getYouTubeId(url) {
+  if (!url) return null;
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
+    /youtube\.com\/shorts\/([^&\n?#]+)/
+  ];
+  for (const pattern of patterns) {
+    const match = url.match(pattern);
+    if (match) return match[1];
+  }
+  return url;
+}
 
-        function openModal(id) {
-            const v = videoData.find(x => x.id === id);
-            if(!v) return;
-            currentVideoId = id;
-            
-            // SEO: Update URL agar Google tau ini halaman video spesifik
-            window.history.pushState({}, '', '?v=' + id);
-            
-            const m = document.getElementById('videoModal');
-            m.style.display = 'block';
-            m.classList.remove('minimized');
-            
-            if(player && player.loadVideoById) {
-                player.loadVideoById(id);
-            } else {
-                document.getElementById('youtube-player').src = `https://www.youtube.com/embed/${id}?enablejsapi=1&autoplay=1`;
-            }
+function getYouTubeThumb(videoId) {
+  return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+}
 
-            document.getElementById('mTitle').innerText = v.title;
-            document.getElementById('mDesc').innerText = v.description;
-            document.body.style.overflow = 'hidden';
-        }
+function getYouTubeEmbed(videoId) {
+  return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+}
 
-        function toggleMinimize() {
-            const m = document.getElementById('videoModal');
-            m.classList.toggle('minimized');
-            document.body.style.overflow = m.classList.contains('minimized') ? 'auto' : 'hidden';
-        }
+function getYouTubeUrl(videoId) {
+  return `https://www.youtube.com/watch?v=${videoId}`;
+}
 
-        function closeModal() {
-            if(player && player.stopVideo) player.stopVideo();
-            document.getElementById('videoModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-            window.history.pushState({}, '', window.location.pathname);
-        }
+// ══════════════════════════════════════
+// FEATURED VIDEO
+// ══════════════════════════════════════
+function renderFeatured() {
+  const v    = allVideos[0];
+  const wrap = document.getElementById('featuredVideoWrap');
+  if (!v) { wrap.innerHTML = ''; return; }
 
-        document.getElementById('searchInput').addEventListener('input', e => {
-            const t = e.target.value.toLowerCase();
-            display(videoData.filter(v => v.title.toLowerCase().includes(t)));
-        });
+  const videoId = getYouTubeId(v.youtube_url || v.videoId || '');
+  if (!videoId) { wrap.innerHTML = ''; return; }
 
-        window.onload = load;
-    </script>
+  wrap.innerHTML = `
+    <div class="featured-video">
+      <div class="fv-embed">
+        <iframe
+          src="https://www.youtube.com/embed/${videoId}?rel=0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy">
+        </iframe>
+      </div>
+      <div class="fv-body">
+        <div class="fv-label">🎬 Video Terbaru</div>
+        <div class="fv-title">${escHtml(v.title)}</div>
+        ${v.description ? `<div class="fv-desc">${escHtml(v.description)}</div>` : ''}
+        <div class="fv-actions">
+          <a href="${getYouTubeUrl(videoId)}" target="_blank" rel="noopener" class="fv-btn fv-btn-yt">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+            </svg>
+            Tonton di YouTube
+          </a>
+          <button class="fv-btn fv-btn-share" onclick="shareVideo('${videoId}','${escHtml(v.title)}')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+            Bagikan
+          </button>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ══════════════════════════════════════
+// FILTER & SORT
+// ══════════════════════════════════════
+function applyFilter() {
+  const q    = document.getElementById('videoSearch').value.trim().toLowerCase();
+  const sort = document.getElementById('sortSelect').value;
+
+  filtered = allVideos.filter(v => {
+    const matchCat = activeFilter === 'all' ||
+                     (v.category || '').toLowerCase() === activeFilter;
+    const matchQ   = !q || v.title.toLowerCase().includes(q) ||
+                     (v.description && v.description.toLowerCase().includes(q));
+    return matchCat && matchQ;
+  });
+
+  filtered.sort((a, b) => {
+    if (sort === 'newest') return new Date(b.date) - new Date(a.date);
+    if (sort === 'oldest') return new Date(a.date) - new Date(b.date);
+    if (sort === 'az')     return a.title.localeCompare(b.title);
+    if (sort === 'za')     return b.title.localeCompare(a.title);
+    return 0;
+  });
+
+  currentPage = 1;
+  renderVideos();
+}
+
+// ══════════════════════════════════════
+// RENDER VIDEOS
+// ══════════════════════════════════════
+function renderVideos() {
+  const grid  = document.getElementById('videoGrid');
+  const count = document.getElementById('resultCount');
+  const total = filtered.length;
+  const start = (currentPage - 1) * PER_PAGE;
+  const page  = filtered.slice(start, start + PER_PAGE);
+
+  count.textContent = `${total} video ditemukan`;
+
+  if (!page.length) {
+    grid.innerHTML = `
+      <div style="grid-column:1/-1">
+        <div class="empty-state">
+          <div class="empty-icon">🔍</div>
+          <h3>Tidak ditemukan</h3>
+          <p>Coba kata kunci lain atau ubah filter.</p>
+        </div>
+      </div>`;
+    document.getElementById('videoPagination').innerHTML = '';
+    return;
+  }
+
+  grid.innerHTML = page.map(v => {
+    const videoId = getYouTubeId(v.youtube_url || v.videoId || '');
+    if (!videoId) return '';
+    const thumb = getYouTubeThumb(videoId);
+    return `
+      <div class="video-card" onclick="openVideoModal('${v.slug || videoId}')">
+        <div class="vc-thumb">
+          <img src="${thumb}"
+               alt="${escHtml(v.title)}"
+               loading="lazy"
+               onerror="this.src='https://img.youtube.com/vi/${videoId}/hqdefault.jpg'">
+          <div class="vc-play-overlay">
+            <div class="vc-play-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+          <span class="vc-yt-badge">YouTube</span>
+          ${v.duration ? `<span class="vc-duration">${escHtml(v.duration)}</span>` : ''}
+        </div>
+        <div class="vc-body">
+          <div class="vc-title">${escHtml(v.title)}</div>
+          <div class="vc-meta">
+            <span class="vc-date">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              ${formatDate(v.date)}
+            </span>
+            <span class="vc-views">
+              ${v.category ? `🏷 ${escHtml(v.category)}` : ''}
+            </span>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+
+  renderPagination(total);
+}
+
+// ══════════════════════════════════════
+// PAGINATION
+// ══════════════════════════════════════
+function renderPagination(total) {
+  const pages = Math.ceil(total / PER_PAGE);
+  const pag   = document.getElementById('videoPagination');
+  if (pages <= 1) { pag.innerHTML = ''; return; }
+  let html = '';
+  for (let i = 1; i <= pages; i++) {
+    html += `<button class="page-btn ${i === currentPage ? 'active' : ''}"
+      onclick="goPage(${i})">${i}</button>`;
+  }
+  pag.innerHTML = html;
+}
+
+function goPage(p) {
+  currentPage = p;
+  renderVideos();
+  window.scrollTo({ top: 200, behavior: 'smooth' });
+}
+
+// ══════════════════════════════════════
+// VIDEO MODAL
+// ══════════════════════════════════════
+function openVideoModal(slugOrId) {
+  const v = allVideos.find(x => x.slug === slugOrId) ||
+            allVideos.find(x => getYouTubeId(x.youtube_url || x.videoId || '') === slugOrId);
+  if (!v) return;
+  currentVideo = v;
+
+  const videoId = getYouTubeId(v.youtube_url || v.videoId || '');
+  if (!videoId) return;
+
+  document.getElementById('vmIframe').src = getYouTubeEmbed(videoId);
+  document.getElementById('vmTitle').textContent = v.title;
+  document.getElementById('vmMeta').textContent  =
+    [v.category ? `🏷 ${v.category}` : '', v.date ? `📅 ${formatDate(v.date)}` : '']
+    .filter(Boolean).join(' · ');
+  document.getElementById('vmYtBtn').href = getYouTubeUrl(videoId);
+
+  history.pushState(null, '', `/video-cover/${v.slug || videoId}`);
+  document.getElementById('videoModalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeVideoModal() {
+  document.getElementById('vmIframe').src = '';
+  document.getElementById('videoModalOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+  history.pushState(null, '', '/video-cover');
+}
+
+document.getElementById('vmClose').addEventListener('click', closeVideoModal);
+document.getElementById('videoModalOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeVideoModal();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeVideoModal();
+});
+
+// ══════════════════════════════════════
+// SHARE & COPY IN MODAL
+// ══════════════════════════════════════
+document.getElementById('vmShareBtn').addEventListener('click', () => {
+  if (!currentVideo) return;
+  const videoId = getYouTubeId(currentVideo.youtube_url || currentVideo.videoId || '');
+  shareVideo(videoId, currentVideo.title);
+});
+
+document.getElementById('vmCopyBtn').addEventListener('click', () => {
+  if (!currentVideo) return;
+  const videoId = getYouTubeId(currentVideo.youtube_url || currentVideo.videoId || '');
+  const url     = getYouTubeUrl(videoId);
+  navigator.clipboard.writeText(url).then(() => showToast('🔗 Link video disalin!'));
+});
+
+function shareVideo(videoId, title) {
+  const url = getYouTubeUrl(videoId);
+  if (navigator.share) {
+    navigator.share({
+      title: `${title} — SAI Roots Music`,
+      text:  `Tonton "${title}" oleh SAI Roots Music`,
+      url
+    });
+  } else {
+    navigator.clipboard.writeText(url).then(() => showToast('🔗 Link disalin!'));
+  }
+}
+
+// ══════════════════════════════════════
+// FILTER BUTTONS
+// ══════════════════════════════════════
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    activeFilter = this.dataset.filter;
+    applyFilter();
+  });
+});
+
+document.getElementById('videoSearch').addEventListener('input', applyFilter);
+document.getElementById('sortSelect').addEventListener('change', applyFilter);
+
+// ══════════════════════════════════════
+// GLOBAL SEARCH
+// ══════════════════════════════════════
+const globalSearch  = document.getElementById('globalSearch');
+const searchResults = document.getElementById('searchResults');
+
+globalSearch.addEventListener('input', function() {
+  const q = this.value.trim().toLowerCase();
+  if (q.length < 2) { searchResults.classList.remove('active'); return; }
+
+  const results = allVideos
+    .filter(v => v.title.toLowerCase().includes(q))
+    .slice(0, 6);
+
+  if (!results.length) { searchResults.classList.remove('active'); return; }
+
+  searchResults.innerHTML = results.map(v => {
+    const videoId = getYouTubeId(v.youtube_url || v.videoId || '');
+    return `
+      <div class="search-result-item" onclick="
+        globalSearch.value='';
+        searchResults.classList.remove('active');
+        openVideoModal('${v.slug || videoId}');">
+        <span class="result-type" style="background:#FF0000">Video</span>
+        <span class="result-title">${escHtml(v.title)}</span>
+      </div>`;
+  }).join('');
+  searchResults.classList.add('active');
+});
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.header-search')) searchResults.classList.remove('active');
+});
+
+globalSearch.addEventListener('keydown', e => {
+  if (e.key === 'Escape') searchResults.classList.remove('active');
+});
+
+// ══════════════════════════════════════
+// DIRECT URL ROUTING
+// ══════════════════════════════════════
+function checkDirectUrl() {
+  const path  = location.pathname;
+  const match = path.match(/^\/video-cover\/(.+)$/);
+  if (match) {
+    const slugOrId = match[1];
+    const tryOpen  = () => {
+      const v = allVideos.find(x => x.slug === slugOrId) ||
+                allVideos.find(x => getYouTubeId(x.youtube_url || x.videoId || '') === slugOrId);
+      if (v) openVideoModal(v.slug || slugOrId);
+    };
+    if (allVideos.length) tryOpen();
+    else setTimeout(tryOpen, 1500);
+  }
+}
+
+// ══════════════════════════════════════
+// CLEAN URL
+// ══════════════════════════════════════
+(function cleanUrl() {
+  const path = location.pathname;
+  if (path.endsWith('.html')) {
+    history.replaceState(null, '', path.replace('.html', ''));
+  }
+})();
+
+// ══════════════════════════════════════
+// UTILS
+// ══════════════════════════════════════
+function formatDate(d) {
+  if (!d) return '';
+  return new Date(d).toLocaleDateString('id-ID', {
+    day: 'numeric', month: 'long', year: 'numeric'
+  });
+}
+
+function escHtml(str) {
+  if (!str) return '';
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ══════════════════════════════════════
+// INIT
+// ══════════════════════════════════════
+fetchVideos().then(checkDirectUrl);
+</script>
 </body>
 </html>
