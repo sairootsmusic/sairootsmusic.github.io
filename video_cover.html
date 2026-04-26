@@ -1,158 +1,223 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<meta name="theme-color" content="#0d0d0d" />
-<meta name="description" content="Koleksi video cover SAI Roots Music di YouTube. Dari interpretasi lagu hingga aransemen ulang." />
-<meta name="keywords" content="video cover SAI Roots, YouTube SAI Roots, cover lagu, aransemen ulang" />
-<meta name="author" content="SAI Roots Music" />
-<meta property="og:title" content="SAI Roots Music — Video Cover" />
-<meta property="og:description" content="Kumpulan video cover SAI Roots Music." />
-<meta property="og:image" content="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/android-chrome-192x192.png" />
-<meta property="og:url" content="https://sairootsmusic.com/video_cover" />
-<meta property="og:type" content="video.other" />
-<meta name="twitter:card" content="summary_large_image" />
+    
+    <link rel="canonical" href="https://sairootsmusic.com/video_cover" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cover Song by SAI Roots</title>
+    <meta name="description" content="Kumpulan lagu cover dari SAI Roots.">
+    <meta name="theme-color" content="#0b0b0b">
+    <meta name="msapplication-TileColor" content="#000000">
 
-<title>SAI Roots Music — Video Cover</title>
+    <meta property="og:site_name" content="SAI Roots Music">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="video_cover">
+    <meta property="og:title" content="Cover Song by SAI Roots">
+    <meta property="og:description" content="Cover Song by SAI Roots.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg">
 
-<link rel="icon" href="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/android-chrome-192x192.png" />
-<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/android-chrome-192x192.png" />
-<link rel="canonical" href="https://sairootsmusic.com/video_cover" />
-<link rel="stylesheet" href="/assets/css/style.css" />
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "SAI Roots Music",
+        "url": "https://sairootsmusic.com"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "SAI Roots Articles",
+        "description": "Archive of music articles and news by SAI Roots Music",
+        "url": "https://sairootsmusic.com/artikel"
+      }
+    ]
+    </script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #000; color: #fff; font-family: 'Inter', sans-serif; }
+        .video-card { background: #111; border-radius: 15px; border: 1px solid #222; transition: 0.3s; cursor: pointer; position: relative; overflow: hidden; }
+        .video-card:hover { border-color: #22c55e; } 
+        
+        #videoModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 100; overflow-y: auto; transition: 0.3s; }
+        #videoModal.minimized { 
+            inset: auto; right: 15px; bottom: 80px; width: 300px; height: auto; 
+            background: #1a1a1a; border: 2px solid #22c55e; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8); z-index: 1000;
+        }
+        #videoModal.minimized .desc-content { display: none; }
+        #videoModal.minimized .header-controls { background: #000; padding: 5px 10px; }
+        
+        .aspect-video { position: relative; padding-bottom: 56.25%; height: 0; background: #000; }
+        .aspect-video #youtube-player { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0; }
+        .line-clamp { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        
+        .thumb-container { background: #1a1a1a; width: 100%; position: relative; padding-bottom: 56.25%; }
+        .thumb-container img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
 
-<!-- Struktur Lama (Schema.org) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "SAI Roots Music — Video Cover",
-  "url": "https://sairootsmusic.com"
-}
-</script>
+        /* AREA OTOMATIS: Hidden dari user, terlihat oleh Google Bot */
+        #auto-sitemap-links { position: absolute; left: -9999px; visibility: hidden; }
+    </style>
 </head>
 <body>
 
-<!-- ============ HEADER ============ -->
-<header class="site-header">
-  <div class="header-inner">
-    <a href="/" class="brand">
-      <img src="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/android-chrome-192x192.png" alt="SAI Roots Logo" />
-      <span>SAI Roots</span>
-    </a>
+    <nav class="p-5 flex items-center sticky top-0 bg-black/80 backdrop-blur-md z-50 border-b border-zinc-900">
+        <a href="/" class="text-zinc-400 hover:text-white flex items-center gap-1 font-medium transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg>
+            <span class="text-sm tracking-wide uppercase">Home</span>
+        </a>
+        <div class="ml-auto text-xl font-black italic uppercase tracking-tighter">
+            COVER <span class="text-green-500">SONG</span>
+        </div>
+    </nav>
 
-    <div class="search-wrap">
-      <input type="text" id="smartSearch" placeholder="Cari lagu, lirik, artikel..." autocomplete="off" />
-      <div id="searchResults" class="search-results"></div>
+    <div class="max-w-5xl mx-auto p-6">
+        <input type="text" id="searchInput" placeholder="Search cover song video..." 
+               class="w-full bg-zinc-900 border border-zinc-800 p-4 rounded-2xl mb-10 focus:ring-2 focus:ring-green-600 outline-none">
+
+        <div id="videoGrid" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+        
+        <div id="auto-sitemap-links"></div>
     </div>
 
-    <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-
-  <nav class="main-nav" id="mainNav">
-    <a href="/dicography">Dicography</a>
-    <a href="/lyric">Koleksi Lirik</a>
-    <a href="/article">Artikel</a>
-    <a href="/video_cover" class="active">Video Cover</a>
-    <span class="nav-sep">|</span>
-    <a href="/about">About</a>
-    <a href="/contact">Contact</a>
-    <a href="/privacy">Privacy Policy</a>
-  </nav>
-</header>
-
-<!-- ============ MAIN ============ -->
-<main class="container">
-
-  <section class="page-head">
-    <h1>Video Cover</h1>
-    <p>Versi lain dari setiap lagu — direkam ulang, ditafsir ulang, dirasakan kembali.</p>
-  </section>
-
-  <section class="section">
-    <div class="search-inline">
-      <input type="text" id="videoSearch" placeholder="Cari judul video..." />
+    <div id="videoModal">
+        <div class="max-w-4xl mx-auto md:mt-10 bg-black rounded-2xl overflow-hidden shadow-2xl border border-zinc-800">
+            <div class="header-controls flex justify-between p-4 bg-zinc-900/50">
+                <button onclick="toggleMinimize()" class="text-green-400 font-bold text-xs uppercase tracking-widest">[-] Minimize</button>
+                <button onclick="closeModal()" class="text-red-500 font-bold text-xs uppercase tracking-widest">✕ Close</button>
+            </div>
+            
+            <div class="aspect-video">
+                <div id="youtube-player"></div>
+            </div>
+            
+            <div class="p-6 desc-content">
+                <h2 id="mTitle" class="text-2xl font-bold mb-4"></h2>
+                <div class="flex items-center gap-2 mb-6">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    <span class="text-zinc-400 text-xs font-bold uppercase tracking-wider">SAI Roots</span>
+                </div>
+                <div id="mDesc" class="text-zinc-400 text-sm leading-relaxed whitespace-pre-wrap border-t border-zinc-800 pt-4"></div>
+            </div>
+        </div>
     </div>
 
-    <div id="videoGrid" class="video-grid">
-      <div class="loading">Memuat video...</div>
-    </div>
-  </section>
+    <script src="https://www.youtube.com/iframe_api"></script>
 
-  <section class="section channel-cta">
-    <h2>Tonton Lebih Banyak di YouTube</h2>
-    <p>Subscribe channel resmi SAI Roots untuk update video terbaru.</p>
-    <a href="https://www.youtube.com/@sairoots" target="_blank" rel="noopener" class="btn btn-primary">Buka Channel YouTube</a>
-  </section>
+    <script>
+        let videoData = [];
+        let player;
+        let currentVideoId = '';
 
-</main>
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                playerVars: { 'autoplay': 1, 'rel': 0, 'enablejsapi': 1 },
+                events: { 'onStateChange': (e) => { if (e.data == YT.PlayerState.ENDED) playNextVideo(); } }
+            });
+        }
 
-<!-- Modal Video Player -->
-<div id="videoModal" class="modal hidden">
-  <div class="modal-box modal-video">
-    <button class="modal-close-x" onclick="SAIRoots.closeVideo()">✕</button>
-    <div class="video-frame">
-      <iframe id="videoIframe" src="" title="Video Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    </div>
-    <h3 id="videoModalTitle">—</h3>
-  </div>
-</div>
+        function playNextVideo() {
+            const currentIndex = videoData.findIndex(v => v.id === currentVideoId);
+            const nextIndex = (currentIndex + 1) % videoData.length;
+            openModal(videoData[nextIndex].id);
+        }
 
-<!-- ============ FOOTER ============ -->
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <img src="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/android-chrome-192x192.png" alt="SAI Roots" />
-      <h3>SAI Roots Music</h3>
-      <p>Proyek musik dengan karya orisinal yang lahir dari akar rasa.</p>
-    </div>
+        async function load() {
+            try {
+                const r = await fetch('videos.json');
+                videoData = await r.json();
+                
+                // [OTOMATISASI SITEMAP] Loop semua data JSON jadi link fisik
+                const sitemapArea = document.getElementById('auto-sitemap-links');
+                sitemapArea.innerHTML = videoData.map(v => 
+                    `<a href="https://sairootsmusic.com/video_cover?v=${v.id}">${v.title}</a>`
+                ).join('');
+                
+                display(videoData);
 
-    <div class="footer-col">
-      <h4>Platform Musik</h4>
-      <ul class="social-list">
-        <li><a href="https://www.youtube.com/@sairoots" target="_blank" rel="noopener">YouTube</a></li>
-        <li><a href="https://music.youtube.com/channel/UC2EfMkjDMG9LTWfc1llL4AQ" target="_blank" rel="noopener">YouTube Music</a></li>
-        <li><a href="https://open.spotify.com/artist/0xOPCtZvhXVd9RTbU1aYTr" target="_blank" rel="noopener">Spotify</a></li>
-        <li><a href="https://music.apple.com/id/artist/sai-roots/1892187423?l=id" target="_blank" rel="noopener">Apple Music</a></li>
-        <li><a href="https://m.soundcloud.com/sairoots" target="_blank" rel="noopener">SoundCloud</a></li>
-        <li><a href="https://link.deezer.com/s/3366qh6efN8QoSqSPCEsB" target="_blank" rel="noopener">Deezer</a></li>
-        <li><a href="https://music.amazon.com/artists/B0GTFWNC32/sai-roots" target="_blank" rel="noopener">Amazon Music</a></li>
-      </ul>
-    </div>
+                const urlParams = new URLSearchParams(window.location.search);
+                const vid = urlParams.get('v');
+                if(vid) {
+                    openModal(vid);
+                } else if(window.location.hash) {
+                    openModal(window.location.hash.substring(1));
+                }
+            } catch(e) { console.log("Gagal memuat data."); }
+        }
 
-    <div class="footer-col">
-      <h4>Sosial Media</h4>
-      <ul class="social-list">
-        <li><a href="https://instagram.com/ahmadsupembri" target="_blank" rel="noopener">Instagram</a></li>
-        <li><a href="https://tiktok.com/@ahmadsupembri" target="_blank" rel="noopener">TikTok</a></li>
-        <li><a href="https://facebook.com/ahmadsupembri" target="_blank" rel="noopener">Facebook</a></li>
-      </ul>
-    </div>
+        function display(data) {
+            const g = document.getElementById('videoGrid');
+            g.innerHTML = data.map(v => `
+                <div class="video-card" onclick="openModal('${v.id}')">
+                    <div class="thumb-container">
+                        <img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" 
+                             onerror="this.src='https://i.ytimg.com/vi/${v.id}/mqdefault.jpg'"
+                             loading="lazy">
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center gap-1.5 mb-2">
+                            <span class="text-green-500 text-[10px] font-bold tracking-widest uppercase">SAI Roots</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2 uppercase leading-tight">${v.title}</h3>
+                        <p class="text-zinc-500 text-xs line-clamp">${v.description.substring(0, 120)}...</p>
+                    </div>
+                </div>
+            `).join('');
+        }
 
-    <div class="footer-col">
-      <h4>Halaman</h4>
-      <ul class="link-list">
-        <li><a href="/about">About</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/privacy">Privacy Policy</a></li>
-      </ul>
-    </div>
-  </div>
+        function openModal(id) {
+            const v = videoData.find(x => x.id === id);
+            if(!v) return;
+            currentVideoId = id;
+            
+            // SEO: Update URL agar Google tau ini halaman video spesifik
+            window.history.pushState({}, '', '?v=' + id);
+            
+            const m = document.getElementById('videoModal');
+            m.style.display = 'block';
+            m.classList.remove('minimized');
+            
+            if(player && player.loadVideoById) {
+                player.loadVideoById(id);
+            } else {
+                document.getElementById('youtube-player').src = `https://www.youtube.com/embed/${id}?enablejsapi=1&autoplay=1`;
+            }
 
-  <div class="copyright">
-    © 2026 SAI Roots Music. All Rights Reserved
-  </div>
-</footer>
+            document.getElementById('mTitle').innerText = v.title;
+            document.getElementById('mDesc').innerText = v.description;
+            document.body.style.overflow = 'hidden';
+        }
 
-<script src="/assets/js/main.js" defer></script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    if (window.SAIRoots) {
-      window.SAIRoots.loadVideos('videoGrid');
-    }
-  });
-</script>
+        function toggleMinimize() {
+            const m = document.getElementById('videoModal');
+            m.classList.toggle('minimized');
+            document.body.style.overflow = m.classList.contains('minimized') ? 'auto' : 'hidden';
+        }
+
+        function closeModal() {
+            if(player && player.stopVideo) player.stopVideo();
+            document.getElementById('videoModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            window.history.pushState({}, '', window.location.pathname);
+        }
+
+        document.getElementById('searchInput').addEventListener('input', e => {
+            const t = e.target.value.toLowerCase();
+            display(videoData.filter(v => v.title.toLowerCase().includes(t)));
+        });
+
+        window.onload = load;
+    </script>
 </body>
 </html>

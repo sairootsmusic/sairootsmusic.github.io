@@ -43,6 +43,7 @@
         * { margin:0; padding:0; box-sizing:border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         body { background: var(--bg); color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; overflow-x: hidden; }
         
+        /* Top Navigation - Logo Style Noah */
         .top-nav { position: fixed; top: 15px; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 0 15px; z-index: 5000; }
         
         .nav-logo {
@@ -71,6 +72,7 @@
             justify-content: center;
         }
 
+        /* Search Styles */
         .search-container { position: relative; display: flex; align-items: center; }
         .search-input { 
             width: 0; opacity: 0; padding: 0; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -99,6 +101,7 @@
         .menu-overlay a:hover { color: var(--accent); transform: scale(1.1); }
         .close-menu { position: absolute; top: 30px; right: 35px; font-size: 35px; cursor: pointer; color: #fff; }
 
+        /* Card Margin disesuaikan agar mepet navigasi baru */
         .card { max-width: 420px; width: 100%; background: rgba(255,255,255,0.03); border-radius: 35px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(20px); box-shadow: 0 25px 50px rgba(0,0,0,0.5); position: relative; margin-top: 75px; }
         
         .banner { height: 180px; background: url('https://raw.githubusercontent.com/pembri/SAI-Roots-Official/refs/heads/main/IMG_20260407_232759_337.jpg') center/cover; position: relative; }
@@ -143,7 +146,7 @@
 <div class="menu-overlay" id="mobileMenu">
     <div class="close-menu" onclick="toggleMenu()">×</div>
     <a href="artikel" onclick="toggleMenu()">Article</a>
-    <a href="music" onclick="toggleMenu()">Discography</a>
+    <a href="music" onclick="toggleMenu()">Dicography</a>
     <a href="video_cover" onclick="toggleMenu()">Video Cover</a>
     <a href="lyric" onclick="toggleMenu()">Lyric Collection</a>
     <a href="tentang" onclick="toggleMenu()">About</a>
@@ -161,7 +164,7 @@
     <div class="social-links">
         <span onclick="openModal('ytPopup')"><i class="fab fa-youtube"></i></span>
         <span onclick="openModal('ytMusicPopup')"><i class="fa-solid fa-circle-play"></i></span>
-        <a href="https://open.spotify.com/artist/0" target="_blank"><i class="fab fa-spotify"></i></a>
+        <a href="https://open.spotify.com/artist/0xOPCtZvhXVd9RTbU1aYTr" target="_blank"><i class="fab fa-spotify"></i></a>
         <a href="https://music.apple.com/id/artist/sai-roots/1892187423?l=id" target="_blank"><i class="fab fa-apple"></i></a>
         <a href="https://m.soundcloud.com/sairoots" target="_blank"><i class="fab fa-soundcloud"></i></a>
         <a href="https://music.amazon.com/artists/B0GTFWNC32/sai-roots" target="_blank"><i class="fab fa-amazon"></i></a>
@@ -175,10 +178,9 @@
     </div>
 
     <div class="footer-text">
-        <a href="/copyright" target="_blank" style="text-decoration: none; color: inherit; display: block;">
-            © 2026 SAI Roots Music. All Rights Reserved.
-        </a>
-    </div>
+    <a href="/copyright" target="_blank" style="text-decoration: none; color: inherit; display: block;">
+        © 2026 SAI Roots Music. All Rights Reserved.
+    </a>
 </div>
 
 <div class="modal-overlay" id="ytPopup" onclick="closeModal(event, 'ytPopup')">
@@ -199,44 +201,43 @@
     </div>
 </div>
 
+
 <script>
-// Database diperbaiki menjadi format JSON yang valid untuk dibaca script
 const db = [
-    { "t": "Home", "u": "/" }, { "t": "Album & Single", "u": "/music" }, { "t": "Lyric Collection", "u": "/lyric" }, { "t": "About", "u": "/tentang" }, { "t": "Contact Us", "u": "/kontak" },
-    { "t": "Drama Klenik (Listen Song)", "u": "/music?song=drama-klenik" }, { "t": "Senandung Manis (Listen Song)", "u": "/music?song=senandung-manis" },
-    { "t": "Eksploitasi (Listen Song)", "u": "/music?song=eksploitasi" }, { "t": "Jurus Liar (Listen Song)", "u": "/music?song=jurus-liar" },
-    { "t": "Dari Jauh (Listen Song)", "u": "/music?song=dari-jauh" }, { "t": "Kasih Mengalun (Listen Song)", "u": "/music?song=kasih-mengalun" },
-    { "t": "Genjer Hijau (Listen Song)", "u": "/music?song=genjer-hijau" }, { "t": "Babylon Burn (Listen Song)", "u": "/music?song=babylon-burn" },
-    { "t": "Bayang Singgasana (Listen Song)", "u": "/music?song=bayang-singgasana" }, { "t": "Blaze It Up (Listen Song)", "u": "/music?song=blaze-it-up" },
-    { "t": "Evaluasi Lagi (Listen Song)", "u": "/music?song=evaluasi-lagi" }, { "t": "Irama Hidup (Listen Song)", "u": "/music?song=irama-hidup" },
-    { "t": "Jamaican Sound (Listen Song)", "u": "/music?song=jamaican-sound" }, { "t": "Ormas Tipu-Tipu (Listen Song)", "u": "/music?song=ormas-tipu-tipu" },
-    { "t": "Propaganda (Listen Song)", "u": "/music?song=propaganda" }, { "t": "Roots Medication (Listen Song)", "u": "/music?song=roots-medication" },
-    { "t": "Skank Patrol (Listen Song)", "u": "/music?song=skank-patrol" }, { "t": "Reborn Riddim (Listen Song)", "u": "/music?song=reborn-riddim" },
-    { "t": "Autopsi Mic (Listen Song)", "u": "/music?song=autopsi-mic" }, { "t": "Salam Dari Timur (Listen Song)", "u": "/music?song=salam-dari-timur" },
-    { "t": "Mantra Malam (Listen Song)", "u": "/music?song=mantra-malam" }, { "t": "Magic Mushroom (Listen Song)", "u": "/music?song=magic-mushroom" },
-    { "t": "Rastaman (Listen Song)", "u": "/music?song=rastaman" }, { "t": "Melayang Pelan (Listen Song)", "u": "/music?song=melayang-pelan" },
-    { "t": "Tanah Hijau (Listen Song)", "u": "/music?song=tanah-hijau" }, { "t": "BBM Busuk (Listen Song)", "u": "/music?song=bbm-busuk" },
-    { "t": "Kabur Saja Dulu (Listen Song)", "u": "/music?song=kabur-saja-dulu" },
-    { "t": "Drama Klenik (Lyric)", "u": "/lyric/dramaklenik" }, { "t": "Senandung Manis (Lyric)", "u": "/lyric/senandungmanis" },
-    { "t": "Eksploitasi (Lyric)", "u": "/lyric/eksploitasi" }, { "t": "Jurus Liar (Lyric)", "u": "/lyric/jurusliar" },
-    { "t": "Dari Jauh (Lyric)", "u": "/lyric/darijauh" }, { "t": "Kasih Mengalun (Lyric)", "u": "/lyric/kasihmengalun" },
-    { "t": "Genjer Hijau (Lyric)", "u": "/lyric/genjerhijau" }, { "t": "Babylon Burn (Lyric)", "u": "/lyric/babylonburn" },
-    { "t": "Propaganda (Lyric)", "u": "/lyric/propaganda" }, { "t": "Bayang Singgasana (Lyric)", "u": "/lyric/bayangsinggasana" },
-    { "t": "Blaze It Up (Lyric)", "u": "/lyric/blazeitup" }, { "t": "Evaluasi Lagi (Lyric)", "u": "/lyric/evaluasilagi" },
-    { "t": "Irama Hidup (Lyric)", "u": "/lyric/iramahidup" }, { "t": "Jamaican Sound (Lyric)", "u": "/lyric/jamaicansound" },
-    { "t": "Ormas Tipu-Tipu (Lyric)", "u": "/lyric/ormastiputipu" }, { "t": "Roots Medication (Lyric)", "u": "/lyric/rootsmedication" },
-    { "t": "Skank Patrol (Lyric)", "u": "/lyric/skankpatrol" }, { "t": "Reborn Riddim (Lyric)", "u": "/lyric/rebornriddim" },
-    { "t": "Autopsi Mic (Lyric)", "u": "/lyric/autopsimic" }, { "t": "Salam Dari Timur (Lyric)", "u": "/lyric/salamdaritimur" },
-    { "t": "Mantra Malam (Lyric)", "u": "/lyric/mantramalam" }, { "t": "Magic Mushroom (Lyric)", "u": "/lyric/magicmushroom" },
-    { "t": "Rastaman (Lyric)", "u": "/lyric/rastaman" }, { "t": "Melayang Pelan (Lyric)", "u": "/lyric/melayangpelan" },
-    { "t": "Tanah Hijau (Lyric)", "u": "/lyric/tanahhijau" }, { "t": "BBM Busuk (Lyric)", "u": "/lyric/bbmbusuk" },
-    { "t": "Kabur Saja Dulu (Lyric)", "u": "/lyric/kabursajadulu" }
+    { t: "Home", u: "/" }, { t: "Album & Single", u: "/music" }, { t: "Lyric Collection", u: "/lyric" }, { t: "About", u: "/tentang" }, { t: "Contact Us", u: "/kontak" },
+    { t: "Drama Klenik (Listen Song)", u: "/music?song=drama-klenik" }, { t: "Senandung Manis (Listen Song)", u: "/music?song=senandung-manis" },
+    { t: "Eksploitasi (Listen Song)", u: "/music?song=eksploitasi" }, { t: "Jurus Liar (Listen Song)", u: "/music?song=jurus-liar" },
+    { t: "Dari Jauh (Listen Song)", u: "/music?song=dari-jauh" }, { t: "Kasih Mengalun (Listen Song)", u: "/music?song=kasih-mengalun" },
+    { t: "Genjer Hijau (Listen Song)", u: "/music?song=genjer-hijau" }, { t: "Babylon Burn (Listen Song)", u: "/music?song=babylon-burn" },
+    { t: "Bayang Singgasana (Listen Song)", u: "/music?song=bayang-singgasana" }, { t: "Blaze It Up (Listen Song)", u: "/music?song=blaze-it-up" },
+    { t: "Evaluasi Lagi (Listen Song)", u: "/music?song=evaluasi-lagi" }, { t: "Irama Hidup (Listen Song)", u: "/music?song=irama-hidup" },
+    { t: "Jamaican Sound (Listen Song)", u: "/music?song=jamaican-sound" }, { t: "Ormas Tipu-Tipu (Listen Song)", u: "/music?song=ormas-tipu-tipu" },
+    { t: "Propaganda (Listen Song)", u: "/music?song=propaganda" }, { t: "Roots Medication (Listen Song)", u: "/music?song=roots-medication" },
+    { t: "Skank Patrol (Listen Song)", u: "/music?song=skank-patrol" }, { t: "Reborn Riddim (Listen Song)", u: "/music?song=reborn-riddim" },
+    { t: "Autopsi Mic (Listen Song)", u: "/music?song=autopsi-mic" }, { t: "Salam Dari Timur (Listen Song)", u: "/music?song=salam-dari-timur" },
+    { t: "Mantra Malam (Listen Song)", u: "/music?song=mantra-malam" }, { t: "Magic Mushroom (Listen Song)", u: "/music?song=magic-mushroom" },
+    { t: "Rastaman (Listen Song)", u: "/music?song=rastaman" }, { t: "Melayang Pelan (Listen Song)", u: "/music?song=melayang-pelan" },
+    { t: "Tanah Hijau (Listen Song)", u: "/music?song=tanah-hijau" }, { t: "BBM Busuk (Listen Song)", u: "/music?song=bbm-busuk" },
+    { t: "Kabur Saja Dulu (Listen Song)", u: "/music?song=kabur-saja-dulu" },
+    { t: "Drama Klenik (Lyric)", u: "/lyric/dramaklenik" }, { t: "Senandung Manis (Lyric)", u: "/lyric/senandungmanis" },
+    { t: "Eksploitasi (Lyric)", u: "/lyric/eksploitasi" }, { t: "Jurus Liar (Lyric)", u: "/lyric/jurusliar" },
+    { t: "Dari Jauh (Lyric)", u: "/lyric/darijauh" }, { t: "Kasih Mengalun (Lyric)", u: "/lyric/kasihmengalun" },
+    { t: "Genjer Hijau (Lyric)", u: "/lyric/genjerhijau" }, { t: "Babylon Burn (Lyric)", u: "/lyric/babylonburn" },
+    { t: "Propaganda (Lyric)", u: "/lyric/propaganda" }, { t: "Bayang Singgasana (Lyric)", u: "/lyric/bayangsinggasana" },
+    { t: "Blaze It Up (Lyric)", u: "/lyric/blazeitup" }, { t: "Evaluasi Lagi (Lyric)", u: "/lyric/evaluasilagi" },
+    { t: "Irama Hidup (Lyric)", u: "/lyric/iramahidup" }, { t: "Jamaican Sound (Lyric)", u: "/lyric/jamaicansound" },
+    { t: "Ormas Tipu-Tipu (Lyric)", u: "/lyric/ormastiputipu" }, { t: "Roots Medication (Lyric)", u: "/lyric/rootsmedication" },
+    { t: "Skank Patrol (Lyric)", u: "/lyric/skankpatrol" }, { t: "Reborn Riddim (Lyric)", u: "/lyric/rebornriddim" },
+    { t: "Autopsi Mic (Lyric)", u: "/lyric/autopsimic" }, { t: "Salam Dari Timur (Lyric)", u: "/lyric/salamdaritimur" },
+    { t: "Mantra Malam (Lyric)", u: "/lyric/mantramalam" }, { t: "Magic Mushroom (Lyric)", u: "/lyric/magicmushroom" },
+    { t: "Rastaman (Lyric)", u: "/lyric/rastaman" }, { t: "Melayang Pelan (Lyric)", u: "/lyric/melayangpelan" },
+    { t: "Tanah Hijau (Lyric)", u: "/lyric/tanahhijau" }, { t: "BBM Busuk (Lyric)", u: "/lyric/bbmbusuk" },
+    { t: "Kabur Saja Dulu (Lyric)", u: "/lyric/kabursajadulu" }
 ];
 
 function toggleSearch() {
-    const box = document.getElementById('searchBox');
-    box.classList.toggle('active');
-    if(box.classList.contains('active')) document.getElementById('searchInput').focus();
+    document.getElementById('searchBox').classList.toggle('active');
+    if(document.getElementById('searchBox').classList.contains('active')) document.getElementById('searchInput').focus();
 }
 
 function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
@@ -285,15 +286,18 @@ function closeModal(e, id) { if (e.target.id === id) document.getElementById(id)
       "@id": "https://sairootsmusic.com/#artist",
       "name": "SAI Roots",
       "alternateName": ["Sairoots", "SAI Roots Official", "SAI Roots Music", "SAI Roots Indonesia"],
-      "description": "SAI Roots adalah proyek musik independen asal Indonesia yang menggabungkan unsur roots reggae dan rap. Perpaduan groove reggae yang santai dengan vokal rap yang ritmis menciptakan warna musik yang seimbang antara nuansa dan penyampaian pesan.",
+      "description": "SAI Roots adalah proyek musik independen asal Indonesia yang menggabungkan unsur roots reggae dan rap dalam satu karakter musikal yang khas. Perpaduan groove reggae yang santai dengan vokal rap yang ritmis menciptakan warna musik yang seimbang antara nuansa dan penyampaian pesan. Menggabungkan groove khas reggae yang hangat dengan delivery rap yang tajam, SAI Roots menghadirkan karya yang tidak hanya enak didengar, tetapi juga sarat makna. Lirik-liriknya berbicara tentang realita sosial, kritik terhadap sistem, hingga refleksi kehidupan dengan pendekatan yang jujur dan tanpa kompromi. Sebagai proyek independen, SAI Roots berjalan dengan pendekatan mandiri dan terus berupaya berkembang dalam skena musik reggae Indonesia.",
       "url": "https://sairootsmusic.com",
       "image": {
         "@type": "ImageObject",
         "url": "https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg",
         "width": 1200,
-        "height": 1200
+        "height": 1200,
+        "caption": "SAI Roots Official Artwork - Artis Roots Reggae Rap Indie Indonesia",
+        "description": "Foto resmi SAI Roots, proyek musik independen asal Indonesia"
       },
-      "genre": ["Roots Reggae", "Reggae", "Rap", "Hip Hop", "Indie"],
+      "genre": ["Roots Reggae", "Reggae", "Rap", "Hip Hop", "Indie", "Ska", "Conscious Rap", "Indonesian Reggae", "Indonesian Hip Hop"],
+      "keywords": "SAI Roots, roots reggae Indonesia, rap Indonesia, reggae rap, kritik sosial, conscious music, musik indie Indonesia, critical fire album, reborn riddim, propaganda sai roots, drama klenik, blaze it up, eksploitasi, senandung manis",
       "foundingDate": "2024",
       "originPlace": {
         "@type": "Place",
@@ -301,49 +305,164 @@ function closeModal(e, id) { if (e.target.id === id) document.getElementById(id)
       },
       "sameAs": [
         "https://www.youtube.com/@sairoots",
+        "https://youtube.com/channel/UCnjRvftn7QD2kDqLHszImsA",
+        "https://music.youtube.com/channel/UCnjRvftn7QD2kDqLHszImsA",
+        "https://open.spotify.com/artist/0xOPCtZvhXVd9RTbU1aYTr",
+        "https://music.apple.com/id/artist/sai-roots/1892187423",
+        "https://soundcloud.com/sairoots",
         "https://instagram.com/ahmadsupembri",
         "https://tiktok.com/@ahmadsupembri",
-        "https://facebook.com/ahmadsupembri"
+        "https://facebook.com/ahmadsupembri",
+        "https://x.com/ahmadsupembri",
+        "https://genius.com/artists/Sai-roots",
+        "https://www.musixmatch.com/artist/SAI-Roots",
+        "https://lyrics.lyricfind.com/artists/sai-roots"
+      ],
+      "member": [
+        {
+          "@type": "OrganizationRole",
+          "member": { "@id": "https://sairootsmusic.com/#producer" },
+          "roleName": ["Solo Artist", "Vocalist", "Rapper", "Songwriter", "Composer", "Music Producer", "Founder"]
+        }
+      ],
+      "subjectOf": [
+        { "@id": "https://sairootsmusic.com/music" },
+        { "@id": "https://sairootsmusic.com/lirik" },
+        { "@id": "https://sairootsmusic.com/tentang" },
+        { "@id": "https://sairootsmusic.com/credits" }
       ]
     },
     {
       "@type": "Person",
       "@id": "https://sairootsmusic.com/#producer",
       "name": "Ahmad Supembri",
-      "alternateName": ["Pembri"],
-      "description": "Ahmad Supembri adalah songwriter dan composer di balik proyek musik SAI Roots.",
+      "alternateName": ["Pembri", "Ahmad Supembri SAI Roots"],
+      "description": "Ahmad Supembri, yang juga dikenal sebagai Pembri, adalah songwriter and composer di balik proyek musik SAI Roots. Ia yang menciptakan seluruh lagu, menulis lirik, mengomposisi musik, dan memproduksi semua karya SAI Roots mulai dari album Critical Fire hingga Reborn Riddim serta berbagai single yang telah dirilis. Sebagai satu-satunya kreator di balik proyek ini, ia bertanggung jawab penuh atas seluruh proses kreatif dari awal hingga akhir.",
       "jobTitle": ["Songwriter", "Composer", "Music Producer", "Founder"],
       "url": "https://instagram.com/ahmadsupembri",
+      "image": [
+        "https://sairootsmusic.com/photos/IMG_0144.png",
+        "https://sairootsmusic.com/photos/IMG_0337.jpg",
+        "https://sairootsmusic.com/photos/IMG_0220.jpg"
+      ],
       "sameAs": [
         "https://instagram.com/ahmadsupembri",
-        "https://tiktok.com/@ahmadsupembri"
+        "https://tiktok.com/@ahmadsupembri",
+        "https://facebook.com/ahmadsupembri",
+        "https://x.com/ahmadsupembri"
       ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://sairootsmusic.com/#label",
+      "name": "SAI Roots Music",
+      "legalName": "SAI Roots Music Records",
+      "url": "https://sairootsmusic.com",
+      "description": "Label musik independen yang menaungi proyek SAI Roots dan fokus pada produksi musik roots reggae, rap, dan indie dengan pesan emosional serta kritik sosial.",
+      "founder": { "@id": "https://sairootsmusic.com/#producer" },
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg"
+      }
     },
     {
       "@type": "ItemList",
       "@id": "https://sairootsmusic.com/music",
       "name": "SAI Roots Discography",
-      "numberOfItems": 10,
+      "description": "Daftar lengkap album dan single resmi SAI Roots.",
+      "numberOfItems": 19,
       "itemListElement": [
         {
-          "@type": "ListItem",
-          "position": 1,
-          "item": {
-            "@type": "MusicAlbum",
-            "name": "Critical Fire",
-            "byArtist": { "@id": "https://sairootsmusic.com/#artist" }
-          }
+          "@type": "MusicAlbum",
+          "name": "Critical Fire",
+          "byArtist": { "@id": "https://sairootsmusic.com/#artist" },
+          "numTracks": 10,
+          "track": [
+            {"@type": "MusicRecording", "name": "Babylon Burn"},
+            {"@type": "MusicRecording", "name": "Bayang Singgasana"},
+            {"@type": "MusicRecording", "name": "Blaze It Up"},
+            {"@type": "MusicRecording", "name": "Evaluasi Lagi"},
+            {"@type": "MusicRecording", "name": "Irama Hidup"},
+            {"@type": "MusicRecording", "name": "Jamaican Sound"},
+            {"@type": "MusicRecording", "name": "Ormas Tipu-tipu"},
+            {"@type": "MusicRecording", "name": "Propaganda"},
+            {"@type": "MusicRecording", "name": "Roots Medication"},
+            {"@type": "MusicRecording", "name": "Skank Patrol"}
+          ]
         },
         {
-          "@type": "ListItem",
-          "position": 2,
-          "item": {
-            "@type": "MusicAlbum",
-            "name": "Reborn Riddim",
-            "byArtist": { "@id": "https://sairootsmusic.com/#artist" }
-          }
+          "@type": "MusicAlbum",
+          "name": "Reborn Riddim",
+          "byArtist": { "@id": "https://sairootsmusic.com/#artist" },
+          "numTracks": 10,
+          "track": [
+            {"@type": "MusicRecording", "name": "Reborn Riddim"},
+            {"@type": "MusicRecording", "name": "Autopsi Mic"},
+            {"@type": "MusicRecording", "name": "Salam Dari Timur"},
+            {"@type": "MusicRecording", "name": "Mantra Malam"},
+            {"@type": "MusicRecording", "name": "Magic Mushroom"},
+            {"@type": "MusicRecording", "name": "Rastaman"},
+            {"@type": "MusicRecording", "name": "Melayang Pelan"},
+            {"@type": "MusicRecording", "name": "Tanah Hijau"},
+            {"@type": "MusicRecording", "name": "BBM Busuk"},
+            {"@type": "MusicRecording", "name": "Kabur Saja Dulu"}
+          ]
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Drama Klenik",
+          "byArtist": { "@id": "https://sairootsmusic.com/#artist" }
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Senandung Manis",
+          "byArtist": { "@id": "https://sairootsmusic.com/#artist" }
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Eksploitasi",
+          "byArtist": { "@id": "https://sairootsmusic.com/#artist" }
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Jurus Liar",
+          "byArtist": { "@id": "https://sairootsmusic.com/#artist" }
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Dari Jauh",
+          "byArtist": { "@id": "https://sairootsmusic.com/#artist" }
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Kasih Mengalun",
+          "byArtist": { "@id": "https://sairootsmusic.com/#artist" }
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Genjer Hijau",
+          "byArtist": { "@id": "https://sairootsmusic.com/#artist" }
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Timpang",
+          "byArtist": { "@id": "https://sairootsmusic.com/#artist" }
         }
       ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://sairootsmusic.com/lirik",
+      "name": "SAI Roots Official Lyrics Library",
+      "description": "Kumpulan lirik lagu resmi SAI Roots yang ditulis oleh Ahmad Supembri.",
+      "numberOfItems": 32
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://sairootsmusic.com/#website",
+      "url": "https://sairootsmusic.com",
+      "name": "SAI Roots Official Website",
+      "description": "Situs resmi proyek musik independen SAI Roots asal Indonesia."
     }
   ]
 }

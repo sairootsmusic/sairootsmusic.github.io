@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "SAI Roots Music",
+      "url": "https://sairootsmusic.com"
+    }
+    </script>
+
+    <link rel="canonical" href="https://sairootsmusic.com/music" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <meta name="theme-color" content="#000000">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Discography | Album & Single SAI Roots</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <meta property="og:title" content="Discography | Album & Single SAI Roots">
+    <meta property="og:site_name" content="SAI Roots Music">
+    <meta property="og:description" content="Musisi reggae rap indie Indonesia.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg">
+    <meta property="og:url" content="https://sairootsmusic.com/music">
+    <meta property="og:type" content="website">
+
+    <style>
+        :root { --accent: #1ed760; --bg: #121212; --card: #181818; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { background: var(--bg); color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; padding-bottom: 120px; }
+        .container { max-width: 480px; margin: auto; padding: 20px; }
+        
+        .back-btn { text-decoration:none; color:#555; font-size:13px; font-weight:600; display:inline-block; margin-bottom:20px; transition:0.3s; }
+        .back-btn:hover { color: var(--accent); transform: translateX(-3px); }
+
+        h1 { font-size: 32px; font-weight: 700; margin-bottom: 4px; }
+        .subtitle { color: #b3b3b3; margin-bottom: 30px; }
+        .section-title-line { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1.5px; margin: 35px 0 12px; border-bottom: 1px solid #282828; padding-bottom: 6px; }
+        .song-item { display: flex; align-items: center; padding: 13px 16px; background: var(--card); border-radius: 10px; margin-bottom: 8px; cursor: pointer; transition: 0.2s; }
+        .song-item:hover { background: #282828; }
+        .song-item.active { background: #1f1f1f; border-left: 4px solid var(--accent); }
+        .song-item i { margin-right: 16px; color: #888; width: 20px; }
+
+        .mini-player { position: fixed; bottom: 0; left: 0; width: 100%; background: #181818; border-top: 1px solid #282828; padding: 12px 16px; display: flex; align-items: center; gap: 12px; z-index: 100; cursor: pointer; }
+        .mini-cover { width: 50px; height: 50px; border-radius: 8px; overflow: hidden; }
+        .mini-cover img { width: 100%; height: 100%; object-fit: cover; }
+        .mini-info { flex: 1; overflow: hidden; }
+        .mini-title { font-size: 14.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .mini-artist { font-size: 12px; color: #b3b3b3; }
+
+        #nowPlaying { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(#1f1f1f, #121212); z-index: 2000; display: none; flex-direction: column; }
+        .np-header { padding: 20px 20px 10px; display: flex; justify-content: space-between; align-items: center; }
+        .np-header i { font-size: 24px; cursor: pointer; }
+        .np-art { flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .np-cover { width: 280px; height: 280px; border-radius: 50%; overflow: hidden; box-shadow: 0 15px 50px rgba(0,0,0,0.6); border: 4px solid #282828; cursor: pointer; }
+        .np-cover img { width: 100%; height: 100%; object-fit: cover; }
+        .playing .np-cover img { animation: rotate 28s linear infinite; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .np-info { text-align: center; padding: 0 30px 20px; }
+        .np-title { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+        .np-artist { font-size: 16px; color: #b3b3b3; }
+        .np-type { font-size: 13px; color: var(--accent); font-weight: 500; }
+        .np-progress { padding: 0 30px; margin: 20px 0; }
+        .progress-bar { height: 5px; background: #535353; border-radius: 999px; cursor: pointer; }
+        .progress { height: 100%; background: var(--accent); width: 0%; border-radius: 999px; }
+        .np-controls { display: flex; justify-content: center; align-items: center; gap: 40px; padding: 30px 0; }
+        .np-controls button { background: none; border: none; color: #fff; font-size: 26px; cursor: pointer; }
+        .np-play-pause { width: 74px; height: 74px; background: #fff; color: #000; border-radius: 50%; font-size: 36px; display: flex; align-items: center; justify-content: center; }
+
+        #imgPopup { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 6000; align-items: center; justify-content: center; }
+        #imgPopup img { max-width: 90%; max-height: 80%; border-radius: 12px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+
+        #menuPopup { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 3000; display: none; justify-content: center; align-items: flex-end; }
+        .menu-content { background: #1f1f1f; width: 100%; max-width: 380px; border-radius: 16px 16px 0 0; padding: 10px 0; }
+        .menu-item { padding: 16px 24px; font-size: 16px; display: flex; align-items: center; gap: 16px; cursor: pointer; color: #fff; }
+        .menu-item i { width: 24px; color: #b3b3b3; }
+        .menu-close { text-align: center; padding: 16px; color: #1ed760; font-weight: 600; border-top: 1px solid #333; cursor: pointer; }
+        
+        #creditPopup { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:5000; align-items:center; justify-content:center; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="/" class="back-btn">
+        <i class="fas fa-chevron-left" style="margin-right:5px;"></i> Home
+    </a>
+
+    <h1>Discography</h1>
+    <p class="subtitle">SAI Roots</p>
+
+    <div class="section-title-line">Single</div>
+    <div class="song-item" data-title="Drama Klenik" data-type="Single"><i class="fas fa-play"></i>Drama Klenik</div>
+    <div class="song-item" data-title="Senandung Manis" data-type="Single"><i class="fas fa-play"></i>Senandung Manis</div>
+    <div class="song-item" data-title="Eksploitasi" data-type="Single"><i class="fas fa-play"></i>Eksploitasi</div>
+    <div class="song-item" data-title="Jurus Liar" data-type="Single"><i class="fas fa-play"></i>Jurus Liar</div>
+    <div class="song-item" data-title="Dari Jauh" data-type="Single"><i class="fas fa-play"></i>Dari Jauh</div>
+    <div class="song-item" data-title="Kasih Mengalun" data-type="Single"><i class="fas fa-play"></i>Kasih Mengalun</div>
+    <div class="song-item" data-title="Genjer Hijau" data-type="Single"><i class="fas fa-play"></i>Genjer Hijau</div>
+    <div class="song-item" data-title="Timpang" data-type="Single"><i class="fas fa-play"></i>Timpang</div>
+
+    <div class="section-title-line">Album: Critical Fire</div>
+    <div class="song-item" data-title="Babylon Burn" data-type="Critical Fire" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/IMG_20260321_173252_172.png"><i class="fas fa-play"></i>Babylon Burn</div>
+    <div class="song-item" data-title="Bayang Singgasana" data-type="Critical Fire" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/IMG_20260321_173252_172.png"><i class="fas fa-play"></i>Bayang Singgasana</div>
+    <div class="song-item" data-title="Blaze It Up" data-type="Critical Fire" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/IMG_20260321_173252_172.png"><i class="fas fa-play"></i>Blaze It Up</div>
+    <div class="song-item" data-title="Evaluasi Lagi" data-type="Critical Fire" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/IMG_20260321_173252_172.png"><i class="fas fa-play"></i>Evaluasi Lagi</div>
+    <div class="song-item" data-title="Irama Hidup" data-type="Critical Fire" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/IMG_20260321_173252_172.png"><i class="fas fa-play"></i>Irama Hidup</div>
+    <div class="song-item" data-title="Jamaican Sound" data-type="Critical Fire" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/IMG_20260321_173252_172.png"><i class="fas fa-play"></i>Jamaican Sound</div>
+    <div class="song-item" data-title="Ormas Tipu-tipu" data-type="Critical Fire" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/IMG_20260321_173252_172.png"><i class="fas fa-play"></i>Ormas Tipu-tipu</div>
+    <div class="song-item" data-title="Propaganda" data-type="Critical Fire" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/IMG_20260321_173252_172.png"><i class="fas fa-play"></i>Propaganda</div>
+    <div class="song-item" data-title="Roots Medication" data-type="Critical Fire" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/IMG_20260321_173252_172.png"><i class="fas fa-play"></i>Roots Medication</div>
+    <div class="song-item" data-title="Skank Patrol" data-type="Critical Fire" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/IMG_20260321_173252_172.png"><i class="fas fa-play"></i>Skank Patrol</div>
+
+    <div class="section-title-line">Album: Reborn Riddim</div>
+    <div class="song-item" data-title="Reborn Riddim" data-type="Reborn Riddim" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/1775230743-rrborn.jpg"><i class="fas fa-play"></i>Reborn Riddim</div>
+    <div class="song-item" data-title="Autopsi Mic" data-type="Reborn Riddim" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/1775230743-rrborn.jpg"><i class="fas fa-play"></i>Autopsi Mic</div>
+    <div class="song-item" data-title="Salam Dari Timur" data-type="Reborn Riddim" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/1775230743-rrborn.jpg"><i class="fas fa-play"></i>Salam Dari Timur</div>
+    <div class="song-item" data-title="Mantra Malam" data-type="Reborn Riddim" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/1775230743-rrborn.jpg"><i class="fas fa-play"></i>Mantra Malam</div>
+    <div class="song-item" data-title="Magic Mushroom" data-type="Reborn Riddim" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/1775230743-rrborn.jpg"><i class="fas fa-play"></i>Magic Mushroom</div>
+    <div class="song-item" data-title="Rastaman" data-type="Reborn Riddim" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/1775230743-rrborn.jpg"><i class="fas fa-play"></i>Rastaman</div>
+    <div class="song-item" data-title="Melayang Pelan" data-type="Reborn Riddim" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/1775230743-rrborn.jpg"><i class="fas fa-play"></i>Melayang Pelan</div>
+    <div class="song-item" data-title="Tanah Hijau" data-type="Reborn Riddim" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/1775230743-rrborn.jpg"><i class="fas fa-play"></i>Tanah Hijau</div>
+    <div class="song-item" data-title="BBM Busuk" data-type="Reborn Riddim" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/1775230743-rrborn.jpg"><i class="fas fa-play"></i>BBM Busuk</div>
+    <div class="song-item" data-title="Kabur Saja Dulu" data-type="Reborn Riddim" data-cover="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/1775230743-rrborn.jpg"><i class="fas fa-play"></i>Kabur Saja Dulu</div>
+</div>
+
+    <div class="footer-text" style="text-align: center; margin-top: 20px;">
+    <a href="/copyright" style="text-decoration: none; color: #333; font-size: 11px; display: inline-block; transition: 0.3s; letter-spacing: 0.5px;">
+        © 2026 SAI Roots Music. All Rights Reserved.
+    </a>
+</div>
+
+<div class="mini-player" id="miniPlayer" onclick="openNowPlaying()">
+    <div class="mini-cover"><img id="miniCover" src="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg"></div>
+    <div class="mini-info"><div id="miniTitle" class="mini-title">Pilih lagu</div><div class="mini-artist">SAI Roots</div></div>
+    <button id="miniPlayBtn" style="background:none;border:none;color:#fff;font-size:24px;"><i class="fas fa-play"></i></button>
+</div>
+
+<div id="nowPlaying">
+    <div class="np-header"><i class="fas fa-chevron-down" onclick="closeNowPlaying()"></i><div style="font-size:14px;">SAI Roots</div><i class="fas fa-ellipsis-h" onclick="showMenu()"></i></div>
+    <div class="np-art"><div class="np-cover" onclick="showFullImg()"><img id="npCover" src="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg"></div></div>
+    <div class="np-info"><div id="npTitle" class="np-title">Judul</div><div id="npArtist" class="np-artist">SAI Roots</div><div id="npType" class="np-type">Single</div></div>
+    <div class="np-progress"><div class="progress-bar" id="npProgressBar"><div class="progress" id="npProgress"></div></div></div>
+    <div class="np-controls"><button onclick="prevSong()"><i class="fas fa-step-backward"></i></button><button id="npPlayPauseBtn" class="np-play-pause" onclick="togglePlay()"><i class="fas fa-play"></i></button><button onclick="nextSong()"><i class="fas fa-step-forward"></i></button></div>
+</div>
+
+<div id="imgPopup" onclick="this.style.display='none'">
+    <img id="fullImg" src="">
+</div>
+
+<div id="menuPopup" onclick="if(event.target===this) hideMenu()">
+    <div class="menu-content">
+        <div class="menu-item" onclick="shareSong()"><i class="fas fa-share-alt"></i> Share</div>
+        <div class="menu-item" onclick="viewLyrics()"><i class="fas fa-book"></i> Lyric</div>
+        <div class="menu-item" onclick="showCreditPopup()"><i class="fas fa-info-circle"></i> Credits Song</div>
+        <div class="menu-close" onclick="hideMenu()">Tutup</div>
+    </div>
+</div>
+
+<div id="creditPopup" onclick="hideCreditPopup()">
+    <div class="menu-content" style="border-radius:16px; width:85%; max-width:320px; padding:25px; margin:auto; position:relative; top:50%; transform:translateY(-50%); text-align:left; background:#1f1f1f;">
+        <div id="creditText" style="line-height:1.8; font-size:14.5px; color:#fff;"></div>
+        <div class="menu-close" style="border:none; margin-top:20px; text-align:center;">Tutup</div>
+    </div>
+</div>
+
+<audio id="audio" style="display:none;"></audio>
+
+<script>
+    const audio = document.getElementById("audio");
+    const songs = document.querySelectorAll('.song-item');
+    const baseUrl = "https://github.com/pembri/SAI-Roots-Official/raw/refs/heads/main/";
+    let currentIdx = -1;
+    let currentTitle = "";
+    const originalPageTitle = "Discography SAI Roots";
+
+    function autoDetectSong() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const targetSlug = urlParams.get('song');
+        if (!targetSlug) return;
+        
+        songs.forEach((song, i) => {
+            const slug = song.dataset.title.toLowerCase().replace(/\s+/g, '-');
+            if (slug === targetSlug) {
+                document.title = song.dataset.title + " - SAI Roots";
+                playSong(i);
+            }
+        });
+    }
+
+    function playSong(idx) {
+        currentIdx = idx;
+        const song = songs[idx];
+        currentTitle = song.dataset.title;
+        const cover = song.dataset.cover || "https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg";
+
+        songs.forEach(s => s.classList.remove('active'));
+        song.classList.add('active');
+
+        document.getElementById("miniTitle").textContent = currentTitle;
+        document.getElementById("npTitle").textContent = currentTitle;
+        document.getElementById("npType").textContent = song.dataset.type || "Single";
+        document.getElementById("miniCover").src = cover;
+        document.getElementById("npCover").src = cover;
+        document.getElementById("fullImg").src = cover;
+
+        document.title = currentTitle + " - SAI Roots";
+
+        audio.src = baseUrl + encodeURIComponent(currentTitle) + ".mp3?raw=true";
+        audio.play().then(() => updateBtnIcons()).catch(() => {});
+        
+        openNowPlaying();
+        window.history.replaceState(null, null, "?song=" + currentTitle.toLowerCase().replace(/\s+/g, '-'));
+    }
+
+    function togglePlay() {
+        if (audio.paused) audio.play(); else audio.pause();
+        updateBtnIcons();
+    }
+
+    function updateBtnIcons() {
+        const icon = audio.paused ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
+        document.getElementById("npPlayPauseBtn").innerHTML = icon;
+        document.getElementById("miniPlayBtn").innerHTML = icon;
+        document.getElementById("nowPlaying").classList.toggle('playing', !audio.paused);
+    }
+
+    function nextSong() { if (currentIdx < songs.length - 1) playSong(currentIdx + 1); }
+    function prevSong() { if (currentIdx > 0) playSong(currentIdx - 1); }
+
+    function openNowPlaying() { 
+        document.getElementById("nowPlaying").style.display = 'flex'; 
+        if (currentTitle) document.title = currentTitle + " - SAI Roots";
+    }
+
+    function closeNowPlaying() { 
+        document.getElementById("nowPlaying").style.display = 'none'; 
+        document.title = originalPageTitle; 
+    }
+
+    function showFullImg() {
+        document.getElementById("imgPopup").style.display = "flex";
+    }
+
+    function showMenu() { document.getElementById("menuPopup").style.display = "flex"; }
+    function hideMenu() { document.getElementById("menuPopup").style.display = "none"; }
+
+    function shareSong() {
+        hideMenu();
+        const url = window.location.origin + window.location.pathname + "?song=" + currentTitle.toLowerCase().replace(/\s+/g, '-');
+        if (navigator.share) navigator.share({title: currentTitle, url: url});
+        else { navigator.clipboard.writeText(url); alert("Link disalin!"); }
+    }
+    
+    function viewLyrics() { 
+        const slug = currentTitle.toLowerCase().replace(/\s+/g, '');
+        window.open(`https://sairootsmusic.com/lyric/${slug}`, "_blank"); 
+        hideMenu(); 
+    }
+
+    function showCreditPopup() {
+        hideMenu();
+        document.getElementById("creditText").innerHTML = `
+            <strong>${currentTitle}</strong><br><br>
+            Artist: SAI Roots<br>
+            Penulis: <a href="/credits" style="color:#1ed760; text-decoration:underline;">Ahmad Supembri</a><br>
+            © 2026 SAI Roots Music
+        `;
+        document.getElementById("creditPopup").style.display = "flex";
+    }
+    
+    function hideCreditPopup() { 
+        document.getElementById("creditPopup").style.display = "none"; 
+    }
+
+    audio.addEventListener('timeupdate', () => {
+        if (audio.duration) document.getElementById("npProgress").style.width = (audio.currentTime / audio.duration) * 100 + "%";
+    });
+
+    document.getElementById("npProgressBar").addEventListener('click', (e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
+    });
+
+    audio.addEventListener('ended', nextSong);
+    songs.forEach((s, i) => s.addEventListener('click', () => playSong(i)));
+    document.getElementById("miniPlayBtn").addEventListener('click', (e) => { e.stopPropagation(); togglePlay(); });
+
+    autoDetectSong();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MusicGroup",
+      "@id": "https://sairootsmusic.com/#artist",
+      "name": "SAI Roots",
+      "alternateName": ["Sairoots", "SAI Roots Official", "SAI Roots Music", "SAI Roots Indonesia"],
+      "description": "SAI Roots adalah proyek musik independen asal Indonesia yang menggabungkan unsur roots reggae dan rap dalam satu karakter musikal yang khas. Perpaduan groove reggae yang santai dengan vokal rap yang ritmis menciptakan warna musik yang seimbang antara nuansa dan penyampaian pesan. Menggabungkan groove khas reggae yang hangat dengan delivery rap yang tajam, SAI Roots menghadirkan karya yang tidak hanya enak didengar, tetapi juga sarat makna. Lirik-liriknya berbicara tentang realita sosial, kritik terhadap sistem, hingga refleksi kehidupan dengan pendekatan yang jujur dan tanpa kompromi. Sebagai proyek independen, SAI Roots berjalan dengan pendekatan mandiri dan terus berupaya berkembang dalam skena musik reggae Indonesia.",
+      "url": "https://sairootsmusic.com",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg",
+        "width": 1200,
+        "height": 1200,
+        "caption": "SAI Roots Official Artwork - Artis Roots Reggae Rap Indie Indonesia",
+        "description": "Foto resmi SAI Roots, proyek musik independen asal Indonesia"
+      },
+      "genre": ["Roots Reggae", "Reggae", "Rap", "Hip Hop", "Indie", "Ska", "Conscious Rap", "Indonesian Reggae", "Indonesian Hip Hop"],
+      "keywords": "SAI Roots, roots reggae Indonesia, rap Indonesia, reggae rap, kritik sosial, conscious music, musik indie Indonesia, critical fire album, reborn riddim, propaganda sai roots, drama klenik, blaze it up, eksploitasi, senandung manis",
+      "foundingDate": "2024",
+      "originPlace": {
+        "@type": "Place",
+        "name": "Indonesia"
+      },
+      "sameAs": [
+        "https://www.youtube.com/@sairoots",
+        "https://youtube.com/channel/UCnjRvftn7QD2kDqLHszImsA",
+        "https://music.youtube.com/channel/UCnjRvftn7QD2kDqLHszImsA",
+        "https://open.spotify.com/artist/0xOPCtZvhXVd9RTbU1aYTr",
+        "https://music.apple.com/id/artist/sai-roots/1892187423",
+        "https://soundcloud.com/sairoots",
+        "https://instagram.com/ahmadsupembri",
+        "https://tiktok.com/@ahmadsupembri",
+        "https://facebook.com/ahmadsupembri",
+        "https://x.com/ahmadsupembri",
+        "https://genius.com/artists/Sai-roots",
+        "https://www.musixmatch.com/artist/SAI-Roots",
+        "https://lyrics.lyricfind.com/artists/sai-roots"
+      ],
+      "member": [
+        {
+          "@type": "OrganizationRole",
+          "member": { "@id": "https://sairootsmusic.com/#producer" },
+          "roleName": ["Solo Artist", "Vocalist", "Rapper", "Songwriter", "Composer", "Music Producer", "Founder"]
+        }
+      ],
+      "subjectOf": [
+        { "@id": "https://sairootsmusic.com/music" },
+        { "@id": "https://sairootsmusic.com/lirik" },
+        { "@id": "https://sairootsmusic.com/tentang" },
+        { "@id": "https://sairootsmusic.com/credits" }
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://sairootsmusic.com/#producer",
+      "name": "Ahmad Supembri",
+      "alternateName": ["Pembri", "Ahmad Supembri SAI Roots"],
+      "description": "Ahmad Supembri, yang juga dikenal sebagai Pembri, adalah songwriter and composer di balik proyek musik SAI Roots. Ia yang menciptakan seluruh lagu, menulis lirik, mengomposisi musik, dan memproduksi semua karya SAI Roots mulai dari album Critical Fire hingga Reborn Riddim serta berbagai single yang telah dirilis. Sebagai satu-satunya kreator di balik proyek ini, ia bertanggung jawab penuh atas seluruh proses kreatif dari awal hingga akhir.",
+      "jobTitle": ["Songwriter", "Composer", "Music Producer", "Founder"],
+      "url": "https://instagram.com/ahmadsupembri",
+      "image": [
+        "https://sairootsmusic.com/photos/IMG_0144.png",
+        "https://sairootsmusic.com/photos/IMG_0337.jpg",
+        "https://sairootsmusic.com/photos/IMG_0220.jpg"
+      ],
+      "sameAs": [
+        "https://instagram.com/ahmadsupembri",
+        "https://tiktok.com/@ahmadsupembri",
+        "https://facebook.com/ahmadsupembri",
+        "https://x.com/ahmadsupembri"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://sairootsmusic.com/#label",
+      "name": "SAI Roots Music",
+      "legalName": "SAI Roots Music Records",
+      "url": "https://sairootsmusic.com",
+      "description": "Label musik independen yang menaungi proyek SAI Roots dan fokus pada produksi musik roots reggae, rap, dan indie dengan pesan emosional serta kritik sosial.",
+      "founder": { "@id": "https://sairootsmusic.com/#producer" },
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg"
+      }
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://sairootsmusic.com/music",
+      "name": "SAI Roots Discography",
+      "description": "Daftar lengkap album dan single resmi SAI Roots.",
+      "numberOfItems": 19,
+      "itemListElement": [
+        {
+          "@type": "MusicAlbum",
+          "name": "Critical Fire",
+          "byArtist": { "@id": "https://sairootsmusic.com/#artist" },
+          "numTracks": 10,
+          "track": [
+            {"@type": "MusicRecording", "name": "Babylon Burn"},
+            {"@type": "MusicRecording", "name": "Bayang Singgasana"},
+            {"@type": "MusicRecording", "name": "Blaze It Up"},
+            {"@type": "MusicRecording", "name": "Evaluasi Lagi"},
+            {"@type": "MusicRecording", "name": "Irama Hidup"},
+            {"@type": "MusicRecording", "name": "Jamaican Sound"},
+            {"@type": "MusicRecording", "name": "Ormas Tipu-tipu"},
+            {"@type": "MusicRecording", "name": "Propaganda"},
+            {"@type": "MusicRecording", "name": "Roots Medication"},
+            {"@type": "MusicRecording", "name": "Skank Patrol"}
+          ]
+        },
+        {
+          "@type": "MusicAlbum",
+          "name": "Reborn Riddim",
+          "byArtist": { "@id": "https://sairootsmusic.com/#artist" },
+          "numTracks": 10,
+          "track": [
+            {"@type": "MusicRecording", "name": "Reborn Riddim"},
+            {"@type": "MusicRecording", "name": "Autopsi Mic"},
+            {"@type": "MusicRecording", "name": "Salam Dari Timur"},
+            {"@type": "MusicRecording", "name": "Mantra Malam"},
+            {"@type": "MusicRecording", "name": "Magic Mushroom"},
+            {"@type": "MusicRecording", "name": "Rastaman"},
+            {"@type": "MusicRecording", "name": "Melayang Pelan"},
+            {"@type": "MusicRecording", "name": "Tanah Hijau"},
+            {"@type": "MusicRecording", "name": "BBM Busuk"},
+            {"@type": "MusicRecording", "name": "Kabur Saja Dulu"}
+          ]
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Drama Klenik",
+          "byArtist": { "@id": "https://sairootsmusic.com/#artist" }
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Senandung Manis",
+          "byArtist": { "@id": "https://sairootsmusic.com/#artist" }
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Eksploitasi",
+          "byArtist": { "@id": "https://sairootsmusic.com/#artist" }
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Jurus Liar",
+          "byArtist": { "@id": "https://sairootsmusic.com/#artist" }
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Dari Jauh",
+          "byArtist": { "@id": "https://sairootsmusic.com/#artist" }
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Kasih Mengalun",
+          "byArtist": { "@id": "https://sairootsmusic.com/#artist" }
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Genjer Hijau",
+          "byArtist": { "@id": "https://sairootsmusic.com/#artist" }
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Timpang",
+          "byArtist": { "@id": "https://sairootsmusic.com/#artist" }
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://sairootsmusic.com/lirik",
+      "name": "SAI Roots Official Lyrics Library",
+      "description": "Kumpulan lirik lagu resmi SAI Roots yang ditulis oleh Ahmad Supembri.",
+      "numberOfItems": 32
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://sairootsmusic.com/#website",
+      "url": "https://sairootsmusic.com",
+      "name": "SAI Roots Official Website",
+      "description": "Situs resmi proyek musik independen SAI Roots asal Indonesia."
+    }
+  ]
+}
+</script>
+
+</body>
+</html>
