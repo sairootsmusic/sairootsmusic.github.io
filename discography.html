@@ -43,10 +43,11 @@
             </a>
             
             <div class="search-container">
-                <input type="text" id="smartSearch" class="search-bar" placeholder="Cari lirik, artikel, rilis...">
+                <input type="text" id="smartSearch" class="search-bar" placeholder="Cari lirik, artikel, rilis..." autocomplete="off">
+                <div id="searchResultWrapper"></div>
             </div>
 
-            <button class="nav-toggle" id="menuBtn" aria-label="Buka Menu">
+            <button class="nav-toggle" id="menuBtn">
                 <i class="fas fa-bars"></i>
             </button>
 
@@ -64,14 +65,14 @@
     </header>
 
     <main>
-        <section>
+        <header style="margin-bottom: 40px;">
             <h1 class="page-title">Discography</h1>
-            <p class="page-description">Koleksi rilis resmi SAI Roots. Album, Single, dan EP.</p>
-            
-            <div id="musicContainer">
-                <p style="color: var(--text-secondary); text-align: center;">Memuat katalog musik...</p>
-            </div>
-        </section>
+            <p class="page-description">Koleksi rilis resmi SAI Roots. Dengarkan melalui platform streaming favorit Anda.</p>
+        </header>
+
+        <div id="musicContainer">
+            <p style="color: var(--text-secondary); text-align: center;">Memuat katalog musik...</p>
+        </div>
     </main>
 
     <footer>
@@ -100,51 +101,78 @@
     </footer>
 
     <script>
-        // Hamburger Menu Toggle
+        // 1. NAVIGATION & SEARCH SYSTEM (IDENTIK)
         const menuBtn = document.getElementById('menuBtn');
         const navLinks = document.getElementById('navLinks');
+        const searchInput = document.getElementById('smartSearch');
+        const searchWrapper = document.getElementById('searchResultWrapper');
+
         menuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            const icon = menuBtn.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
+            menuBtn.querySelector('i').classList.toggle('fa-bars');
+            menuBtn.querySelector('i').classList.toggle('fa-times');
         });
 
-        // Load Music Data from data.json
-        async function loadMusic() {
+        searchInput.addEventListener('input', async (e) => {
+            const query = e.target.value.toLowerCase();
+            if (query.length < 2) { searchWrapper.style.display = 'none'; return; }
+            try {
+                const res = await fetch('/data.json');
+                const data = await res.json();
+                let pool = [];
+                if(data.articles) pool = pool.concat(data.articles.map(i => ({...i, type: 'Artikel'})));
+                if(data.lyrics) pool = pool.concat(data.lyrics.map(i => ({...i, type: 'Lirik'})));
+                if(data.musics) pool = pool.concat(data.musics.map(i => ({...i, type: 'Musik'})));
+                const results = pool.filter(item => item.title.toLowerCase().includes(query));
+                if (results.length > 0) {
+                    searchWrapper.style.display = 'block';
+                    searchWrapper.innerHTML = results.map(item => `
+                        <div class="search-item">
+                            <span class="search-tag">${item.type}</span>
+                            <a href="${item.url}">${item.title}</a>
+                        </div>
+                    `).join('');
+                } else {
+                    searchWrapper.innerHTML = '<div class="search-item">Tidak ditemukan</div>';
+                    searchWrapper.style.display = 'block';
+                }
+            } catch (err) { console.error("Search Error"); }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target)) searchWrapper.style.display = 'none';
+        });
+
+        // 2. DISCOGRAPHY LOADER
+        async function loadDiscography() {
             const container = document.getElementById('musicContainer');
             try {
-                const response = await fetch('/data.json');
-                const data = await response.json();
+                const res = await fetch('/data.json');
+                const data = await res.json();
                 const musics = data.musics || [];
 
                 if (musics.length === 0) {
-                    container.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">Belum ada rilisan musik.</p>';
+                    container.innerHTML = '<p style="color:var(--text-secondary); text-align:center;">Belum ada rilis musik.</p>';
                     return;
                 }
 
-                container.innerHTML = '';
-                musics.forEach(item => {
-                    container.innerHTML += `
-                        <div class="album-item">
-                            <img src="${item.cover || 'https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg'}" alt="${item.title}" class="album-art">
-                            <div style="flex: 1; text-align: left;">
-                                <span class="card-tag">${item.category}</span>
-                                <h2 style="margin-bottom: 10px;">${item.title}</h2>
-                                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">Rilis: ${item.date}</p>
-                                <div class="player-box">
-                                    <iframe src="${item.embedUrl}" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius: 12px;"></iframe>
-                                </div>
+                container.innerHTML = musics.map(item => `
+                    <div class="album-item">
+                        <img src="${item.cover || 'https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg'}" alt="${item.title}" class="album-art">
+                        <div style="flex: 1; text-align: left;">
+                            <span class="card-tag">${item.category}</span>
+                            <h2 style="margin-bottom: 5px;">${item.title}</h2>
+                            <p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:15px;">Dilis rilis: ${item.date}</p>
+                            <div class="player-box">
+                                <iframe src="${item.embedUrl}" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius: 12px;"></iframe>
                             </div>
                         </div>
-                    `;
-                });
-            } catch (err) {
-                container.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">Gagal memuat katalog musik.</p>';
-            }
+                    </div>
+                `).join('');
+            } catch (err) { container.innerHTML = '<p>Gagal memuat musik.</p>'; }
         }
 
-        document.addEventListener('DOMContentLoaded', loadMusic);
+        document.addEventListener('DOMContentLoaded', loadDiscography);
     </script>
 </body>
 </html>
