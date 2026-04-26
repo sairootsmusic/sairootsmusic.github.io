@@ -1,203 +1,95 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<script type="application/ld+json">
-{
- "@context":"https://schema.org",
- "@type":"WebSite",
- "name":"SAI Roots Music",
- "url":"https://sairootsmusic.com"
-}
-</script>
-
-<link rel="canonical" href="https://sairootsmusic.com/video_cover" />
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
-<link rel="manifest" href="/site.webmanifest">
-
-<title>Video Cover - SAI Roots Music</title>
-<meta name="description" content="Tonton kumpulan video cover, live session, dan konten YouTube resmi dari SAI Roots Music.">
-
-<meta property="og:title" content="Video Cover - SAI Roots Music">
-<meta property="og:site_name" content="SAI Roots Music">
-<meta property="og:image" content="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg">
-<meta property="og:url" content="https://sairootsmusic.com/video_cover">
-<meta property="og:type" content="website">
-
-<link rel="stylesheet" href="/assets/asset.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "SAI Roots Music",
+      "url": "https://sairootsmusic.com"
+    }
+    </script>
+    <link rel="canonical" href="https://sairootsmusic.com/video_cover" />
+    <title>Video Cover & Official - SAI Roots Music</title>
+    <meta name="description" content="Tonton koleksi video musik, cover, dan dokumentasi visual dari SAI Roots Music langsung dari YouTube.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #000;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .video-card {
+            background: var(--card-bg);
+            padding: 10px;
+            border-radius: 12px;
+            border: 1px solid #282828;
+            transition: var(--transition);
+        }
+        .video-card:hover {
+            border-color: var(--primary-color);
+        }
+    </style>
 </head>
 <body>
 
 <header>
-<div class="container">
-<div class="navbar">
-
-<a href="/" class="brand">
-<img src="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/android-chrome-192x192.png" alt="SAI Roots Logo">
-<span>SAI Roots</span>
-</a>
-
-<div class="search-wrap">
-<input type="text" class="search-input" placeholder="Cari video cover...">
-<button class="search-btn">⌕</button>
-</div>
-
-<button class="menu-btn">☰</button>
-
-</div>
-</div>
+    <div class="logo">SAI ROOTS</div>
+    <div class="nav-container">
+        <input type="text" id="siteSearch" class="search-bar" placeholder="Cari video...">
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    </div>
+    <nav class="nav-menu" id="navMenu">
+        <a href="/">Home</a>
+        <a href="/dicography">Discography</a>
+        <a href="/lyric">Koleksi Lirik</a>
+        <a href="/article">Artikel</a>
+        <a href="/video_cover">Video Cover</a>
+        <hr style="border: 0.5px solid #333; margin: 10px 0;">
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="/privacy">Privacy Policy</a>
+    </nav>
 </header>
 
-<div class="overlay"></div>
+<main style="padding: 40px 5%; min-height: 80vh;">
+    <h1 style="margin-bottom: 10px;">Video Cover</h1>
+    <p style="color: var(--text-gray); margin-bottom: 40px;">Kumpulan video musik dan rilisan terbaru dari channel YouTube SAI Roots.</p>
 
-<div class="drawer">
-<div class="drawer-title">Menu</div>
-<a href="/discography">Discography</a>
-<a href="/lyric">Koleksi Lirik</a>
-<a href="/article">Artikel</a>
-<a href="/video_cover">Video Cover</a>
-<a href="/about">About</a>
-<a href="/contact">Contact</a>
-<a href="/privacy">Privacy Policy</a>
-</div>
-
-<section class="hero" style="background-image:url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1400&q=80');min-height:62vh;">
-<div class="hero-inner">
-
-<div class="hero-tag">YOUTUBE • LIVE • COVER SESSION</div>
-
-<h1>Video Cover</h1>
-
-<p>
-Kumpulan video cover, live performance, dan konten visual resmi dari SAI Roots.
-</p>
-
-<div class="hero-actions">
-<a href="#videoSection" class="btn btn-primary">Watch Videos</a>
-<a href="https://www.youtube.com/@sairoots" target="_blank" class="btn btn-dark">YouTube Channel</a>
-</div>
-
-</div>
-</section>
-
-<section class="section" id="videoSection">
-<div class="container">
-
-<h2 class="section-title">Featured Videos</h2>
-
-<div class="video-grid">
-
-<div class="video-card">
-<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen loading="lazy"></iframe>
-<div class="video-title">Latest Cover Session</div>
-</div>
-
-<div class="video-card">
-<iframe src="https://www.youtube.com/embed/jNQXAC9IVRw" allowfullscreen loading="lazy"></iframe>
-<div class="video-title">Live Acoustic Vibes</div>
-</div>
-
-<div class="video-card">
-<iframe src="https://www.youtube.com/embed/aqz-KE-bpKQ" allowfullscreen loading="lazy"></iframe>
-<div class="video-title">Official Music Visual</div>
-</div>
-
-</div>
-
-</div>
-</section>
-
-<section class="section">
-<div class="container">
-
-<h2 class="section-title">Why Watch</h2>
-
-<div class="feature-grid">
-
-<div class="feature-card">
-<div class="feature-icon">🎬</div>
-<div class="feature-title">Visual Experience</div>
-<div class="feature-desc">
-Nikmati karya dalam format audio visual yang lebih hidup.
-</div>
-</div>
-
-<div class="feature-card">
-<div class="feature-icon">🎤</div>
-<div class="feature-title">Live Energy</div>
-<div class="feature-desc">
-Lihat nuansa performa dan karakter musik secara langsung.
-</div>
-</div>
-
-<div class="feature-card">
-<div class="feature-icon">📺</div>
-<div class="feature-title">Always Updated</div>
-<div class="feature-desc">
-Video baru dapat terus ditambahkan melalui admin panel.
-</div>
-</div>
-
-</div>
-
-</div>
-</section>
+    <div id="video-grid" class="grid-container">
+        <p style="color: var(--text-gray);">Menghubungkan ke YouTube...</p>
+    </div>
+</main>
 
 <footer>
-<div class="container">
-<div class="footer-wrap">
-
-<div class="footer-grid">
-
-<div>
-<div class="footer-title">Streaming</div>
-<div class="footer-platforms">
-<a href="https://www.youtube.com/@sairoots" target="_blank">YouTube</a>
-<a href="https://music.youtube.com/channel/UC2EfMkjDMG9LTWfc1llL4AQ" target="_blank">YouTube Music</a>
-<a href="https://open.spotify.com/artist/0xOPCtZvhXVd9RTbU1aYTr" target="_blank">Spotify</a>
-<a href="https://music.apple.com/id/artist/sai-roots/1892187423?l=id" target="_blank">Apple Music</a>
-<a href="https://m.soundcloud.com/sairoots" target="_blank">SoundCloud</a>
-<a href="https://link.deezer.com/s/3366qh6efN8QoSqSPCEsB" target="_blank">Deezer</a>
-<a href="https://music.amazon.com/artists/B0GTFWNC32/sai-roots" target="_blank">Amazon Music</a>
-</div>
-</div>
-
-<div>
-<div class="footer-title">Social</div>
-<div class="footer-links">
-<a href="https://instagram.com/ahmadsupembri" target="_blank">Instagram</a>
-<a href="https://tiktok.com/@ahmadsupembri" target="_blank">TikTok</a>
-<a href="https://facebook.com/ahmadsupembri" target="_blank">Facebook</a>
-</div>
-</div>
-
-<div>
-<div class="footer-title">Website</div>
-<div class="footer-links">
-<a href="/about">About</a>
-<a href="/contact">Contact</a>
-<a href="/privacy">Privacy Policy</a>
-</div>
-</div>
-
-</div>
-
-<div class="copy">
-© 2026 SAI Roots Music. All Rights Reserved
-</div>
-
-</div>
-</div>
+    <div class="social-icons">
+        <a href="https://www.youtube.com/@sairoots" target="_blank">YouTube</a>
+        <a href="https://music.youtube.com/channel/UC2EfMkjDMG9LTWfc1llL4AQ" target="_blank">YouTube Music</a>
+        <a href="https://open.spotify.com/artist/0xOPCtZvhXVd9RTbU1aYTr" target="_blank">Spotify</a>
+        <a href="https://music.apple.com/id/artist/sai-roots/1892187423?l=id" target="_blank">Apple Music</a>
+        <a href="https://m.soundcloud.com/sairoots" target="_blank">SoundCloud</a>
+        <a href="https://link.deezer.com/s/3366qh6efN8QoSqSPCEsB" target="_blank">Deezer</a>
+        <a href="https://music.amazon.com/artists/B0GTFWNC32/sai-roots" target="_blank">Amazon Music</a>
+        <a href="https://instagram.com/ahmadsupembri" target="_blank">Instagram</a>
+        <a href="https://tiktok.com/@ahmadsupembri" target="_blank">Tiktok</a>
+        <a href="https://facebook.com/ahmadsupembri" target="_blank">Facebook</a>
+    </div>
+    <p style="margin-top:20px; font-size: 0.8rem; color: var(--text-gray);">© 2026 SAI Roots Music. All Rights Reserved</p>
 </footer>
 
-<script src="/assets/asset.js"></script>
+<script src="/app.js"></script>
 </body>
 </html>
