@@ -1,32 +1,37 @@
 /* =========================================
-   1. VARIABEL & RESET
+   1. IMPORT ASSETS
+========================================= */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+/* =========================================
+   2. VARIABEL WARNA & TEMA
 ========================================= */
 :root {
     --bg-main: #0a0a0a;         /* Hitam pekat */
-    --bg-surface: #121212;      /* Hitam permukaan kartu/nav */
-    --bg-elevated: #1e1e1e;     /* Hitam untuk hover/popup */
+    --bg-surface: #121212;      /* Hitam kartu/header */
+    --bg-elevated: #1e1e1e;     /* Hitam hover/modal */
     --text-primary: #ffffff;    /* Putih bersih */
-    --text-secondary: #b3b3b3;  /* Abu-abu teks deskripsi */
-    --accent: #1db954;          /* Hijau khas musik */
+    --text-secondary: #b3b3b3;  /* Abu-abu meta */
+    --accent: #1db954;          /* Hijau SAI Roots */
     --accent-hover: #1ed760;
     --border: #282828;
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-main: 'Inter', sans-serif;
 }
 
+/* =========================================
+   3. RESET & DASAR
+========================================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     background-color: var(--bg-main);
     color: var(--text-primary);
-    font-family: var(--font-sans);
+    font-family: var(--font-main);
     line-height: 1.6;
     overflow-x: hidden;
 }
@@ -34,71 +39,75 @@ body {
 a {
     color: inherit;
     text-decoration: none;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
-button {
-    cursor: pointer;
-    border: none;
-    background: none;
-    font-family: inherit;
-}
-
-img {
-    max-width: 100%;
-}
+button { cursor: pointer; border: none; background: none; outline: none; }
 
 /* =========================================
-   2. HEADER & SMART SEARCH
+   4. HEADER (FIXED BUG & BRANDING)
 ========================================= */
 header {
-    background-color: rgba(18, 18, 18, 0.95);
+    background-color: rgba(18, 18, 18, 0.98);
     border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 10000; /* Paling atas agar menu tidak tertutup */
+    height: 70px;
     backdrop-filter: blur(10px);
 }
 
 .header-inner {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 15px 20px;
+    padding: 0 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 100%;
 }
 
 .logo {
-    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo img {
+    height: 45px;
+    width: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.logo span {
+    font-size: 1.2rem;
     font-weight: 800;
-    letter-spacing: -0.5px;
-    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .search-container {
     flex: 1;
-    max-width: 400px;
+    max-width: 300px;
     margin: 0 20px;
-    position: relative;
 }
 
 .search-bar {
     width: 100%;
     background: var(--bg-elevated);
     border: 1px solid var(--border);
-    padding: 8px 15px 8px 35px;
-    border-radius: 20px;
+    padding: 10px 18px;
+    border-radius: 25px;
     color: white;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .search-bar:focus {
-    outline: none;
     border-color: var(--accent);
+    outline: none;
 }
 
-/* Hamburger Menu */
 .nav-toggle {
     display: none;
     font-size: 1.5rem;
@@ -108,44 +117,68 @@ header {
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 15px;
-    font-size: 0.9rem;
-    font-weight: 500;
+    gap: 18px;
+    font-size: 0.85rem;
+    font-weight: 600;
 }
 
-.nav-links a:hover {
-    color: var(--accent);
-}
+.nav-links a:hover { color: var(--accent); }
+.nav-sep { color: #333; font-weight: normal; }
 
-.nav-sep {
-    color: var(--border);
+/* Mobile Menu Logic */
+@media (max-width: 992px) {
+    .nav-toggle { display: block; }
+    .search-container { display: none; }
+
+    .nav-links {
+        display: none; /* Sembunyi mutlak jika tidak aktif */
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--bg-surface);
+        padding: 30px;
+        border-bottom: 2px solid var(--accent);
+        gap: 25px;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+    }
+
+    .nav-links.active { display: flex; }
+    .nav-sep { display: none; }
 }
 
 /* =========================================
-   3. LAYOUT UTAMA & GRID
+   5. KONTEN UTAMA
 ========================================= */
 main {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 40px 20px;
-    min-height: 80vh;
+    padding: 60px 20px;
+    min-height: 75vh;
 }
 
+.page-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
+.page-description { color: var(--text-secondary); margin-bottom: 40px; }
+
 .section-title {
-    font-size: 1.8rem;
-    margin-bottom: 25px;
+    font-size: 1.6rem;
+    margin: 40px 0 25px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
+    font-weight: 700;
 }
 
 .section-title::after {
     content: "";
-    height: 2px;
-    background: var(--accent);
+    height: 1px;
+    background: var(--border);
     flex: 1;
 }
 
+/* Grid System */
 .post-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -155,280 +188,183 @@ main {
 .card {
     background: var(--bg-surface);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
+    padding: 25px;
+    border-radius: 15px;
     transition: 0.3s;
+    height: 100%;
 }
 
 .card:hover {
-    background: var(--bg-elevated);
     border-color: var(--accent);
+    background: var(--bg-elevated);
     transform: translateY(-5px);
 }
 
 .card-tag {
-    font-size: 0.7rem;
-    text-transform: uppercase;
     color: var(--accent);
-    font-weight: bold;
-    margin-bottom: 10px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 12px;
     display: block;
 }
 
-.card-title {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-}
-
 /* =========================================
-   4. DISKOGRAFI & PEMUTAR MUSIK
+   6. DISKOGRAFI (SPOTIFY STYLE)
 ========================================= */
-.album-flex {
+.album-item {
     display: flex;
     gap: 30px;
     background: var(--bg-surface);
     padding: 30px;
-    border-radius: 15px;
+    border-radius: 20px;
     margin-bottom: 40px;
+    border: 1px solid var(--border);
 }
 
 .album-art {
-    width: 250px;
-    height: 250px;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    object-fit: cover;
-}
-
-.album-details {
-    flex: 1;
-}
-
-.player-embed {
-    margin-top: 20px;
-    background: #000;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-/* =========================================
-   5. LIRIK & ARTIKEL (Wiki Style)
-========================================= */
-.content-area {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.lyric-box {
-    white-space: pre-line;
-    font-size: 1.1rem;
-    line-height: 2;
-    text-align: center;
-    background: var(--bg-surface);
-    padding: 40px;
-    border-radius: 15px;
-}
-
-.article-body {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: var(--text-secondary);
-}
-
-.article-body h2, .article-body h3 {
-    color: white;
-    margin: 30px 0 15px;
-}
-
-.article-body img {
+    width: 200px;
+    height: 200px;
     border-radius: 10px;
-    margin: 20px 0;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.player-box { margin-top: 20px; width: 100%; }
+
+@media (max-width: 768px) {
+    .album-item { flex-direction: column; align-items: center; text-align: center; }
 }
 
 /* =========================================
-   6. VIDEO COVER (YouTube Grid)
+   7. ARTIKEL & LIRIK (WIKIPEDIA STYLE)
 ========================================= */
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
-    height: 0;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #000;
-}
-
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-/* =========================================
-   7. KONTAK & FORM ADMIN
-========================================= */
-.form-box {
-    max-width: 600px;
-    margin: 0 auto;
+.wiki-content {
     background: var(--bg-surface);
     padding: 40px;
     border-radius: 15px;
-    border: 1px solid var(--border);
+    font-size: 1.1rem;
+    line-height: 1.8;
 }
 
-.input-group {
-    margin-bottom: 20px;
-}
+.wiki-content h2 { margin: 30px 0 15px; border-bottom: 1px solid var(--border); padding-bottom: 5px; }
+.wiki-content img { border-radius: 10px; margin: 20px 0; width: 100%; }
 
-.input-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-}
-
-.form-control {
-    width: 100%;
-    background: var(--bg-main);
-    border: 1px solid var(--border);
-    padding: 12px;
-    border-radius: 8px;
-    color: white;
-}
-
-.form-control:focus {
-    border-color: var(--accent);
-    outline: none;
-}
-
-.btn-primary {
-    background: var(--accent);
-    color: white;
-    padding: 12px 30px;
-    border-radius: 30px;
-    font-weight: bold;
-    width: 100%;
-    transition: 0.3s;
-}
-
-.btn-primary:hover {
-    background: var(--accent-hover);
-    transform: scale(1.02);
-}
-
-/* Pop-up Sukses */
-.popup-overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.85);
-    z-index: 9999;
-    align-items: center;
-    justify-content: center;
-}
-
-.popup-card {
-    background: var(--bg-surface);
-    padding: 40px;
-    border-radius: 20px;
+.lyric-container {
+    white-space: pre-line;
     text-align: center;
-    border: 1px solid var(--accent);
+    font-size: 1.2rem;
+    padding: 40px;
+    background: #080808;
+    border-radius: 20px;
 }
 
 /* =========================================
-   8. FOOTER GLOBAL
+   8. FOOTER & SOSMED (FIXED ICONS)
 ========================================= */
 footer {
-    background: var(--bg-surface);
-    padding: 60px 20px 30px;
+    background: #080808;
+    padding: 70px 20px 30px;
     border-top: 1px solid var(--border);
-    margin-top: 50px;
     text-align: center;
+    margin-top: 80px;
 }
 
 .social-grid {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 12px;
     flex-wrap: wrap;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .social-link {
     background: var(--bg-elevated);
+    border: 1px solid var(--border);
     padding: 10px 18px;
-    border-radius: 25px;
-    font-size: 0.85rem;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 600;
     display: flex;
     align-items: center;
     gap: 8px;
-    border: 1px solid transparent;
-}
-
-.social-link:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-}
-
-.footer-nav {
-    margin-bottom: 25px;
-    font-size: 0.9rem;
     color: var(--text-secondary);
 }
 
-.footer-nav a {
-    margin: 0 10px;
+.social-link i { font-size: 1.1rem; color: var(--accent); }
+
+.social-link:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #000;
 }
+
+.social-link:hover i { color: #000; }
+
+.footer-nav { margin-bottom: 30px; font-weight: 600; }
+.footer-nav a { margin: 0 15px; color: var(--text-secondary); font-size: 0.9rem; }
+.footer-nav a:hover { color: white; }
 
 .copyright {
     font-size: 0.75rem;
-    color: #555;
-    margin-top: 20px;
+    color: #444;
+    letter-spacing: 1.5px;
+    margin-top: 30px;
+    text-transform: uppercase;
 }
 
 /* =========================================
-   9. RESPONSIVE (MOBILE)
+   9. POP-UP & MODAL (SUCCESS)
 ========================================= */
-@media (max-width: 768px) {
-    .nav-toggle {
-        display: block;
-    }
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 20000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
 
-    .nav-links {
-        display: none; /* Akan diaktifkan via JS */
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: var(--bg-surface);
-        flex-direction: column;
-        padding: 20px;
-        border-bottom: 1px solid var(--border);
-    }
+.modal-card {
+    background: var(--bg-surface);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid var(--accent);
+    max-width: 400px;
+    width: 100%;
+}
 
-    .nav-links.active {
-        display: flex;
-    }
+.modal-card h3 { color: var(--accent); margin-bottom: 15px; font-size: 1.5rem; }
 
-    .nav-sep {
-        display: none;
-    }
-
-    .album-flex {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .album-art {
-        width: 100%;
-        max-width: 300px;
-        height: auto;
-    }
-
-    .search-container {
-        display: none; /* Opsional: sembunyikan di mobile jika sempit */
-    }
+/* =========================================
+   10. ADMIN AREA
+========================================= */
+.admin-container { max-width: 800px; margin: 0 auto; }
+.form-group { margin-bottom: 25px; }
+.form-group label { display: block; margin-bottom: 10px; font-weight: 600; color: var(--text-secondary); }
+.form-control {
+    width: 100%;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    padding: 12px 15px;
+    color: white;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+.form-control:focus { border-color: var(--accent); outline: none; }
+.btn-publish {
+    background: var(--accent);
+    color: #000;
+    font-weight: 800;
+    padding: 15px 30px;
+    border-radius: 30px;
+    width: 100%;
+    margin-top: 20px;
+    text-transform: uppercase;
 }
