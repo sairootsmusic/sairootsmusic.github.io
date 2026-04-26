@@ -2,1304 +2,1731 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<script type="application/ld+json">
-{
- "@context":"https://schema.org",
- "@type":"WebSite",
- "name":"SAI Roots Music",
- "url":"https://sairootsmusic.com"
-}
-</script>
-
-<link rel="canonical" href="https://sairootsmusic.com/admin_post">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
-<link rel="manifest" href="/site.webmanifest">
-
-<title>Admin Panel - SAI Roots Music</title>
-
-<meta name="description" content="Admin panel resmi untuk mengelola artikel, lirik, musik, dan video SAI Roots Music.">
-
-<meta property="og:title" content="Admin Panel - SAI Roots Music">
-<meta property="og:site_name" content="SAI Roots Music">
-<meta property="og:image" content="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg">
-<meta property="og:url" content="https://sairootsmusic.com/admin_post">
-<meta property="og:type" content="website">
-
-<link rel="stylesheet" href="/assets/asset.css">
-<!-- =========================================
-ADMIN MOBILE FIX FINAL
-Tempel mengganti CSS admin lama / tambah sebelum </head>
-========================================= -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Admin Premium • SAI Roots Music</title>
+<link rel="icon" href="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/android-chrome-192x192.png">
 
 <style>
-/* ===============================
-BASE FIX
-================================= */
-*{
-box-sizing:border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#090909;
+--panel:#121212;
+--card:#181818;
+--line:#2a2a2a;
+--text:#fff;
+--muted:#a8a8a8;
+--green:#1db954;
+--green2:#169b47;
+--red:#d63031;
+--blue:#0984e3;
+--radius:18px;
+--shadow:0 18px 50px rgba(0,0,0,.35);
 }
-
 html,body{
+background:var(--bg);
+color:var(--text);
+font-family:Arial,Helvetica,sans-serif;
+min-height:100%;
 overflow-x:hidden;
 }
-
-body.admin-page{
-margin:0;
-padding:0;
+a{text-decoration:none;color:inherit}
+button,input,textarea,select{
+font-family:inherit;
+font-size:15px;
 }
+button{cursor:pointer;border:none}
+img{display:block;max-width:100%}
+.hidden{display:none!important}
 
-/* ===============================
-LOGIN PANEL NORMAL
-================================= */
-.admin-shell{
+/* LOGIN */
+#loginPage{
 min-height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
-padding:28px 16px;
-}
-
-.admin-login{
-width:100%;
-max-width:540px;
-padding:34px;
-border-radius:24px;
-margin:auto;
-}
-
-.admin-logo{
-display:flex;
-align-items:center;
-gap:14px;
-margin-bottom:18px;
-}
-
-.admin-logo img{
-width:62px;
-height:62px;
-flex-shrink:0;
-}
-
-.admin-logo h1{
-margin:0;
-font-size:1.4rem;
-line-height:1.2;
-}
-
-.admin-logo span{
-display:block;
-font-size:.92rem;
-opacity:.72;
-margin-top:3px;
-}
-
-.admin-title{
-font-size:1.55rem;
-line-height:1.2;
-margin-bottom:10px;
-}
-
-.admin-sub{
-font-size:.96rem;
-line-height:1.7;
-margin-bottom:18px;
-opacity:.72;
-}
-
-.admin-form{
-display:grid;
-gap:14px;
-}
-
-.admin-form label{
-display:block;
-font-size:.92rem;
-margin-bottom:6px;
-}
-
-.admin-input{
-width:100%;
-display:block;
-padding:14px 16px;
-font-size:16px;
-border-radius:14px;
-}
-
-.admin-btn{
-width:100%;
-display:block;
-padding:15px;
-font-size:1rem;
-border-radius:14px;
-}
-
-.admin-note{
-font-size:.86rem;
-line-height:1.7;
-margin-top:16px;
-}
-
-/* ===============================
-TABLET
-================================= */
-@media(max-width:900px){
-
-.admin-panel{
-grid-template-columns:1fr !important;
-}
-
-.admin-sidebar{
-border-right:none !important;
-border-bottom:1px solid rgba(255,255,255,.06);
-}
-
-.admin-main{
-min-width:0;
-}
-
-}
-
-/* ===============================
-MOBILE FIX MAIN
-================================= */
-@media(max-width:768px){
-
-body.admin-page{
-background-position:center;
-background-size:cover;
-}
-
-.admin-shell{
-padding:14px;
-align-items:flex-start;
-padding-top:34px;
-}
-
-.admin-login{
-max-width:100%;
-padding:22px;
-border-radius:20px;
-}
-
-.admin-logo{
-align-items:center;
-gap:12px;
-}
-
-.admin-logo img{
-width:52px;
-height:52px;
-}
-
-.admin-logo h1{
-font-size:1.18rem;
-}
-
-.admin-logo span{
-font-size:.84rem;
-}
-
-.admin-title{
-font-size:1.25rem;
-}
-
-.admin-sub{
-font-size:.92rem;
-line-height:1.6;
-}
-
-.admin-input{
-padding:13px 14px;
-font-size:16px;
-}
-
-.admin-btn{
-padding:14px;
-font-size:1rem;
-}
-
-.admin-note{
-font-size:.82rem;
-line-height:1.6;
-}
-
-/* dashboard */
-.admin-topbar{
-padding:16px !important;
-flex-direction:column;
-align-items:flex-start !important;
-gap:10px;
-}
-
-.admin-top-title h2{
-font-size:1.05rem !important;
-}
-
-.admin-top-title p{
-font-size:.84rem !important;
-}
-
-.admin-content{
-padding:16px !important;
-}
-
-.admin-card{
-padding:18px !important;
-border-radius:18px !important;
-}
-
-.admin-grid{
-grid-template-columns:1fr !important;
-gap:14px !important;
-}
-
-.stat-box{
-padding:16px !important;
-}
-
-.admin-nav{
-gap:8px;
-}
-
-.admin-nav button{
-padding:13px 14px;
-font-size:.94rem;
-border-radius:12px;
-}
-
-.quick-row{
-grid-template-columns:1fr !important;
-}
-
-.toolbar{
-gap:6px;
-}
-
-.toolbar button{
-padding:9px 12px;
-font-size:.9rem;
-}
-
-textarea.admin-input{
-min-height:240px !important;
-}
-
-}
-
-/* ===============================
-SMALL PHONE
-================================= */
-@media(max-width:420px){
-
-.admin-shell{
-padding:10px;
-padding-top:22px;
-}
-
-.admin-login{
 padding:18px;
-}
-
-.admin-logo{
-gap:10px;
-}
-
-.admin-logo img{
-width:46px;
-height:46px;
-}
-
-.admin-title{
-font-size:1.12rem;
-}
-
-.admin-sub{
-font-size:.88rem;
-}
-
-.admin-btn{
-font-size:.96rem;
-}
-
-}
-</style>
- 
-<style>
-body.admin-page{
 background:
-linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.92)),
-url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1600&q=80') center/cover fixed;
-min-height:100vh;
+linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.95)),
+url('https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&w=1600&q=80') center/cover;
 }
-
-.admin-shell{
-min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:40px 20px;
-}
-
-.admin-login{
+.login-box{
 width:100%;
-max-width:520px;
-background:rgba(16,16,16,.92);
-border:1px solid rgba(255,255,255,.08);
-border-radius:24px;
-padding:34px;
-box-shadow:0 25px 60px rgba(0,0,0,.45);
-backdrop-filter:blur(12px);
+max-width:560px;
+background:rgba(18,18,18,.97);
+border:1px solid var(--line);
+border-radius:28px;
+padding:30px;
+box-shadow:var(--shadow);
 }
-
-.admin-logo{
+.brand{
 display:flex;
 align-items:center;
 gap:14px;
-margin-bottom:22px;
+margin-bottom:18px;
 }
-
-.admin-logo img{
-width:62px;
-height:62px;
-border-radius:16px;
-object-fit:cover;
+.brand img{
+width:62px;height:62px;border-radius:16px;
 }
-
-.admin-logo h1{
-font-size:1.35rem;
-margin:0;
+.brand h1{
+font-size:1.45rem;
 line-height:1.2;
 }
-
-.admin-logo span{
+.brand span{
 display:block;
 font-size:.92rem;
-opacity:.72;
-margin-top:3px;
+color:var(--muted);
+margin-top:4px;
 }
-
-.admin-title{
-font-size:1.5rem;
-font-weight:700;
-margin-bottom:10px;
-}
-
-.admin-sub{
-opacity:.72;
+.desc{
+color:var(--muted);
 line-height:1.7;
-margin-bottom:22px;
-font-size:.95rem;
+margin-bottom:14px;
 }
-
-.admin-form{
-display:grid;
-gap:14px;
-}
-
-.admin-form label{
-font-size:.92rem;
-opacity:.85;
-margin-bottom:4px;
-display:block;
-}
-
-.admin-input{
+.input{
 width:100%;
-padding:14px 16px;
+padding:14px 15px;
 border-radius:14px;
-border:1px solid rgba(255,255,255,.08);
-background:#111;
+border:1px solid #303030;
+background:#1a1a1a;
 color:#fff;
 outline:none;
-transition:.25s;
+margin-bottom:12px;
 }
-
-.admin-input:focus{
-border-color:#1db954;
-box-shadow:0 0 0 4px rgba(29,185,84,.15);
-}
-
-.admin-actions{
-display:grid;
-grid-template-columns:1fr;
-gap:12px;
-margin-top:6px;
-}
-
-.admin-btn{
-border:none;
-padding:15px 18px;
-border-radius:14px;
-font-weight:700;
-cursor:pointer;
-transition:.25s;
-}
-
-.admin-btn.primary{
-background:#1db954;
-color:#fff;
-}
-
-.admin-btn.primary:hover{
-transform:translateY(-2px);
-filter:brightness(1.05);
-}
-
-.admin-note{
-margin-top:18px;
-font-size:.88rem;
-opacity:.65;
-line-height:1.7;
-}
-
-.admin-dashboard{
-display:none;
-}
-</style>
-
-</head>
-
-<body class="admin-page">
-
-<div class="admin-shell">
-
-<!-- LOGIN PANEL -->
-<div class="admin-login">
-
-<div class="admin-logo">
-<img src="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/android-chrome-192x192.png" alt="Logo">
-<div>
-<h1>SAI Roots</h1>
-<span>Official Admin Panel</span>
-</div>
-</div>
-
-<div class="admin-title">
-Secure Login
-</div>
-
-<div class="admin-sub">
-Masuk menggunakan GitHub Token dan YouTube API Token untuk mengelola website, upload musik, artikel, lirik, dan video resmi.
-</div>
-
-<form id="adminLoginForm" class="admin-form">
-
-<div>
-<label>GitHub Personal Access Token</label>
-<input
-type="password"
-id="githubToken"
-class="admin-input"
-placeholder="Masukkan GitHub Token"
-required>
-</div>
-
-<div>
-<label>YouTube API Token</label>
-<input
-type="password"
-id="youtubeToken"
-class="admin-input"
-placeholder="Masukkan YouTube Token"
-required>
-</div>
-
-<div class="admin-actions">
-<button type="submit" class="admin-btn primary">
-Masuk Dashboard
-</button>
-</div>
-
-</form>
-
-<div class="admin-note">
-Token hanya digunakan di browser Anda untuk autentikasi dan publish ke repository resmi.
-</div>
-
-</div>
-
-<!-- DASHBOARD NEXT PART -->
-<div class="admin-dashboard" id="adminDashboard"></div>
-
-</div>
-
-<script src="/assets/asset.js"></script>
-</body>
-</html>
-
-<!-- =========================================
-ADMIN_POST PART 2
-Tempel mengganti:
-<div class="admin-dashboard" id="adminDashboard"></div>
-========================================= -->
-
-<div class="admin-dashboard" id="adminDashboard">
-
-<style>
-.admin-panel{
+.input:focus{border-color:var(--green)}
+.btn{
 width:100%;
-max-width:1450px;
-min-height:92vh;
-background:rgba(14,14,14,.94);
-border:1px solid rgba(255,255,255,.08);
-border-radius:28px;
-overflow:hidden;
-display:grid;
-grid-template-columns:290px 1fr;
-box-shadow:0 30px 70px rgba(0,0,0,.45);
-backdrop-filter:blur(12px);
-}
-
-.admin-sidebar{
-padding:26px;
-border-right:1px solid rgba(255,255,255,.06);
-background:linear-gradient(180deg,#101010,#0b0b0b);
-}
-
-.admin-side-logo{
-display:flex;
-align-items:center;
-gap:12px;
-margin-bottom:28px;
-}
-
-.admin-side-logo img{
-width:54px;
-height:54px;
-border-radius:14px;
-}
-
-.admin-side-logo h3{
-margin:0;
-font-size:1.08rem;
-}
-
-.admin-side-logo span{
-display:block;
-font-size:.85rem;
-opacity:.65;
-margin-top:2px;
-}
-
-.admin-nav{
-display:grid;
-gap:10px;
-}
-
-.admin-nav button{
-border:none;
-background:#151515;
-color:#fff;
-padding:14px 16px;
-border-radius:14px;
-text-align:left;
-cursor:pointer;
-font-weight:600;
-transition:.25s;
-}
-
-.admin-nav button:hover{
-background:#1d1d1d;
-transform:translateX(4px);
-}
-
-.admin-nav button.active{
-background:#1db954;
-}
-
-.admin-logout{
-margin-top:20px;
-width:100%;
-border:none;
 padding:14px;
 border-radius:14px;
-font-weight:700;
-cursor:pointer;
-background:#262626;
+background:var(--green);
 color:#fff;
+font-weight:700;
+transition:.2s;
 }
-
-.admin-main{
-display:flex;
-flex-direction:column;
-min-width:0;
-}
-
-.admin-topbar{
-padding:22px 28px;
-border-bottom:1px solid rgba(255,255,255,.06);
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:20px;
-}
-
-.admin-top-title h2{
-margin:0;
-font-size:1.25rem;
-}
-
-.admin-top-title p{
-margin:4px 0 0;
-opacity:.65;
-font-size:.92rem;
-}
-
-.admin-status{
-padding:10px 14px;
-border-radius:999px;
-background:rgba(29,185,84,.12);
-color:#1db954;
+.btn:hover{background:var(--green2)}
+.note{
 font-size:.88rem;
+line-height:1.7;
+color:var(--muted);
+margin-top:12px;
+}
+
+/* APP */
+#app{
+display:none;
+min-height:100vh;
+}
+
+/* TOPBAR */
+.topbar{
+height:66px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 18px;
+border-bottom:1px solid var(--line);
+background:#101010;
+position:sticky;
+top:0;
+z-index:99;
+}
+.top-left{
+display:flex;
+align-items:center;
+gap:12px;
 font-weight:700;
 }
+.top-left img{
+width:42px;height:42px;border-radius:12px;
+}
+.top-right{
+display:flex;
+align-items:center;
+gap:10px;
+}
+.badge{
+padding:8px 12px;
+border-radius:999px;
+background:#1a1a1a;
+border:1px solid #2a2a2a;
+font-size:.85rem;
+color:var(--muted);
+}
+.mini{
+padding:10px 12px;
+border-radius:12px;
+background:#1f1f1f;
+color:#fff;
+border:1px solid #303030;
+}
+.mini:hover{background:#292929}
 
-.admin-content{
-padding:28px;
-overflow:auto;
+/* LAYOUT */
+.wrap{
+display:grid;
+grid-template-columns:280px 1fr;
+min-height:calc(100vh - 66px);
+}
+@media(max-width:980px){
+.wrap{grid-template-columns:1fr}
 }
 
-.tab-pane{
-display:none;
-animation:fadeUp .25s ease;
+/* SIDEBAR */
+.sidebar{
+background:var(--panel);
+border-right:1px solid var(--line);
+padding:16px;
 }
-
-.tab-pane.active{
+.side-title{
+font-size:.82rem;
+text-transform:uppercase;
+letter-spacing:.08em;
+color:var(--muted);
+margin-bottom:12px;
+}
+.menu{
 display:block;
+width:100%;
+padding:12px 14px;
+margin-bottom:10px;
+border-radius:14px;
+background:#1a1a1a;
+color:#fff;
+border:1px solid #2a2a2a;
+text-align:left;
+font-weight:600;
+}
+.menu:hover,.menu.active{
+background:var(--green);
+border-color:var(--green);
 }
 
-.admin-card{
-background:#121212;
-border:1px solid rgba(255,255,255,.06);
-border-radius:22px;
-padding:24px;
-margin-bottom:22px;
+/* CONTENT */
+.content{padding:18px}
+.grid{display:grid;gap:16px}
+.row2{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:16px;
 }
-
-.admin-card h3{
-margin:0 0 8px;
-font-size:1.08rem;
-}
-
-.admin-card p{
-margin:0;
-opacity:.68;
-line-height:1.7;
-font-size:.95rem;
-}
-
-.admin-grid{
+.row3{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:18px;
-margin-bottom:22px;
+gap:16px;
 }
-
-.stat-box{
-background:#111;
-border:1px solid rgba(255,255,255,.06);
-border-radius:18px;
-padding:20px;
+.row4{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:16px;
 }
-
-.stat-box .num{
-font-size:1.8rem;
-font-weight:800;
-margin-bottom:8px;
-}
-
-.stat-box .label{
-opacity:.68;
-font-size:.92rem;
-}
-
-@keyframes fadeUp{
-from{opacity:0;transform:translateY(10px)}
-to{opacity:1;transform:none}
-}
-
 @media(max-width:980px){
-.admin-panel{
-grid-template-columns:1fr;
+.row2,.row3,.row4{grid-template-columns:1fr}
 }
-.admin-sidebar{
+
+.card{
+background:var(--card);
+border:1px solid var(--line);
+border-radius:var(--radius);
+padding:18px;
+box-shadow:0 8px 26px rgba(0,0,0,.18);
+}
+.card h2{
+font-size:1.08rem;
+margin-bottom:10px;
+}
+.card p{
+color:var(--muted);
+line-height:1.7;
+}
+.stat{
+padding:18px;
+border-radius:18px;
+background:#171717;
+border:1px solid #242424;
+}
+.stat b{
+display:block;
+font-size:1.5rem;
+margin-bottom:6px;
+}
+.success{color:#2ecc71}
+.error{color:#ff7675}
+.warn{color:#fdcb6e}
+
+/* TABS */
+.tab{display:none}
+.tab.active{display:block}
+
+/* MOBILE */
+@media(max-width:560px){
+.login-box{padding:22px}
+.topbar{
+height:auto;
+padding:14px;
+flex-direction:column;
+align-items:flex-start;
+gap:10px;
+}
+.content{padding:14px}
+.card{padding:14px}
+.sidebar{
 border-right:none;
-border-bottom:1px solid rgba(255,255,255,.06);
-}
-.admin-grid{
-grid-template-columns:1fr;
+border-bottom:1px solid var(--line);
 }
 }
 </style>
+</head>
+<body>
 
-<div class="admin-panel">
+<!-- LOGIN -->
+<section id="loginPage">
+<div class="login-box">
 
-<!-- SIDEBAR -->
-<aside class="admin-sidebar">
-
-<div class="admin-side-logo">
+<div class="brand">
 <img src="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/android-chrome-192x192.png">
 <div>
-<h3>SAI Roots</h3>
-<span>Control Center</span>
+<h1>SAI Roots Admin</h1>
+<span>Premium CMS 10/10</span>
 </div>
 </div>
 
-<div class="admin-nav">
-
-<button class="tab-btn active" data-tab="dashboardTab">🏠 Dashboard</button>
-<button class="tab-btn" data-tab="articleTab">📰 Artikel</button>
-<button class="tab-btn" data-tab="lyricTab">🎤 Lirik</button>
-<button class="tab-btn" data-tab="musicTab">🎵 Upload Musik</button>
-<button class="tab-btn" data-tab="videoTab">🎬 Video Cover</button>
-<button class="tab-btn" data-tab="filesTab">📁 File Manager</button>
-
-</div>
-
-<button class="admin-logout" onclick="location.reload()">
-Logout
-</button>
-
-</aside>
-
-<!-- MAIN -->
-<section class="admin-main">
-
-<div class="admin-topbar">
-
-<div class="admin-top-title">
-<h2>Admin Dashboard</h2>
-<p>Kelola seluruh konten website resmi SAI Roots Music</p>
-</div>
-
-<div class="admin-status">
-● Connected
-</div>
-
-</div>
-
-<div class="admin-content">
-
-<!-- DASHBOARD -->
-<div class="tab-pane active" id="dashboardTab">
-
-<div class="admin-grid">
-
-<div class="stat-box">
-<div class="num">0</div>
-<div class="label">Artikel</div>
-</div>
-
-<div class="stat-box">
-<div class="num">0</div>
-<div class="label">Lirik</div>
-</div>
-
-<div class="stat-box">
-<div class="num">0</div>
-<div class="label">Rilisan Musik</div>
-</div>
-
-</div>
-
-<div class="admin-card">
-<h3>Selamat Datang</h3>
-<p>
-Gunakan panel ini untuk memposting artikel, lirik lagu, upload musik,
-dan video cover langsung ke repository website.
+<p class="desc">
+Login menggunakan GitHub Token untuk mengelola website resmi SAI Roots Music dengan panel premium.
 </p>
-</div>
 
-<div class="admin-card">
-<h3>Status Sistem</h3>
-<p>
-GitHub publish aktif. Integrasi asset.js siap digunakan.
-Part berikutnya akan menambahkan form editor lengkap.
+<input id="gitToken" class="input" type="password" placeholder="GitHub Token">
+<input id="ytToken" class="input" type="password" placeholder="YouTube API Token">
+<input id="adminName" class="input" placeholder="Nama Admin">
+
+<button class="btn" onclick="loginAdmin()">Masuk Dashboard</button>
+
+<p class="note">
+Token hanya tersimpan di browser perangkat ini.
 </p>
-</div>
-
-</div>
-
-<!-- PLACEHOLDER NEXT PART -->
-<div class="tab-pane" id="articleTab"></div>
-<div class="tab-pane" id="lyricTab"></div>
-<div class="tab-pane" id="musicTab"></div>
-<div class="tab-pane" id="videoTab"></div>
-<div class="tab-pane" id="filesTab"></div>
 
 </div>
 </section>
+
+<!-- APP -->
+<section id="app">
+
+<div class="topbar">
+<div class="top-left">
+<img src="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/android-chrome-192x192.png">
+<div>SAI Roots Music • Premium Admin</div>
 </div>
 
-<script>
-document.querySelectorAll(".tab-btn").forEach(btn=>{
-btn.onclick=()=>{
-document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
-btn.classList.add("active");
-
-document.querySelectorAll(".tab-pane").forEach(p=>p.classList.remove("active"));
-document.getElementById(btn.dataset.tab).classList.add("active");
-};
-});
-</script>
-
-</div>
-
-<!-- =========================================
-ADMIN_POST PART 3
-Tempel mengganti placeholder:
-<div class="tab-pane" id="articleTab"></div>
-<div class="tab-pane" id="lyricTab"></div>
-<div class="tab-pane" id="musicTab"></div>
-<div class="tab-pane" id="videoTab"></div>
-<div class="tab-pane" id="filesTab"></div>
-========================================= -->
-
-<div class="tab-pane" id="articleTab">
-
-<div class="admin-card">
-<h3>Publish Artikel</h3>
-<p>Tulis artikel, berita, atau update resmi SAI Roots Music.</p>
-</div>
-
-<div class="admin-card">
-
-<input class="admin-input" id="articleTitle" placeholder="Judul artikel">
-
-<div style="height:12px"></div>
-
-<div class="toolbar">
-<button type="button" onclick="wrapText('articleContent','<b>','</b>')"><b>B</b></button>
-<button type="button" onclick="wrapText('articleContent','<i>','</i>')"><i>I</i></button>
-<button type="button" onclick="wrapText('articleContent','<h2>','</h2>')">H2</button>
-<button type="button" onclick="wrapText('articleContent','<blockquote>','</blockquote>')">❝</button>
-<button type="button" onclick="wrapText('articleContent','<ul><li>','</li></ul>')">• List</button>
-</div>
-
-<textarea
-id="articleContent"
-class="admin-input"
-style="min-height:320px;margin-top:12px"
-placeholder="Tulis isi artikel (HTML diperbolehkan)..."></textarea>
-
-<div style="height:14px"></div>
-
-<button class="admin-btn primary" id="publishArticle">
-Publish Artikel
-</button>
-
+<div class="top-right">
+<div class="badge" id="statusBadge">Ready</div>
+<button class="mini" onclick="logoutAdmin()">Logout</button>
 </div>
 </div>
 
+<div class="wrap">
 
+<!-- SIDEBAR -->
+<aside class="sidebar">
 
-<div class="tab-pane" id="lyricTab">
+<div class="side-title">Main Menu</div>
 
-<div class="admin-card">
-<h3>Publish Lirik</h3>
-<p>Buat halaman lirik lagu kategori album atau single.</p>
+<button class="menu active" onclick="openTab('dashboard',this)">Dashboard</button>
+<button class="menu" onclick="openTab('articleTab',this)">Artikel</button>
+<button class="menu" onclick="openTab('lyricTab',this)">Lirik</button>
+<button class="menu" onclick="openTab('musicTab',this)">Musik</button>
+<button class="menu" onclick="openTab('videoTab',this)">Video</button>
+<button class="menu" onclick="openTab('filesTab',this)">File Manager</button>
+<button class="menu" onclick="openTab('analyticsTab',this)">Analytics</button>
+<button class="menu" onclick="openTab('scheduleTab',this)">Schedule</button>
+<button class="menu" onclick="openTab('adminsTab',this)">Multi Admin</button>
+<button class="menu" onclick="openTab('settingTab',this)">Settings</button>
+
+</aside>
+
+<!-- CONTENT -->
+<main class="content">
+
+<!-- DASHBOARD -->
+<section class="tab active" id="dashboard">
+
+<div class="row4">
+
+<div class="stat">
+<b id="countArticle">0</b>
+<span>Artikel</span>
 </div>
 
-<div class="admin-card">
-
-<input class="admin-input" id="lyricTitle" placeholder="Judul lagu">
-
-<div style="height:12px"></div>
-
-<select class="admin-input" id="lyricCategory">
-<option value="single">Single</option>
-<option value="album">Album</option>
-</select>
-
-<div style="height:12px"></div>
-
-<textarea
-id="lyricContent"
-class="admin-input"
-style="min-height:320px"
-placeholder="Tulis lirik lagu..."></textarea>
-
-<div style="height:14px"></div>
-
-<button class="admin-btn primary" id="publishLyric">
-Publish Lirik
-</button>
-
-</div>
+<div class="stat">
+<b id="countLyric">0</b>
+<span>Lirik</span>
 </div>
 
-
-
-<div class="tab-pane" id="musicTab">
-
-<div class="admin-card">
-<h3>Upload Musik</h3>
-<p>Upload MP3/WAV dan tampilkan di halaman discography.</p>
+<div class="stat">
+<b id="countMusic">0</b>
+<span>Musik</span>
 </div>
 
-<div class="admin-card">
-
-<input class="admin-input" id="musicTitle" placeholder="Judul lagu">
-
-<div style="height:12px"></div>
-
-<input class="admin-input" id="musicYear" placeholder="Tahun rilisan">
-
-<div style="height:12px"></div>
-
-<input type="file" id="musicFile" class="admin-input" accept=".mp3,.wav,.m4a">
-
-<div style="height:14px"></div>
-
-<button class="admin-btn primary" id="publishMusic">
-Upload Musik
-</button>
-
-</div>
+<div class="stat">
+<b id="countVideo">0</b>
+<span>Video</span>
 </div>
 
-
-
-<div class="tab-pane" id="videoTab">
-
-<div class="admin-card">
-<h3>Tambah Video Cover</h3>
-<p>Masukkan link YouTube untuk tampil otomatis di halaman video cover.</p>
 </div>
 
-<div class="admin-card">
+<div class="grid" style="margin-top:16px">
 
-<input class="admin-input" id="videoTitle" placeholder="Judul video">
-
-<div style="height:12px"></div>
-
-<input class="admin-input" id="videoLink" placeholder="https://youtube.com/watch?v=...">
-
-<div style="height:14px"></div>
-
-<button class="admin-btn primary" id="publishVideo">
-Publish Video
-</button>
-
-</div>
-</div>
-
-
-
-<div class="tab-pane" id="filesTab">
-
-<div class="admin-card">
-<h3>File Manager</h3>
-<p>
-Di part final nanti akan berisi daftar artikel, lirik, musik,
-fitur edit, hapus, dan refresh data repository.
+<div class="card">
+<h2>Selamat Datang</h2>
+<p id="welcomeText">
+Panel premium siap dipakai.
 </p>
 </div>
 
-<div class="admin-grid">
-
-<div class="stat-box">
-<div class="num">/article</div>
-<div class="label">Folder Artikel</div>
+<div class="card">
+<h2>Status Repository</h2>
+<p id="repoInfo">Menunggu login...</p>
 </div>
 
-<div class="stat-box">
-<div class="num">/lyric</div>
-<div class="label">Folder Lirik</div>
-</div>
-
-<div class="stat-box">
-<div class="num">/music</div>
-<div class="label">Folder Musik</div>
+<div class="card">
+<h2>Aktivitas Cepat</h2>
+<p id="quickLogs">Belum ada aktivitas.</p>
 </div>
 
 </div>
 
+</section>
+
+ <!-- =====================================
+PART 2 PREMIUM 10/10
+SEMUA TAB + FORM + UI PREMIUM
+===================================== -->
+
+<!-- ARTIKEL -->
+<section class="tab" id="articleTab">
+<div class="card">
+<h2>Publish Artikel</h2>
+<p>Tulis artikel dengan editor premium ala WordPress.</p>
+
+<input id="articleTitle" class="input" placeholder="Judul artikel">
+<div class="row2">
+<input id="articleSlug" class="input" placeholder="Slug otomatis / manual">
+<input id="articleImage" class="input" placeholder="URL cover artikel">
 </div>
 
+<!-- RICH TOOLBAR -->
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+<button class="mini" onclick="cmd('bold')">B</button>
+<button class="mini" onclick="cmd('italic')">I</button>
+<button class="mini" onclick="cmd('underline')">U</button>
+<button class="mini" onclick="cmd('insertUnorderedList')">• List</button>
+<button class="mini" onclick="cmd('formatBlock','h2')">H2</button>
+<button class="mini" onclick="cmd('formatBlock','h3')">H3</button>
+<button class="mini" onclick="addLink()">Link</button>
+<button class="mini" onclick="addImage()">Image</button>
+<button class="mini" onclick="cmd('removeFormat')">Clear</button>
+</div>
 
+<div id="editor"
+contenteditable="true"
+class="input"
+style="min-height:320px;line-height:1.8">
+Mulai menulis artikel...
+</div>
 
-<style>
-.toolbar{
-display:flex;
-gap:8px;
-flex-wrap:wrap;
-}
+<div class="row2">
+<button class="mini" onclick="previewArticle()">Preview</button>
+<button class="btn" onclick="publishArticle()">Publish Artikel</button>
+</div>
 
-.toolbar button{
-border:none;
-background:#181818;
-color:#fff;
-padding:10px 14px;
-border-radius:12px;
-cursor:pointer;
-font-weight:700;
-}
+<div class="card" style="margin-top:14px">
+<h2>Preview</h2>
+<div id="articlePreview">Belum ada preview.</div>
+</div>
 
-.toolbar button:hover{
-background:#222;
-}
-</style>
+</div>
+</section>
 
+<!-- LIRIK -->
+<section class="tab" id="lyricTab">
+<div class="card">
+<h2>Publish Lirik</h2>
+
+<input id="lyricTitle" class="input" placeholder="Judul lagu">
+
+<div class="row2">
+<input id="lyricAlbum" class="input" placeholder="Nama album">
+<input id="lyricYear" class="input" placeholder="Tahun">
+</div>
+
+<textarea id="lyricContent"
+class="input"
+style="min-height:320px"
+placeholder="Isi lirik..."></textarea>
+
+<div class="row2">
+<button class="mini" onclick="previewLyric()">Preview</button>
+<button class="btn" onclick="publishLyric()">Publish Lirik</button>
+</div>
+
+<div class="card" style="margin-top:14px">
+<h2>Preview</h2>
+<pre id="lyricPreview" style="white-space:pre-wrap">Belum ada preview.</pre>
+</div>
+
+</div>
+</section>
+
+<!-- MUSIK -->
+<section class="tab" id="musicTab">
+<div class="card">
+<h2>Upload Musik</h2>
+
+<input id="musicTitle" class="input" placeholder="Judul lagu">
+
+<div class="row3">
+<input id="musicArtist" class="input" placeholder="Artist">
+<input id="musicYear" class="input" placeholder="Tahun">
+<input id="musicGenre" class="input" placeholder="Genre">
+</div>
+
+<label style="display:block;margin-bottom:8px;color:#aaa">Upload Cover</label>
+<input id="musicCover" class="input" type="file" accept="image/*">
+
+<label style="display:block;margin-bottom:8px;color:#aaa">Upload Audio</label>
+<input id="musicFile" class="input" type="file" accept=".mp3,.wav,.m4a,.ogg">
+
+<div class="row2">
+<button class="mini" onclick="previewMusic()">Preview</button>
+<button class="btn" onclick="publishMusic()">Upload Musik</button>
+</div>
+
+<div class="card" style="margin-top:14px">
+<h2>Preview</h2>
+<div id="musicPreview">Belum ada preview.</div>
+</div>
+
+</div>
+</section>
+
+<!-- VIDEO -->
+<section class="tab" id="videoTab">
+<div class="card">
+<h2>Publish Video Cover</h2>
+
+<input id="videoTitle" class="input" placeholder="Judul video">
+<input id="videoLink" class="input" placeholder="https://youtube.com/watch?v=xxxxx">
+
+<div class="row2">
+<button class="mini" onclick="previewVideo()">Preview</button>
+<button class="btn" onclick="publishVideo()">Publish Video</button>
+</div>
+
+<div class="card" style="margin-top:14px">
+<h2>Preview</h2>
+<div id="videoPreview">Belum ada preview.</div>
+</div>
+
+</div>
+</section>
+
+<!-- FILE MANAGER -->
+<section class="tab" id="filesTab">
+<div class="card">
+<h2>File Manager Pro</h2>
+
+<div class="row2">
+<select id="folderSelect" class="input" onchange="loadFiles()">
+<option value="">Root</option>
+<option value="article">article</option>
+<option value="lyric">lyric</option>
+<option value="music">music</option>
+<option value="video">video</option>
+<option value="assets">assets</option>
+</select>
+
+<input id="searchFile" class="input" placeholder="Cari file..." onkeyup="searchFiles()">
+</div>
+
+<div class="row2">
+<button class="mini" onclick="loadFiles()">Refresh</button>
+<button class="btn" onclick="rebuildAllPages()">Rebuild Semua Halaman</button>
+</div>
+
+<div id="fileList" style="margin-top:14px">Belum dimuat.</div>
+
+</div>
+</section>
+
+<!-- ANALYTICS -->
+<section class="tab" id="analyticsTab">
+<div class="row3">
+
+<div class="stat">
+<b id="visitToday">0</b>
+<span>Visit Today</span>
+</div>
+
+<div class="stat">
+<b id="visitMonth">0</b>
+<span>Visit Month</span>
+</div>
+
+<div class="stat">
+<b id="topPage">-</b>
+<span>Top Page</span>
+</div>
+
+</div>
+
+<div class="card" style="margin-top:16px">
+<h2>Analytics Report</h2>
+<p id="analyticsInfo">
+Menunggu data analytics...
+</p>
+</div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="tab" id="scheduleTab">
+<div class="card">
+<h2>Schedule Post</h2>
+
+<select id="scheduleType" class="input">
+<option value="article">Artikel</option>
+<option value="lyric">Lirik</option>
+<option value="video">Video</option>
+</select>
+
+<input id="scheduleTitle" class="input" placeholder="Judul postingan">
+<input id="scheduleDate" class="input" type="datetime-local">
+
+<textarea id="scheduleContent"
+class="input"
+style="min-height:220px"
+placeholder="Isi / link konten..."></textarea>
+
+<div class="row2">
+<button class="mini" onclick="loadSchedule()">Refresh</button>
+<button class="btn" onclick="saveSchedule()">Simpan Jadwal</button>
+</div>
+
+<div class="card" style="margin-top:14px">
+<h2>Daftar Jadwal</h2>
+<div id="scheduleList">Belum ada jadwal.</div>
+</div>
+
+</div>
+</section>
+
+<!-- MULTI ADMIN -->
+<section class="tab" id="adminsTab">
+<div class="card">
+<h2>Multi Admin</h2>
+
+<div class="row2">
+<input id="newAdminName" class="input" placeholder="Nama admin">
+<select id="newAdminRole" class="input">
+<option value="admin">Admin</option>
+<option value="editor">Editor</option>
+<option value="viewer">Viewer</option>
+</select>
+</div>
+
+<button class="btn" onclick="saveAdmin()">Tambah Admin</button>
+
+<div class="card" style="margin-top:14px">
+<h2>Daftar Admin</h2>
+<div id="adminList">Belum ada admin.</div>
+</div>
+
+</div>
+</section>
+
+<!-- SETTINGS -->
+<section class="tab" id="settingTab">
+
+<div class="card">
+<h2>Settings Repository</h2>
+
+<input id="repoOwner" class="input" value="sairootsmusic">
+<input id="repoName" class="input" value="sairootsmusic.com">
+<input id="repoBranch" class="input" value="main">
+
+<div class="row2">
+<button class="mini" onclick="saveSettings()">Simpan</button>
+<button class="btn" onclick="testConnection()">Tes Koneksi</button>
+</div>
+
+</div>
+
+<div class="card">
+<h2>Activity Logs</h2>
+<div id="logsBox" style="line-height:1.8;color:#bdbdbd">
+Belum ada log.
+</div>
+</div>
+
+</section>
+
+</main>
+</div>
+</section>
+
+<!-- =====================================
+PART 3 PREMIUM 10/10
+JAVASCRIPT CORE SYSTEM + PREMIUM FEATURE
+===================================== -->
 <script>
-function wrapText(id,start,end){
-const el=document.getElementById(id);
-if(!el) return;
+let REPO_OWNER="sairootsmusic";
+let REPO_NAME="sairootsmusic.com";
+let REPO_BRANCH="main";
 
-const s=el.selectionStart;
-const e=el.selectionEnd;
-const txt=el.value;
+window.onload=()=>{
+loadSettings();
+bootSession();
+runAnalyticsMock();
+loadAdmins();
+loadSchedule();
+};
 
-el.value =
-txt.substring(0,s) +
-start +
-txt.substring(s,e) +
-end +
-txt.substring(e);
-
-el.focus();
-}
-</script>
-
-<!-- =========================================
-ADMIN_POST PART 4 FINAL
-Tempel sebelum </body>
-========================================= -->
-
-<style>
-.preview-box{
-margin-top:16px;
-padding:18px;
-border-radius:18px;
-background:#0f0f0f;
-border:1px solid rgba(255,255,255,.06);
-}
-
-.preview-box h4{
-margin:0 0 12px;
-font-size:1rem;
-}
-
-.preview-render{
-line-height:1.8;
-opacity:.92;
-}
-
-.quick-row{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:14px;
-margin-top:18px;
-}
-
-.quick-btn{
-border:none;
-padding:14px;
-border-radius:14px;
-background:#161616;
-color:#fff;
-cursor:pointer;
-font-weight:700;
-}
-
-.quick-btn:hover{
-background:#1db954;
-}
-
-.admin-footer-note{
-margin-top:26px;
-opacity:.55;
-font-size:.88rem;
-text-align:center;
-}
-
-@media(max-width:900px){
-.quick-row{
-grid-template-columns:1fr;
+function bootSession(){
+if(localStorage.getItem("git_token")){
+showApp();
 }
 }
-</style>
 
-<script>
-(function(){
+function showApp(){
+document.getElementById("loginPage").style.display="none";
+document.getElementById("app").style.display="block";
+countStats();
+loadFiles();
+welcomeUser();
+}
 
-/* ==========================
-LOGIN POLISH
-========================== */
-const loginForm = document.getElementById("adminLoginForm");
+function loginAdmin(){
+const git=document.getElementById("gitToken").value.trim();
+const yt=document.getElementById("ytToken").value.trim();
+const name=document.getElementById("adminName").value.trim()||"Admin";
 
-if(loginForm){
-loginForm.addEventListener("submit",function(){
+if(!git){alert("GitHub token wajib.");return;}
 
+localStorage.setItem("git_token",git);
+localStorage.setItem("yt_token",yt);
+localStorage.setItem("admin_name",name);
+
+showApp();
+log("Login berhasil.");
+}
+
+function logoutAdmin(){
+localStorage.removeItem("git_token");
+localStorage.removeItem("yt_token");
+location.reload();
+}
+
+function welcomeUser(){
+const n=localStorage.getItem("admin_name")||"Admin";
+document.getElementById("welcomeText").innerText=
+"Selamat datang, "+n+". Panel premium siap dipakai.";
+}
+
+function openTab(id,btn){
+document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+
+document.querySelectorAll(".menu").forEach(x=>x.classList.remove("active"));
+if(btn)btn.classList.add("active");
+}
+
+function updateStatus(t){
+document.getElementById("statusBadge").innerText=t;
+}
+
+function log(t){
+const box=document.getElementById("logsBox");
+if(!box)return;
+const time=new Date().toLocaleTimeString();
+box.innerHTML="["+time+"] "+t+"<br>"+box.innerHTML;
+document.getElementById("quickLogs").innerHTML=t;
+}
+
+/* SETTINGS */
+function loadSettings(){
+REPO_OWNER=localStorage.getItem("repo_owner")||REPO_OWNER;
+REPO_NAME=localStorage.getItem("repo_name")||REPO_NAME;
+REPO_BRANCH=localStorage.getItem("repo_branch")||REPO_BRANCH;
+
+if(document.getElementById("repoOwner"))
+document.getElementById("repoOwner").value=REPO_OWNER;
+
+if(document.getElementById("repoName"))
+document.getElementById("repoName").value=REPO_NAME;
+
+if(document.getElementById("repoBranch"))
+document.getElementById("repoBranch").value=REPO_BRANCH;
+}
+
+function saveSettings(){
+REPO_OWNER=document.getElementById("repoOwner").value.trim();
+REPO_NAME=document.getElementById("repoName").value.trim();
+REPO_BRANCH=document.getElementById("repoBranch").value.trim();
+
+localStorage.setItem("repo_owner",REPO_OWNER);
+localStorage.setItem("repo_name",REPO_NAME);
+localStorage.setItem("repo_branch",REPO_BRANCH);
+
+alert("Settings tersimpan.");
+log("Settings diperbarui.");
+}
+
+/* HELPERS */
+function token(){return localStorage.getItem("git_token")||"";}
+function headers(){
+return {
+"Authorization":"token "+token(),
+"Content-Type":"application/json"
+};
+}
+function api(path=""){
+return `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`;
+}
+function slugify(t){
+return t.toLowerCase()
+.replace(/[^\w\s-]/g,"")
+.replace(/\s+/g,"-")
+.replace(/-+/g,"-");
+}
+function b64(s){
+return btoa(unescape(encodeURIComponent(s)));
+}
+
+/* RICH TEXT */
+function cmd(a,b=null){
+document.execCommand(a,false,b);
+}
+function addLink(){
+const url=prompt("Masukkan URL");
+if(url)cmd("createLink",url);
+}
+function addImage(){
+const url=prompt("Masukkan URL gambar");
+if(url)cmd("insertImage",url);
+}
+
+/* PREVIEW */
+function previewArticle(){
+const title=document.getElementById("articleTitle").value;
+const html=document.getElementById("editor").innerHTML;
+document.getElementById("articlePreview").innerHTML=
+"<h2>"+title+"</h2>"+html;
+}
+
+function previewLyric(){
+document.getElementById("lyricPreview").innerText=
+document.getElementById("lyricTitle").value+"\n\n"+
+document.getElementById("lyricContent").value;
+}
+
+function previewMusic(){
+const t=document.getElementById("musicTitle").value;
+document.getElementById("musicPreview").innerHTML=
+"<h3>"+t+"</h3><audio controls style='width:100%'></audio>";
+}
+
+function previewVideo(){
+let link=document.getElementById("videoLink").value.trim();
+if(link.includes("watch?v="))link=link.replace("watch?v=","embed/");
+document.getElementById("videoPreview").innerHTML=
+`<iframe width="100%" height="340" src="${link}" allowfullscreen></iframe>`;
+}
+
+/* MULTI ADMIN */
+function loadAdmins(){
+let data=JSON.parse(localStorage.getItem("admins")||"[]");
+renderAdmins(data);
+}
+
+function saveAdmin(){
+let data=JSON.parse(localStorage.getItem("admins")||"[]");
+
+data.push({
+name:document.getElementById("newAdminName").value.trim(),
+role:document.getElementById("newAdminRole").value
+});
+
+localStorage.setItem("admins",JSON.stringify(data));
+renderAdmins(data);
+log("Admin ditambah.");
+}
+
+function renderAdmins(data){
+const box=document.getElementById("adminList");
+if(!box)return;
+
+if(!data.length){
+box.innerHTML="Belum ada admin.";
+return;
+}
+
+box.innerHTML=data.map((x,i)=>`
+<div class="card" style="margin-bottom:10px">
+<b>${x.name}</b><br>
+<small>${x.role}</small><br><br>
+<button class="mini" onclick="delAdmin(${i})">Hapus</button>
+</div>
+`).join("");
+}
+
+function delAdmin(i){
+let data=JSON.parse(localStorage.getItem("admins")||"[]");
+data.splice(i,1);
+localStorage.setItem("admins",JSON.stringify(data));
+renderAdmins(data);
+}
+
+/* SCHEDULE */
+function loadSchedule(){
+let data=JSON.parse(localStorage.getItem("schedule_posts")||"[]");
+const box=document.getElementById("scheduleList");
+if(!box)return;
+
+box.innerHTML=data.length?data.map((x,i)=>`
+<div class="card" style="margin-bottom:10px">
+<b>${x.title}</b><br>
+<small>${x.type} • ${x.date}</small><br><br>
+<button class="mini" onclick="delSchedule(${i})">Hapus</button>
+</div>`).join(""):"Belum ada jadwal.";
+}
+
+function saveSchedule(){
+let data=JSON.parse(localStorage.getItem("schedule_posts")||"[]");
+
+data.push({
+type:document.getElementById("scheduleType").value,
+title:document.getElementById("scheduleTitle").value,
+date:document.getElementById("scheduleDate").value,
+content:document.getElementById("scheduleContent").value
+});
+
+localStorage.setItem("schedule_posts",JSON.stringify(data));
+loadSchedule();
+log("Jadwal disimpan.");
+}
+
+function delSchedule(i){
+let data=JSON.parse(localStorage.getItem("schedule_posts")||"[]");
+data.splice(i,1);
+localStorage.setItem("schedule_posts",JSON.stringify(data));
+loadSchedule();
+}
+
+/* ANALYTICS MOCK */
+function runAnalyticsMock(){
 setTimeout(()=>{
-const dash = document.getElementById("adminDashboard");
-if(dash && dash.style.display==="block"){
-showWelcome();
+if(document.getElementById("visitToday")){
+document.getElementById("visitToday").innerText=Math.floor(Math.random()*300)+50;
+document.getElementById("visitMonth").innerText=Math.floor(Math.random()*9000)+1000;
+document.getElementById("topPage").innerText="/article.html";
+document.getElementById("analyticsInfo").innerText=
+"Analytics aktif. Hubungkan GA4 untuk data asli.";
+}
+},500);
+}
+
+<!-- =====================================
+PART 4 PREMIUM 10/10
+GITHUB API + PUBLISH SYSTEM + UPLOAD REAL
+===================================== -->
+
+/* GITHUB CORE */
+async function githubGet(path=""){
+const res=await fetch(api(path)+"?ref="+REPO_BRANCH,{headers:headers()});
+return await res.json();
+}
+
+async function githubPut(path,content,message,sha=null){
+const body={
+message:message,
+content:b64(content),
+branch:REPO_BRANCH
+};
+if(sha)body.sha=sha;
+
+const res=await fetch(api(path),{
+method:"PUT",
+headers:headers(),
+body:JSON.stringify(body)
+});
+return await res.json();
+}
+
+async function githubDelete(path,sha,message){
+const res=await fetch(api(path),{
+method:"DELETE",
+headers:headers(),
+body:JSON.stringify({
+message:message,
+sha:sha,
+branch:REPO_BRANCH
+})
+});
+return await res.json();
+}
+
+/* RAW FILE UPLOAD */
+async function uploadBinary(path,file,message){
+return new Promise((resolve,reject)=>{
+const reader=new FileReader();
+
+reader.onload=async()=>{
+try{
+const base64=reader.result.split(",")[1];
+
+const res=await fetch(api(path),{
+method:"PUT",
+headers:headers(),
+body:JSON.stringify({
+message:message,
+content:base64,
+branch:REPO_BRANCH
+})
+});
+
+resolve(await res.json());
+}catch(err){
+reject(err);
+}
+};
+
+reader.readAsDataURL(file);
+});
+}
+
+/* ARTICLE */
+async function publishArticle(){
+
+const title=document.getElementById("articleTitle").value.trim();
+let slug=document.getElementById("articleSlug").value.trim();
+const img=document.getElementById("articleImage").value.trim();
+const htmlBody=document.getElementById("editor").innerHTML.trim();
+
+if(!title||!htmlBody){
+alert("Judul dan isi wajib.");
+return;
+}
+
+if(!slug)slug=slugify(title);
+
+updateStatus("Publishing...");
+
+const html=`
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${title}</title>
+<link rel="stylesheet" href="/assets/asset.css">
+</head>
+<body>
+<div class="container">
+<h1>${title}</h1>
+${img?`<img src="${img}" style="max-width:100%;border-radius:18px;margin:18px 0">`:""}
+${htmlBody}
+</div>
+</body>
+</html>`;
+
+await githubPut(
+"article/"+slug+".html",
+html,
+"Publish article "+title
+);
+
+await generateHome();
+await generateArticlePage();
+countStats();
+
+updateStatus("Done");
+log("Artikel publish: "+title);
+alert("Artikel berhasil.");
+}
+
+/* LYRIC */
+async function publishLyric(){
+
+const title=document.getElementById("lyricTitle").value.trim();
+const body=document.getElementById("lyricContent").value.trim();
+const album=document.getElementById("lyricAlbum").value.trim();
+const year=document.getElementById("lyricYear").value.trim();
+
+if(!title||!body){
+alert("Isi data dulu.");
+return;
+}
+
+const slug=slugify(title);
+
+const html=`
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${title}</title>
+<link rel="stylesheet" href="/assets/asset.css">
+</head>
+<body>
+<div class="container">
+<h1>${title}</h1>
+<p>${album}${year?" • "+year:""}</p>
+<pre style="white-space:pre-wrap">${body}</pre>
+</div>
+</body>
+</html>`;
+
+await githubPut(
+"lyric/"+slug+".html",
+html,
+"Publish lyric "+title
+);
+
+await generateHome();
+await generateLyricPage();
+countStats();
+
+log("Lirik publish: "+title);
+alert("Lirik berhasil.");
+}
+
+/* MUSIC */
+async function publishMusic(){
+
+const title=document.getElementById("musicTitle").value.trim();
+const artist=document.getElementById("musicArtist").value.trim();
+const year=document.getElementById("musicYear").value.trim();
+const genre=document.getElementById("musicGenre").value.trim();
+
+const cover=document.getElementById("musicCover").files[0];
+const audio=document.getElementById("musicFile").files[0];
+
+if(!title||!audio){
+alert("Judul dan file audio wajib.");
+return;
+}
+
+updateStatus("Uploading...");
+
+const slug=slugify(title);
+let coverName="";
+
+if(cover){
+coverName=slug+"-cover-"+cover.name.replace(/\s+/g,"-");
+await uploadBinary(
+"music/"+coverName,
+cover,
+"Upload cover "+title
+);
+}
+
+const audioName=slug+"-audio-"+audio.name.replace(/\s+/g,"-");
+
+await uploadBinary(
+"music/"+audioName,
+audio,
+"Upload audio "+title
+);
+
+const html=`
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${title}</title>
+<link rel="stylesheet" href="/assets/asset.css">
+</head>
+<body>
+<div class="container">
+<h1>${title}</h1>
+<p>${artist}${year?" • "+year:""}${genre?" • "+genre:""}</p>
+${coverName?`<img src="/music/${coverName}" style="max-width:320px;border-radius:18px;margin:18px 0">`:""}
+<audio controls style="width:100%">
+<source src="/music/${audioName}">
+</audio>
+</div>
+</body>
+</html>`;
+
+await githubPut(
+"music/"+slug+".html",
+html,
+"Publish music "+title
+);
+
+await generateDiscographyPage();
+countStats();
+
+updateStatus("Done");
+log("Musik upload: "+title);
+alert("Musik berhasil.");
+}
+
+/* VIDEO */
+async function publishVideo(){
+
+const title=document.getElementById("videoTitle").value.trim();
+let link=document.getElementById("videoLink").value.trim();
+
+if(!title||!link){
+alert("Isi data video.");
+return;
+}
+
+if(link.includes("watch?v=")){
+link=link.replace("watch?v=","embed/");
+}
+
+const slug=slugify(title);
+
+const html=`
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${title}</title>
+<link rel="stylesheet" href="/assets/asset.css">
+</head>
+<body>
+<div class="container">
+<h1>${title}</h1>
+<iframe width="100%" height="520" src="${link}" allowfullscreen></iframe>
+</div>
+</body>
+</html>`;
+
+await githubPut(
+"video/"+slug+".html",
+html,
+"Publish video "+title
+);
+
+await generateVideoPage();
+countStats();
+
+log("Video publish: "+title);
+alert("Video berhasil.");
+}
+
+<!-- =====================================
+PART 5 PREMIUM 10/10
+FILE MANAGER PRO + COUNTER + SEARCH
+===================================== -->
+
+/* COUNTER */
+async function countStats(){
+try{
+
+const a=await githubGet("article");
+const l=await githubGet("lyric");
+const m=await githubGet("music");
+const v=await githubGet("video");
+
+document.getElementById("countArticle").innerText=
+Array.isArray(a)?a.length:0;
+
+document.getElementById("countLyric").innerText=
+Array.isArray(l)?l.length:0;
+
+document.getElementById("countMusic").innerText=
+Array.isArray(m)?m.filter(x=>x.name.endsWith(".html")).length:0;
+
+document.getElementById("countVideo").innerText=
+Array.isArray(v)?v.filter(x=>x.name.endsWith(".html")).length:0;
+
+document.getElementById("repoInfo").innerHTML=
+"Owner: "+REPO_OWNER+
+"<br>Repo: "+REPO_NAME+
+"<br>Branch: "+REPO_BRANCH+
+"<br>Total Artikel: "+(Array.isArray(a)?a.length:0)+
+"<br>Total Lirik: "+(Array.isArray(l)?l.length:0)+
+"<br>Total Musik: "+(Array.isArray(m)?m.length:0)+
+"<br>Total Video: "+(Array.isArray(v)?v.length:0);
+
+}catch(err){
+log("Counter gagal dimuat.");
+}
+}
+
+/* FILE MANAGER */
+let currentFiles=[];
+
+async function loadFiles(){
+
+const folder=document.getElementById("folderSelect").value;
+const box=document.getElementById("fileList");
+
+box.innerHTML="Memuat file...";
+updateStatus("Loading Files");
+
+try{
+
+const data=await githubGet(folder);
+
+if(!Array.isArray(data)){
+box.innerHTML="Folder kosong.";
+return;
+}
+
+currentFiles=data;
+
+renderFiles(data);
+
+updateStatus("Ready");
+log("File dimuat: "+(folder||"root"));
+
+}catch(err){
+
+box.innerHTML="Gagal memuat file.";
+updateStatus("Error");
+}
+}
+
+function renderFiles(data){
+
+const box=document.getElementById("fileList");
+
+if(!data.length){
+box.innerHTML="Tidak ada file.";
+return;
+}
+
+box.innerHTML=data.map(item=>`
+
+<div class="card" style="margin-bottom:12px">
+
+<div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+
+<div>
+<b>${item.name}</b><br>
+<small style="color:#999">${item.path}</small>
+</div>
+
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+
+<button class="mini"
+onclick="openFile('${item.download_url||""}')">
+Open
+</button>
+
+<button class="mini"
+onclick="editFile('${item.path}')">
+Edit
+</button>
+
+<button class="mini"
+style="background:#7f1d1d"
+onclick="deleteFile('${item.path}','${item.sha}')">
+Delete
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`).join("");
+}
+
+/* SEARCH FILE */
+function searchFiles(){
+
+const q=document.getElementById("searchFile")
+.value.toLowerCase().trim();
+
+if(!q){
+renderFiles(currentFiles);
+return;
+}
+
+const filtered=currentFiles.filter(x=>
+x.name.toLowerCase().includes(q)||
+x.path.toLowerCase().includes(q)
+);
+
+renderFiles(filtered);
+}
+
+/* OPEN */
+function openFile(url){
+if(!url){
+alert("URL file tidak tersedia.");
+return;
+}
+window.open(url,"_blank");
+}
+
+/* EDIT */
+async function editFile(path){
+
+updateStatus("Load File");
+
+try{
+
+const data=await githubGet(path);
+
+if(!data.content){
+alert("Isi file tidak ditemukan.");
+return;
+}
+
+const txt=decodeURIComponent(
+escape(
+atob(data.content.replace(/\n/g,""))
+)
+);
+
+const newer=prompt(
+"Edit file:\n"+path,
+txt.substring(0,30000)
+);
+
+if(newer===null){
+updateStatus("Cancel");
+return;
+}
+
+await githubPut(
+path,
+newer,
+"Edit "+path,
+data.sha
+);
+
+updateStatus("Saved");
+log("File diubah: "+path);
+loadFiles();
+
+}catch(err){
+
+updateStatus("Error");
+alert("Gagal edit file.");
+}
+}
+
+/* DELETE */
+async function deleteFile(path,sha){
+
+if(!confirm("Yakin hapus file?\n"+path))
+return;
+
+try{
+
+await githubDelete(
+path,
+sha,
+"Delete "+path
+);
+
+updateStatus("Deleted");
+log("File dihapus: "+path);
+
+loadFiles();
+countStats();
+
+}catch(err){
+
+updateStatus("Error");
+alert("Gagal hapus file.");
+}
+}
+
+/* TEST CONNECTION */
+async function testConnection(){
+
+updateStatus("Testing");
+
+try{
+
+const data=await githubGet("");
+
+if(data){
+alert("Koneksi GitHub berhasil.");
+log("Tes koneksi sukses.");
+updateStatus("Connected");
+}else{
+throw "err";
+}
+
+}catch(err){
+
+alert("Koneksi gagal.");
+updateStatus("Failed");
+}
+}
+
+<!-- =====================================
+PART 6 PREMIUM 10/10
+AUTO GENERATOR + SCHEDULER + FINAL CLOSE
+Tempel setelah PART 5 lalu penutup file
+===================================== -->
+
+/* AUTO GENERATOR */
+async function generateHome(){
+
+const html=`<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SAI Roots Music</title>
+<link rel="stylesheet" href="/assets/asset.css">
+</head>
+<body>
+<div class="container">
+<h1>SAI Roots Music</h1>
+<p>Official Website</p>
+<nav style="margin-top:16px">
+<a href="/article.html">Artikel</a> •
+<a href="/lyric.html">Lirik</a> •
+<a href="/discography.html">Discography</a> •
+<a href="/video_cover.html">Video</a>
+</nav>
+</div>
+</body>
+</html>`;
+
+await githubPut("index.html",html,"Update Home");
+}
+
+async function generateArticlePage(){
+
+let files=await githubGet("article");
+if(!Array.isArray(files))files=[];
+
+let list=files.map(x=>
+`<li><a href="/article/${x.name}">
+${x.name.replace(".html","")}
+</a></li>`).join("");
+
+const html=`<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Artikel</title>
+<link rel="stylesheet" href="/assets/asset.css">
+</head>
+<body>
+<div class="container">
+<h1>Artikel</h1>
+<ul>${list||"<li>Belum ada artikel</li>"}</ul>
+</div>
+</body>
+</html>`;
+
+await githubPut("article.html",html,"Update Article");
+}
+
+async function generateLyricPage(){
+
+let files=await githubGet("lyric");
+if(!Array.isArray(files))files=[];
+
+let list=files.map(x=>
+`<li><a href="/lyric/${x.name}">
+${x.name.replace(".html","")}
+</a></li>`).join("");
+
+const html=`<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lirik</title>
+<link rel="stylesheet" href="/assets/asset.css">
+</head>
+<body>
+<div class="container">
+<h1>Koleksi Lirik</h1>
+<ul>${list||"<li>Belum ada lirik</li>"}</ul>
+</div>
+</body>
+</html>`;
+
+await githubPut("lyric.html",html,"Update Lyric");
+}
+
+async function generateDiscographyPage(){
+
+let files=await githubGet("music");
+if(!Array.isArray(files))files=[];
+
+let list=files
+.filter(x=>x.name.endsWith(".html"))
+.map(x=>`<li><a href="/music/${x.name}">
+${x.name.replace(".html","")}
+</a></li>`).join("");
+
+const html=`<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Discography</title>
+<link rel="stylesheet" href="/assets/asset.css">
+</head>
+<body>
+<div class="container">
+<h1>Discography</h1>
+<ul>${list||"<li>Belum ada rilisan</li>"}</ul>
+</div>
+</body>
+</html>`;
+
+await githubPut("discography.html",html,"Update Discography");
+}
+
+async function generateVideoPage(){
+
+let files=await githubGet("video");
+if(!Array.isArray(files))files=[];
+
+let list=files
+.filter(x=>x.name.endsWith(".html"))
+.map(x=>`<li><a href="/video/${x.name}">
+${x.name.replace(".html","")}
+</a></li>`).join("");
+
+const html=`<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Video Cover</title>
+<link rel="stylesheet" href="/assets/asset.css">
+</head>
+<body>
+<div class="container">
+<h1>Video Cover</h1>
+<ul>${list||"<li>Belum ada video</li>"}</ul>
+</div>
+</body>
+</html>`;
+
+await githubPut("video_cover.html",html,"Update Video");
+}
+
+/* REBUILD ALL */
+async function rebuildAllPages(){
+
+updateStatus("Rebuilding");
+
+try{
+
+await generateHome();
+await generateArticlePage();
+await generateLyricPage();
+await generateDiscographyPage();
+await generateVideoPage();
+
+updateStatus("Done");
+log("Semua halaman direbuild.");
+alert("Semua halaman berhasil dibuat.");
+
+}catch(err){
+
+updateStatus("Error");
+alert("Rebuild gagal.");
+}
+}
+
+/* AUTO SCHEDULER */
+function runScheduler(){
+
+setInterval(async()=>{
+
+let data=JSON.parse(
+localStorage.getItem("schedule_posts")||"[]"
+);
+
+if(!data.length)return;
+
+const now=new Date().getTime();
+let remain=[];
+
+for(let item of data){
+
+const t=new Date(item.date).getTime();
+
+if(now>=t){
+
+try{
+
+if(item.type==="article"){
+
+await githubPut(
+"article/"+slugify(item.title)+".html",
+`<html><body><h1>${item.title}</h1>${item.content}</body></html>`,
+"Auto schedule article"
+);
+
+}
+
+if(item.type==="lyric"){
+
+await githubPut(
+"lyric/"+slugify(item.title)+".html",
+`<html><body><h1>${item.title}</h1><pre>${item.content}</pre></body></html>`,
+"Auto schedule lyric"
+);
+
+}
+
+if(item.type==="video"){
+
+await githubPut(
+"video/"+slugify(item.title)+".html",
+`<html><body><h1>${item.title}</h1><iframe src="${item.content}" width="100%" height="520"></iframe></body></html>`,
+"Auto schedule video"
+);
+
+}
+
+log("Schedule publish: "+item.title);
+
+}catch(err){
+remain.push(item);
+}
+
+}else{
+remain.push(item);
+}
+
+}
+
+localStorage.setItem(
+"schedule_posts",
+JSON.stringify(remain)
+);
+
+},30000);
+
+}
+
+/* FINAL BOOT */
+setTimeout(()=>{
+runScheduler();
+if(localStorage.getItem("git_token")){
+countStats();
+loadFiles();
 }
 },700);
 
-});
-}
+log("Premium CMS 10/10 aktif.");
+updateStatus("Ready");
 
-/* ==========================
-WELCOME
-========================== */
-function showWelcome(){
-
-if(window.showPopup){
-showPopup("Selamat datang di Admin Panel SAI Roots");
-}else{
-console.log("Welcome");
-}
-
-}
-
-/* ==========================
-ARTICLE PREVIEW
-========================== */
-const articleArea = document.getElementById("articleContent");
-
-if(articleArea){
-
-const box = document.createElement("div");
-box.className = "preview-box";
-box.innerHTML = `
-<h4>Preview Artikel</h4>
-<div class="preview-render" id="articlePreview">
-Mulai menulis untuk melihat preview...
-</div>
-`;
-
-articleArea.parentNode.appendChild(box);
-
-articleArea.addEventListener("input",()=>{
-document.getElementById("articlePreview").innerHTML =
-articleArea.value || "Mulai menulis untuk melihat preview...";
-});
-
-}
-
-/* ==========================
-LYRIC PREVIEW
-========================== */
-const lyricArea = document.getElementById("lyricContent");
-
-if(lyricArea){
-
-const box = document.createElement("div");
-box.className = "preview-box";
-box.innerHTML = `
-<h4>Preview Lirik</h4>
-<div class="preview-render" id="lyricPreview"></div>
-`;
-
-lyricArea.parentNode.appendChild(box);
-
-lyricArea.addEventListener("input",()=>{
-document.getElementById("lyricPreview").innerHTML =
-(lyricArea.value || "")
-.replace(/\n/g,"<br>");
-});
-
-}
-
-/* ==========================
-QUICK ACTION FILE MANAGER
-========================== */
-const filesTab = document.getElementById("filesTab");
-
-if(filesTab){
-
-const quick = document.createElement("div");
-quick.className = "quick-row";
-quick.innerHTML = `
-<button class="quick-btn" onclick="window.open('/article','_blank')">Open Article</button>
-<button class="quick-btn" onclick="window.open('/lyric','_blank')">Open Lyrics</button>
-<button class="quick-btn" onclick="window.open('/discography','_blank')">Open Music</button>
-`;
-
-filesTab.appendChild(quick);
-
-}
-
-/* ==========================
-LOGOUT REAL
-========================== */
-document.querySelectorAll(".admin-logout").forEach(btn=>{
-
-btn.onclick = function(){
-
-localStorage.removeItem("sai_github_token");
-localStorage.removeItem("sai_youtube_token");
-
-location.reload();
-
-};
-
-});
-
-/* ==========================
-AUTO LOGIN SESSION
-========================== */
-window.addEventListener("load",()=>{
-
-const git = localStorage.getItem("sai_github_token");
-const yt  = localStorage.getItem("sai_youtube_token");
-
-if(git && yt){
-
-const login = document.querySelector(".admin-login");
-const dash  = document.querySelector(".admin-dashboard");
-
-if(login) login.style.display="none";
-if(dash) dash.style.display="block";
-
-}
-
-});
-
-/* ==========================
-TOPBAR CLOCK
-========================== */
-const topbar = document.querySelector(".admin-top-title p");
-
-if(topbar){
-
-setInterval(()=>{
-
-const d = new Date();
-
-topbar.innerHTML =
-"Kelola seluruh konten website • " +
-d.toLocaleTimeString("id-ID");
-
-},1000);
-
-}
-
-/* ==========================
-FOOTER NOTE
-========================== */
-const adminContent = document.querySelector(".admin-content");
-
-if(adminContent){
-
-const note = document.createElement("div");
-note.className = "admin-footer-note";
-note.innerHTML =
-"SAI Roots Music CMS • Secure GitHub Publisher • 2026";
-
-adminContent.appendChild(note);
-
-}
-
-})();
 </script>
+</body>
+</html>
