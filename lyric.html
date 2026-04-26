@@ -1,198 +1,81 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<script type="application/ld+json">
-{
- "@context":"https://schema.org",
- "@type":"WebSite",
- "name":"SAI Roots Music",
- "url":"https://sairootsmusic.com"
-}
-</script>
-
-<link rel="canonical" href="https://sairootsmusic.com/lyric" />
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
-<link rel="manifest" href="/site.webmanifest">
-
-<title>Koleksi Lirik - SAI Roots Music</title>
-<meta name="description" content="Baca koleksi lirik lagu resmi SAI Roots Music. Lirik album dan single terbaru tersedia lengkap di website resmi.">
-
-<meta property="og:title" content="Koleksi Lirik - SAI Roots Music">
-<meta property="og:site_name" content="SAI Roots Music">
-<meta property="og:image" content="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg">
-<meta property="og:url" content="https://sairootsmusic.com/lyric">
-<meta property="og:type" content="website">
-
-<link rel="stylesheet" href="/assets/asset.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "SAI Roots Music",
+      "url": "https://sairootsmusic.com"
+    }
+    </script>
+    <link rel="canonical" href="https://sairootsmusic.com/lyric" />
+    <title>Koleksi Lirik Lagu - SAI Roots Music</title>
+    <meta name="description" content="Kumpulan lirik lagu resmi dari SAI Roots. Temukan lirik album Critical Fire dan single lainnya di sini.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
 <header>
-<div class="container">
-<div class="navbar">
-
-<a href="/" class="brand">
-<img src="https://raw.githubusercontent.com/sairootsmusic/sairootsmusic.com/refs/heads/main/android-chrome-192x192.png" alt="SAI Roots Logo">
-<span>SAI Roots</span>
-</a>
-
-<div class="search-wrap">
-<input type="text" class="search-input" placeholder="Cari lirik lagu...">
-<button class="search-btn">⌕</button>
-</div>
-
-<button class="menu-btn">☰</button>
-
-</div>
-</div>
+    <div class="logo">SAI ROOTS</div>
+    <div class="nav-container">
+        <input type="text" id="siteSearch" class="search-bar" placeholder="Cari lirik lagu...">
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    </div>
+    <nav class="nav-menu" id="navMenu">
+        <a href="/">Home</a>
+        <a href="/dicography">Discography</a>
+        <a href="/lyric">Koleksi Lirik</a>
+        <a href="/article">Artikel</a>
+        <a href="/video_cover">Video Cover</a>
+        <hr style="border: 0.5px solid #333; margin: 10px 0;">
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="/privacy">Privacy Policy</a>
+    </nav>
 </header>
 
-<div class="overlay"></div>
+<main style="padding: 20px 5%; min-height: 80vh;">
+    <h1 style="margin-bottom: 10px;">Koleksi Lirik</h1>
+    <p style="color: var(--text-gray); margin-bottom: 30px;">Filter berdasarkan kategori untuk mempermudah pencarian.</p>
 
-<div class="drawer">
-<div class="drawer-title">Menu</div>
-<a href="/discography">Discography</a>
-<a href="/lyric">Koleksi Lirik</a>
-<a href="/article">Artikel</a>
-<a href="/video_cover">Video Cover</a>
-<a href="/about">About</a>
-<a href="/contact">Contact</a>
-<a href="/privacy">Privacy Policy</a>
-</div>
+    <div class="filter-tabs" style="margin-bottom: 30px; display: flex; gap: 10px;">
+        <button class="btn-filter active" onclick="filterLyric('all')">Semua</button>
+        <button class="btn-filter" onclick="filterLyric('Album')">Album</button>
+        <button class="btn-filter" onclick="filterLyric('Single')">Single</button>
+    </div>
 
-<section class="hero" style="background-image:url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1400&q=80');min-height:62vh;">
-<div class="hero-inner">
-
-<div class="hero-tag">OFFICIAL LYRICS COLLECTION</div>
-
-<h1>Koleksi Lirik</h1>
-
-<p>
-Temukan lirik lagu resmi dari rilisan SAI Roots. Album, single, dan karya terbaru.
-</p>
-
-<div class="hero-actions">
-<a href="#lyricsSection" class="btn btn-primary">Browse Lyrics</a>
-<a href="/discography" class="btn btn-dark">Play Music</a>
-</div>
-
-</div>
-</section>
-
-<section class="section" id="lyricsSection">
-<div class="container">
-
-<h2 class="section-title">Latest Lyrics</h2>
-
-<div class="grid" id="latestLyrics">
-
-<div class="card">
-<div class="card-img">
-<img src="https://raw.githubusercontent.com/pembri/SAI-Roots-Official/main/sairoots.jpg">
-</div>
-<div class="card-body">
-<div class="card-title">Loading...</div>
-<div class="card-text">Memuat lirik terbaru</div>
-</div>
-</div>
-
-</div>
-
-</div>
-</section>
-
-<section class="section">
-<div class="container">
-
-<h2 class="section-title">Why Lyrics Matter</h2>
-
-<div class="feature-grid">
-
-<div class="feature-card">
-<div class="feature-icon">✍️</div>
-<div class="feature-title">Official Words</div>
-<div class="feature-desc">
-Versi lirik resmi langsung dari sumber utama karya SAI Roots.
-</div>
-</div>
-
-<div class="feature-card">
-<div class="feature-icon">🎤</div>
-<div class="feature-title">Sing Along</div>
-<div class="feature-desc">
-Ikuti setiap bait dan nyanyikan lagu favoritmu dengan tepat.
-</div>
-</div>
-
-<div class="feature-card">
-<div class="feature-icon">🌀</div>
-<div class="feature-title">Meaning & Vibes</div>
-<div class="feature-desc">
-Rasakan pesan dan nuansa reggae rap indie di setiap kata.
-</div>
-</div>
-
-</div>
-
-</div>
-</section>
+    <div id="lyric-grid" class="grid-container">
+        <p style="color: var(--text-gray);">Memuat daftar lirik...</p>
+    </div>
+</main>
 
 <footer>
-<div class="container">
-<div class="footer-wrap">
-
-<div class="footer-grid">
-
-<div>
-<div class="footer-title">Streaming</div>
-<div class="footer-platforms">
-<a href="https://www.youtube.com/@sairoots" target="_blank">YouTube</a>
-<a href="https://music.youtube.com/channel/UC2EfMkjDMG9LTWfc1llL4AQ" target="_blank">YouTube Music</a>
-<a href="https://open.spotify.com/artist/0xOPCtZvhXVd9RTbU1aYTr" target="_blank">Spotify</a>
-<a href="https://music.apple.com/id/artist/sai-roots/1892187423?l=id" target="_blank">Apple Music</a>
-<a href="https://m.soundcloud.com/sairoots" target="_blank">SoundCloud</a>
-<a href="https://link.deezer.com/s/3366qh6efN8QoSqSPCEsB" target="_blank">Deezer</a>
-<a href="https://music.amazon.com/artists/B0GTFWNC32/sai-roots" target="_blank">Amazon Music</a>
-</div>
-</div>
-
-<div>
-<div class="footer-title">Social</div>
-<div class="footer-links">
-<a href="https://instagram.com/ahmadsupembri" target="_blank">Instagram</a>
-<a href="https://tiktok.com/@ahmadsupembri" target="_blank">TikTok</a>
-<a href="https://facebook.com/ahmadsupembri" target="_blank">Facebook</a>
-</div>
-</div>
-
-<div>
-<div class="footer-title">Website</div>
-<div class="footer-links">
-<a href="/about">About</a>
-<a href="/contact">Contact</a>
-<a href="/privacy">Privacy Policy</a>
-</div>
-</div>
-
-</div>
-
-<div class="copy">
-© 2026 SAI Roots Music. All Rights Reserved
-</div>
-
-</div>
-</div>
+    <div class="social-icons">
+        <a href="https://www.youtube.com/@sairoots">YouTube</a>
+        <a href="https://music.youtube.com/channel/UC2EfMkjDMG9LTWfc1llL4AQ">YouTube Music</a>
+        <a href="https://open.spotify.com/artist/0xOPCtZvhXVd9RTbU1aYTr">Spotify</a>
+        <a href="https://music.apple.com/id/artist/sai-roots/1892187423?l=id">Apple Music</a>
+        <a href="https://m.soundcloud.com/sairoots">SoundCloud</a>
+        <a href="https://link.deezer.com/s/3366qh6efN8QoSqSPCEsB">Deezer</a>
+        <a href="https://music.amazon.com/artists/B0GTFWNC32/sai-roots">Amazon Music</a>
+        <a href="https://instagram.com/ahmadsupembri">Instagram</a>
+        <a href="https://tiktok.com/@ahmadsupembri">Tiktok</a>
+        <a href="https://facebook.com/ahmadsupembri">Facebook</a>
+    </div>
+    <p style="margin-top:20px;">© 2026 SAI Roots Music. All Rights Reserved</p>
 </footer>
 
-<script src="/assets/asset.js"></script>
+<script src="/app.js"></script>
+<script>
+    // Fungsi khusus filter tampilan (bisa dikembangkan nanti di app.js)
+    function filterLyric(category) {
+        console.log("Filtering to:", category);
+        // Logika filter akan dijalankan oleh script penarik data otomatis
+    }
+</script>
+
 </body>
 </html>
